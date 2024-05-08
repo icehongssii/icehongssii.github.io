@@ -781,7 +781,15 @@ code.ad-note::before {
 }
 
 /* 중앙으로 오게 만들기 */
-/* img.my-icon{
+img.my-icon{
     display: block;
     margin: 0 auto;
-} */
+}
+
+
+.about a:link { color: blue; } 
+.about a:visited { color: black; } 
+.about a:hover { color: red; } 
+.about a:active { color: green; }
+.about .center-image { display: block; margin: auto; width: 50%; /* Or your specific width */ 
+                height: auto; /* Maintains aspect ratio */ } 
