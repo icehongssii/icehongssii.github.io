@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="eng">
+
+<head>
+  <!--메타 정보 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="MOM, I am gonna ROCK">
+  <meta property="og:description" content="MOM, I am gonna ROCK">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>icehongssii</title>
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <link rel="icon" href="/static/assets/icepersimmon.png" type="image/x-icon">
+
+
+<!-- 아래 프리즘 순서 지킬 것  -->
+    <!-- 1. 프리즘 코어 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- 2. 프리즘 플러그인(show-language, copy-to-clipboard)을 위한 추가적인 플러그인  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-cu2C9EssrOrVXT4thyL4gz/qWyh3Lq9XbICUXYyh3zJRCSKk1J08tBKPXnsSpdpZXOliaK/OJBygw/l0twAmwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-DSAA0ziYwggOJ3QyWFZhIaU8bSwQLyfnyIrmShRLBdJMtiYKT7Ju35ujBCZ6ApK3HURt34p2xNo+KX9ebQNEPQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+     <!-- 3. 프리즘 플러그인 스타일 -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/diff-highlight/prism-diff-highlight.min.css">
+ 
+     <!-- 4. 프리즘 플러그인 스크립트 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/show-language/prism-show-language.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"></script>
+ 
+     <!-- 5. 프리즘 추가적인 언어  -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-markdown.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+ 
+     
+     <!-- 프리즘 하이라이팅이 obsidian admonition에 영향받지않게
+        language-ad로 생성되는 클래스 삭제하는 스크립트
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all 'pre' and 'code' elements
+            const elements = document.querySelectorAll('pre, code');
+        
+            // Iterate over each element
+            elements.forEach(element => {
+                // Iterate over each class in the class list
+                element.classList.forEach(cls => {
+                    // Check if the class starts with 'language-ad'
+                    if (cls.startsWith('language-ad')) {
+                        // Remove the class
+                        element.classList.remove(cls);
+                    }
+                });
+            });
+        });
+     </script>
+
+
+
+</head>
+
+
+<body>
+    <!-- 상단 세개의 메뉴 헤더 변하지 않는경로 -->
+    <header>
+        <div class="container">
+            <div class="site-info">
+                <a href="/" class="site-title">icehongssii</a>
+                <p class="site-description">MOM, I am gonna ROCK</p>
+            </div>
+
+            <div class="grower"></div>
+
+            <nav class="site-nav">
+                
+                <a href="/posts"><img src="/static/assets/monster.svg">
+
+                <p>POSTS</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/"><img src="/static/assets/sun.svg"></a>
+                <p>ABOUT</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/tags"><img src="/static/assets/cloud.svg"></a>
+                <p>TAGS</p>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main  id="main" class="container">
+        
+<article class="post-page">
+    <!--TODO @icehongssii 메타 정보에 들어가야함-->
+        <h1 class='title'>잔혹한 천사의 테제로 일본어 배우기 - 개요</h1>    
+        <div class="date">
+            <strong>마지막수정 2024-03-15 14:29 - 최초작성 2024-03-15 14:11</strong>
+        </div>
+    <!---->
+
+    <!--메타-->
+    <header class='meta-information'>
+        <table>
+            <tr>
+                <td><strong>태그</strong></td>
+                <td>         
+                    
+                    <a href='/tags/#일본어'><span>일본어</span></a>                                                        
+                    
+                    <a href='/tags/#에반게리온'><span>에반게리온</span></a>                                                        
+                                                   
+                </td>
+            </tr>
+            <tr>
+                <td><strong>tl;dr</strong></td>
+                <td>
+                    일본어 배우기
+                </td>
+            </tr>                
+        </table>
+    </header>
+    <!---->
+
+    <!--본문-->
+    <div class="entry">
+        <h2>👯‍♂️ 목표 : 갑자기 일본어를 노래로 배우자</h2>
+
+<p>이유는 없고 노래를 자주 듣게 되었는데 입에 착 달라 붙어서 일본어 배우기에 너무 좋겠단 생각이 들어서 .. </p>
+
+<h2>👯‍♂️ 검증 및 추천 대상 : 가사로 외국어 배우는게 도움될까?</h2>
+
+<p>도움된다 .. 특히 초보자들한테 ..<br />
+뭐든 꾸준히가 중요한데 꾸준히 할려면 재밌어야하니까 .. 난 재밌었다..<br />
+그래서 나랑 비슷한 성향인 사람들에게도 잘 맞을 것 같다 .. </p>
+
+<pre><code class="ad-important language-ad-important">title: 노래로 외국어 배우기 추천대상
+- 노래 좋아하고 호기심 많고 책으로 처음부터 외국어 배우는거 힘들어하는 사람들
+- 좋아하는 노래 가사 다 외우는 사람들
+</code></pre>
+
+<p><a href="https://www.youtube.com/watch?v=S-wSCKaHJ6Y">하이 스쿨 뮤지컬 What I've been looking for</a> 과 <a href="https://www.youtube.com/watch?v=zBG-sEGlULs">하이 스쿨 뮤지컬 Start of something new</a>  (~~레알 명곡들~~) 가사 외우면서 영어 공부를 의도치 않게 했다.. 그냥 노래가 좋아서 다 외우고 싶었음 </p>
+
+<p>그러다 가사 다 외우고 뜻 찾다가 이해안가서 문법이랑  영단어  사용법 배우기 시작했다. ..<br />
+포인트는 자기가 궁금해서 찾아야함 ..  억지로 문법 공부책 사면 필망이다 ..(반골기질 .. )</p>
+
+<p>노래로 배우니 흥얼거리기도 좋아서 더 쉽게 머리에 박혔다 ...<br />
+근데 ..처음 배울 때는... 영어로 말하거나 쓰고 싶어도  응용을 못하니까 일단  노래를 좀 흥얼거려야했다</p>
+
+<h2>👯‍♂️ 과정과 작은 목표들 : 어떻게 시작 할 것인가?</h2>
+
+<pre><code class="ad-important language-ad-important">title: 잔혹한 천사의 테제로 일본어 배우기
+</code></pre>
+
+<p>중딩 때 했던 것과 똑같은 방향으로 해볼려고한다 .. </p>
+
+<p>그래서 목표는 다음과 같다.. 약 .. 두 달 정도 생각하고 있다.. (4월 말까지 .. )<br />
+독음으로는 거의 다 외웠다 .. </p>
+
+<ul>
+<li>가사 독음으로 외울 수 있다 👉 다 외움 </li>
+<li>가사 히라가나로 쓸 수 있다</li>
+<li>가사를 이해 할 수 있다</li>
+<li>가사에 있는 단어들로 문장을 만들 수 있다 (응용)</li>
+<li>가사에 있는 간지를 쓸 수 있다</li>
+<li>가타카나를 쓸 수 있다 </li>
+</ul>
+
+<h2>👯‍♂️ 걱정 되는 점..</h2>
+
+<p>가사가.. 심각하게 ..  난해하다  ..  나는 그저 <code>책을 보고 싶습니다</code> 정도 말하고 싶은데 실생활에 쓰일만한 단어가 많이 안보인다 ..<br />
+일상 생활에서 쓰이는지 궁금하긴 한데 안하는 것보단 나을 거라 ..<br />
+말투가 이상해지겠다만 외국어 배울 때 다른 자아가 생기는 장점이라고 생각할련다 ..</p>
+
+<pre><code>ずっと眠ってる  
+즛토 네뭇테루  
+쭉 잠들어 있는  
+
+私の愛の揺りかご  
+와타시노 아이노 유리카고  
+내 사랑의 요람  
+
+あなただけが夢の使者に  
+아나타 다케가 유메노 시샤니  
+당신만이 꿈의 사자에게  
+
+呼ばれる朝がくる  
+요바레루 아사가 쿠루  
+불리는 아침이 와요
+
+- 잔혹한 천사의 테제 2절 가사 -
+</code></pre>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li>[[잔혹한 천사의 테제 가사 및 독음]]</li>
+</ul>
+
+    </div>  
+    <!---->  
+</article>
+
+
+    </main>
+
+    <!-- 하단에 계속 붙어있는 메뉴 -->
+    <footer>
+        <div class="container">
+            <img src="/static/assets/icepersimmon.png" class='my-icon'>          
+            <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+            <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
