@@ -793,3 +793,8 @@ img.my-icon{
 .about a:active { color: green; }
 .about .center-image { display: block; margin: auto; width: 50%; /* Or your specific width */ 
                 height: auto; /* Maintains aspect ratio */ } 
+
+
+.all_tags{
+    margin-top: 0px;
+}
