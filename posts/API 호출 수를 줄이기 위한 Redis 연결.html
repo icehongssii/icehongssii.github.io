@@ -104,9 +104,9 @@
 <main  id="main" class="container">
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>AWS 비용폭탄, 왜 15만원이나</h1>    
+        <h1 class='title'>API 호출 수를 줄이기 위한 Redis 적용</h1>    
         <div class="date">
-            <strong>마지막수정 2024-04-12 13:33 - 최초작성 2024-04-12 13:33</strong>
+            <strong>마지막수정 2024-03-13 13:25 - 최초작성 2024-03-13 13:25</strong>
         </div>
     <!---->
 
@@ -116,13 +116,19 @@
             <tr>
                 <td><strong>태그</strong></td>
                 <td>         
+                    
+                    <a href='/tags/#aws'><span>aws</span></a>                                                        
+                    
+                    <a href='/tags/#redis'><span>redis</span></a>                                                        
+                    
+                    <a href='/tags/#fastapi'><span>fastapi</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    
+                    Redis 컨테이너 보안그룹 인바운드 타켓이 서버 보안그룹으로
                 </td>
             </tr>                
         </table>
@@ -131,135 +137,125 @@
 
     <!--본문-->
     <div class="entry">
-        <h2>👯‍♂️ Intro &amp; tl;dr</h2>
+        <pre><code class="ad-note language-ad-note">title: 키워드
+- redis
+- 보안그룹
+- 사이드카패턴
+</code></pre>
 
-<p><img src="https://i.imgur.com/xMRyunq.png" alt="" /></p>
+<p>이 글은 FastAPI와 Redis를 어떻게 연결하는지에 대해 맞췄기 떄문에 코드레벨에서 redis와 어떻게 통신하고 캐싱하는지에 대해선 깊게 다루지 않는다!</p>
 
-<p>3월한달간 가장 많이 사용한 서비스</p>
-
-<table>
-<thead>
-<tr>
-  <th>서비스명</th>
-  <th>금액</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>VPC</td>
-  <td>$19.41</td>
-</tr>
-<tr>
-  <td>ELB</td>
-  <td>$16.26</td>
-</tr>
-<tr>
-  <td>ECS</td>
-  <td>$58.41</td>
-</tr>
-</tbody>
-</table>
-
-<h2>왜 비용이 이만큼 나왔는지 궁금하다면? <code>Bills</code>확인!</h2>
-
-<p>왜 VPC 가격이 저만큼 나왔는지 계속 찾아다녔는데 시간낭비하지 말고<br />
-<code>Billig and Cost Management &gt; Bills</code>   에 가면 기본 화면에 나오는 것보다 더 자세하게 서비스 사용 내역을 볼 수가 있다.</p>
-
-<table>
-<thead>
-<tr>
-  <th>Billing ad Cost Mangement &gt; Cost Explore</th>
-  <th>Billing ad Cost Mangement &gt; Bills</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><img src="https://i.imgur.com/HxulQoP.png" alt="" /><br></td>
-  <td><img src="https://i.imgur.com/d8cQblM.png" alt="" /><br></td>
-</tr>
-</tbody>
-</table>
-
-<h2>👯‍♂️ VPC 비용</h2>
-
-<p>Amazon VPC(가상 사설 클라우드) 자체의 생성 및 사용에 대한 추가 요금은 없다.<br />
-하지만 VPC를 제어, 연결, 모니터링 보안과 같은 서비스를 추가적으로 이용 할 경우 이에 대해 과금됨</p>
-
-<p>VPC 과금이 되었다면 아래 4가지를 의심해 볼 수 있다.<br />
-하지만 보통 <code>퍼블릭 IPv4주소</code>에서 가장 많이 청구가 되는 것 같다.[^1]</p>
-
-<ul>
-<li>NAT 게이트웨이</li>
-<li>IPAM</li>
-<li>네트워크 분석</li>
-<li><strong>퍼블릭 IPv4주소</strong></li>
-</ul>
-
-<h3>NAT 게이트웨이 요금</h3>
-
-<ul>
-<li>VPC에 NAT 게이트웨이를 생성하는 경우 게이트웨이를 프로비저닝하고 사용하는 각 ‘NAT 게이트웨이 시간’에 대한 요금이 부과된다</li>
-</ul>
-
-<p>NAT 게이트웨이(Network Address Translation Gateway)는 AWS에서 제공하는 서비스로, VPC(Virtual Private Cloud) 내의 프라이빗 서브넷에 있는 인스턴스들이 인터넷에 접속할 수 있도록 해주면서도, 인터넷에서는 이 인스턴스들로 직접 접속할 수 없게 하는 역할을 합니다. 즉, NAT 게이트웨이는 보안과 격리를 유지하면서 인터넷 접근이 필요한 작업(예: 소프트웨어 업데이트, API 호출)을 수행할 수 있게 해주는 중요한 네트워크 구성 요소입니다.</p>
-
-<ul>
-<li>NAT 게이트웨이의 주요 기능:</li>
-</ul>
+<h2>👯‍♂️ Redis와 FastAPI 컨테이너 같은 태스크에 정의할까?</h2>
 
 <ol>
-<li><strong>인터넷 접속 제공</strong>: 프라이빗 서브넷의 인스턴스가 인터넷에 접속해 필요한 데이터를 다운로드하거나 외부 API와 통신할 수 있도록 합니다.</li>
-<li><strong>인바운드 연결 차단</strong>: 외부에서 프라이빗 서브넷의 인스턴스로 직접 접근하는 것을 차단하여 보안을 강화합니다.</li>
-<li><strong>IP 주소 마스킹</strong>: NAT 게이트웨이는 프라이빗 서브넷의 인스턴스가 인터넷에 접속할 때 고정된 IP 주소(게이트웨이 자체의 IP)를 사용하여 출발지 IP 주소를 변환하고 응답을 해당 인스턴스로 라우팅합니다.
-<h3>IPAM 요금</h3></li>
+<li><strong>동일한 작업 정의</strong>: Redis 컨테이너를 FastAPI 애플리케이션과 동일한 ECS 작업 정의에 추가한다면  Redis를 메인 애플리케이션 컨테이너의 사이드카로 사용할 수 있다. 따라서 동일한 수명 주기, 네트워크 공간 및 기타 작업 수준 리소스를 공유가능
+<ul>
+<li>단 확장성이 떨어짐. Redis가 FastAPI 애플리케이션의 각 인스턴스에 묶여 있기 때문에 고가용성에는 적합하지 않다</li>
+</ul></li>
+<li><strong><mark style="background: #FFB8EBA6;">별도 작업 정의</mark> - 선택</strong>: 별도의 작업에서 Redis 컨테이너를 실행하면 FastAPI 애플리케이션과 독립적으로 관리하고 확장할 수 있다.
+<ul>
+<li>첫 번째보다는 조금 더 설정해야 할 것이 있지만 확장성과 유연성 향상</li>
+</ul></li>
 </ol>
 
-<h3>네트워크 분석 요금</h3>
-
-<h3>퍼블릭 IPv4주소</h3>
-
-<p>퍼블릭 IPv4 주소는 인터넷에 연결되는 모든 기기가 가지는 특별한 번호임. 인터넷 게임을 하거나 웹사이트 접속 할 때 이 주소를 사용함. 우리집에 우편물 보내려면 정확한 주소가 필요한 것처럼 인터넷에서 각 기기의 정확한 위치 알려주는 주소가 필요한거고 이게 퍼블릭 IPv4주소다.</p>
-
-<p>AWS VPC에서 시작하는 대부분의 리소스들은 서로 연결되어야 하기때문에 IP주소와 함께 제공된다. 이때 대부분은 프라이빗 IP주소(인터넷에 공개되지 않음)로 제공되지만 인터넷에 직접 연결되어야하는 경우 퍼블릭  IP주소를 사용한다.
-(내가 만든 웹서버를 인터넷 통해 보여주고 싶다든가 할 때)</p>
-
-<p>이때!  VPC에서 시작된 리소스와 연결된 모든 퍼블릭 IPv4주소에 요금이 부과되는데. 주소별로 시간당 0.005 USD이다. (리로스 연결과 상관없이 과금됨)</p>
-
-<p>예를들면 아래의 경우 이번달에 <code>IP주소 10개 * 24시간 * 30일 * $0.005 = $36</code> 만큼 과금된다. </p>
-
-<p>• 사용 중인 퍼블릭 IPv4 주소가 1개씩 있는 Amazon EC2 인스턴스 3개<br />
-• 사용 중인 퍼블릭 IPv4 주소가 2개 있는 Elastic Load Balancer 1개(포함)<br />
-• 사용 중인 퍼블릭 IPv4 주소가 1개 있는 Amazon RDS 데이터베이스 1개<br />
-• AWS 계정의 유휴 탄력적 IP 주소 4개</p>
-
-<p>이의 계산대로 보면 
-나는 IPv4가 한 5~6개를 쓰고 있는걸로 확인된다.. <code>19.41/(24*30*0.005)</code> (ALB )</p>
-
-<p>그런데 내가 사용하고 있는  IPv4는 1개 일텐데?  내 블로그 도메인과 연결된 ALB에서 
-<img src="https://i.imgur.com/vd4vo1H.png" alt="" />
-아그런데 이게 VPC1, 서브넷4개에서 사용중이기 떄문에 총 5개.. 그러면 계산이 맞다. </p>
-
-<p><img src="https://i.imgur.com/ZwU7Oac.png" alt="" />
-<img src="https://i.imgur.com/mMCePwq.png" alt="" />
-<img src="https://i.imgur.com/mMCePwq.png" alt="mMCePwq.png" /></p>
-
-<h2>ECS 비용</h2>
-
-<p><img src="https://i.imgur.com/33l5Yqr.png" alt="" /></p>
-
-<p>ECS total 58.34</p>
+<p>따라서 별도의 작업에 Redis를 정의했다. 아래와 같은 상황임</p>
 
 <ul>
-<li>ECS APN2 fargate ARM-GB-hours -> aws fargate ARM memory 0.15hrs=$0</li>
-<li>ECS APN2 fargate ARM-vCPU-hours:perCPU -> aws fargate ARM vCPU 0.05hrs=$0</li>
-<li>ECS APN2 fargate GB-hours -> aws fargate memory 2,828.023hrs = $14.45</li>
-<li>ECS APN2 fargate vCPU-hours:perCPU -> aws fargate vCPU 942.674hrs = $43.89</li>
+<li>클러스터A/서비스A/태스크A/FastaPI컨테이너</li>
+<li>클러스터A/서비스A/태스크B/FastaPI컨테이너</li>
 </ul>
+
+<h2>👯‍♂️ Redis와 FastAPI 통신하려면?</h2>
+
+<h3>보안그룹설정</h3>
+
+<p>6379는 Redis 서버가 기본적으로 사용하는 포트 번호. Redis 클라이언트와 서버 간의 통신을 위해 이 포트를 사용한다. 보안 그룹을 설정할 때 이 포트를 열어 Redis 서버에 접근할 수 있도록 해야 함.</p>
+
+<ul>
+<li><p>FastAPI 작업정의 보안그룹에서 Redis  보안그룹에 대한 인바운운드 트래픽 허용해야함</p>
+
+<ul>
+<li>인바운드에 6379 포트 -> 타겟에 redis 보안그룹 ID (custom TCP)</li>
+<li>= Redis가 FastAPI 서버에 접근하는 데 필요한 포트를 여는과정</li>
+</ul></li>
+<li><p>Reids 작업정의 보안그룹에서 FastAPI 보안 그룹에대한 인바운드 트래픽 허용해야함</p>
+
+<ul>
+<li>인바운드에 6379 포트 -> 타겟에 fastapi 보안그룹 ID (custom TCP)</li>
+<li>= FastAPI 서비스가 Redis 서버에 접근하는 데 필요한 포트를 여는과정</li>
+</ul></li>
+</ul>
+
+<h3>레디스 IP와 비밀번호는 어떻게 받지?</h3>
+
+<ul>
+<li>자체 호스팅 Redis 사용하므로 코드 내에서Redis 서버 IP와 비밀번호를 이용해 참조한다</li>
+<li><p>이때 코드에 Redis의 IP주소와 비밀번호를 명시적으로 적어두는건 지양해야하므로 Github에다가  Github Action에서 사용 할 환경변수로 IP와 비밀번호를 저장해놨다. 이때  이미지 빌드시 github에 저장된 환경변수를 사용해 docker image에서 사용함 </p></li>
+<li><p>github action에서 사용하는 워크 플로우 일부 </p></li>
+</ul>
+
+<pre><code class="yaml language-yaml">- name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+        BRANCH_NAME: ${{ github.ref_name }}
+        COMMIT_SHA: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$COMMIT_SHA \
+                    --build-arg REDIS_HOST=${{ secrets.REDIS_HOST }} \
+                    --build-arg REDIS_PWD=${{ secrets.REDIS_PWD }} \
+
+</code></pre>
+
+<ul>
+<li>도커 파일에는 아래와 같이 작성됨</li>
+</ul>
+
+<pre><code class="dockerfile language-dockerfile">ARG REDIS_HOST
+ARG REDIS_PWD
+
+ENV REDIS_HOST=${REDIS_HOST}
+ENV REDIS_PWD=${REDIS_PWD}
+</code></pre>
+
+<ul>
+<li>그리고 FastAPI에서는 이 환경변수로 아래와 같이 작성되었고 연결 성공!</li>
+</ul>
+
+<pre><code class="python language-python">import os
+import redis
+
+
+redis_host = os.getenv("REDIS_HOST")
+redis_client = redis.Redis(host=redis_host, port=6379, decode_responses=True)
+</code></pre>
+
+<h3>레디스 캐싱이용하기(파이썬 코드)</h3>
+
+<pre><code class="python language-python">def fetch_github_content(url):
+    cache_key = f"content:{url}"
+    try:
+        cache_data = redis_client.get(cache_key)
+    except redis.exceptions.ConnectionError:
+    # Redis 연결 문제 처리
+        print("Redis 연결에 실패")
+        cache_data = None
+    if cache_data:
+        return cache_data
+    else:
+        response = req.get(url)
+        data = response.text
+        # 3600초동안 컨텐츠 보관
+        redis_client.setex(cache_key, 3600, data) 
+        return data
+</code></pre>
 
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
-<p>https://aws.amazon.com/ko/blogs/korea/new-aws-public-ipv4-address-charge-public-ip-insights/
-- [^1]: <a href="https://www.reddit.com/r/aws/comments/1ajvdn9/comment/kp3qw8x/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button">reddit, VPC 왜 요금청구 되는거죠?</a></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=reNPNDustQU">유튜브, redis+fastAPI </a></li>
+<li><a href="https://www.reddit.com/r/learnpython/comments/12xrx4r/how_to_deploy_redis_with_a_fastapi_docker/">레딧,  fastapi와 redis 컨테이너 만들떄 ? </a></li>
+</ul>
 
     </div>  
     <!---->  

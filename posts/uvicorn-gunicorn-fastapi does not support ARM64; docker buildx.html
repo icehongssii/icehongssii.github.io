@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="eng">
+
+<head>
+  <!--메타 정보 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="ART / TECH 그리고 ?? ">
+  <meta property="og:description" content="ART / TECH 그리고 ?? ">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>icehongssii의 일지</title>
+  <link rel="stylesheet" type="text/css" href="https://icehongssii.github.io/static/style.css">
+  <link rel="icon" href="https://icehongssii.github.io/static/assets/icepersimmon.png" type="image/x-icon">
+
+
+<!-- 아래 프리즘 순서 지킬 것  -->
+    <!-- 1. 프리즘 코어 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- 2. 프리즘 플러그인(show-language, copy-to-clipboard)을 위한 추가적인 플러그인  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-cu2C9EssrOrVXT4thyL4gz/qWyh3Lq9XbICUXYyh3zJRCSKk1J08tBKPXnsSpdpZXOliaK/OJBygw/l0twAmwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-DSAA0ziYwggOJ3QyWFZhIaU8bSwQLyfnyIrmShRLBdJMtiYKT7Ju35ujBCZ6ApK3HURt34p2xNo+KX9ebQNEPQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+     <!-- 3. 프리즘 플러그인 스타일 -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/diff-highlight/prism-diff-highlight.min.css">
+ 
+     <!-- 4. 프리즘 플러그인 스크립트 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/show-language/prism-show-language.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"></script>
+ 
+     <!-- 5. 프리즘 추가적인 언어  -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-markdown.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+ 
+     
+     <!-- 프리즘 하이라이팅이 obsidian admonition에 영향받지않게
+        language-ad로 생성되는 클래스 삭제하는 스크립트
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all 'pre' and 'code' elements
+            const elements = document.querySelectorAll('pre, code');
+        
+            // Iterate over each element
+            elements.forEach(element => {
+                // Iterate over each class in the class list
+                element.classList.forEach(cls => {
+                    // Check if the class starts with 'language-ad'
+                    if (cls.startsWith('language-ad')) {
+                        // Remove the class
+                        element.classList.remove(cls);
+                    }
+                });
+            });
+        });
+     </script>
+
+
+
+</head>
+
+
+<body>
+    <!-- 상단 세개의 메뉴 헤더 변하지 않는경로 -->
+    <header>
+        <div class="container">
+            <div class="site-info">
+                <a href="/" class="site-title">icehongssii의 일지</a>
+                <p class="site-description">ART / TECH 그리고 ?? </p>
+            </div>
+
+            <div class="grower"></div>
+            <nav class="site-nav">
+                <a href="/"><img src="https://icehongssii.github.io/static/assets/sun.svg"></a>
+                <p>ABOUT</p>
+            </nav>
+            <nav class="site-nav">
+                
+                <a href="/posts"><img src="https://icehongssii.github.io/static/assets/monster.svg">
+
+                <p>POSTS</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/tags.html"><img src="https://icehongssii.github.io/static/assets/cloud.svg"></a>
+                <p>TAGS</p>
+            </nav>
+        </div>
+    </header>
+    
+
+    <!-- <main  id="main" class="container"> -->
+        
+
+<main  id="main" class="container">
+<article class="post-page">
+    <!--TODO @icehongssii 메타 정보에 들어가야함-->
+        <h1 class='title'>uvicorn-gunicorn-fastapi does not support ARM64</h1>    
+        <div class="date">
+            <strong>마지막수정 2024-03-12 20:11 - 최초작성 2024-03-12 20:11</strong>
+        </div>
+    <!---->
+
+    <!--메타-->
+    <header class='meta-information'>
+        <table>
+            <tr>
+                <td><strong>태그</strong></td>
+                <td>         
+                    
+                    <a href='/tags/#python'><span>python</span></a>                                                        
+                    
+                    <a href='/tags/#docker'><span>docker</span></a>                                                        
+                    
+                    <a href='/tags/#troubleshooting'><span>troubleshooting</span></a>                                                        
+                    
+                    <a href='/tags/#CS'><span>CS</span></a>                                                        
+                                                   
+                </td>
+            </tr>
+            <tr>
+                <td><strong>tl;dr</strong></td>
+                <td>
+                    
+                </td>
+            </tr>                
+        </table>
+    </header>
+    <!---->
+
+    <!--본문-->
+    <div class="entry">
+        <h2>👯‍♂️ <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker">uvicorn-gunicorn-fastapi</a>가 ARM64 Support를 하지 않는다</h2>
+
+<pre><code class="dockerfile language-dockerfile">FROM tiangolo/uvicorn-gunicorn:python3.10-slim
+LABEL maintainer="Sebastian Ramirez &lt;tiangolo@gmail.com&gt;"
+WORKDIR /app
+COPY pyproject.toml poetry.lock* /app/
+RUN pip install --no-cache-dir poetry
+RUN poetry config virtualenvs.create false \
+    &amp;&amp; poetry install --no-interaction --no-ansi
+COPY ./api /app
+</code></pre>
+
+<p>이 이미지를 빌드하려고하는데  아래와 같은 오류가 발생한다</p>
+
+<pre><code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+</code></pre>
+
+<ul>
+<li><p>즉 내 로컬(맥북 m1) 에서는 아래 이미지 빌드가 되지않는다 내 시스템의 아키텍처(<code>linux/arm64/v8</code>)와  이미지의 아키텍처(<code>linux/amd64</code>)가 일치하지 않는다</p></li>
+<li><p>이는 일반적으로 ARM 기반 시스템(예: Apple M1/M2 칩이 장착된 Mac, 일부 ARM 기반 Linux 서버)에서 AMD64(혹은 x86_64) 아키텍처용으로 빌드된 Docker 이미지를 실행하려고 할 때 발생</p>
+
+<ul>
+<li>CPU = 명령어 실행하는 애, </li>
+<li>명령어 집합 = CPU가 이해할 수 있는 명령어 모음</li>
+<li>근데 모든 CPU가 똑같이 생긴 명령어를 실행 할 수 있는게 아니다 왜냐면 CPU제조사별로(아키텍쳐별로) CPU가 다르고 이에 따라 이해 할 수 있는 명령어 집합이 달라지기 때문!  </li>
+<li>그러니까 지금 내 노트북 m1은 arm64 아키텍처이고 해당 이미지는 amd64만 지원하는 이미지이기 때문에 내 노트북이 알아들을 수 없는 것이다</li>
+</ul></li>
+</ul>
+
+<p><a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker/issues/5">fastapi작성사 tiangolo는 python 공식 docker image는 멀티 아키텍처 지원하지만 도커 허브 자동빌드는 ARM 아키텍처로 컴파일 할 수 가없다고 함 따라서 직접 이 리포 클론해서 수정하라고하지만 이상적이지는 않다고한다</a></p>
+
+<p>직접적으로 해당 이미지를 수정하지 않는 방법을 찾아보다가 Docker buildx를 알게되었음</p>
+
+<hr />
+
+<h2>👯‍♂️ Docker Buildx를 이용하자</h2>
+
+<ul>
+<li>docker buildx 명령어는 멀티 아키텍처 이미지를 빌드할 수 있게 해준다.  예를 들어, Linux의 AMD64 및 ARM64 아키텍처를 위한 이미지를 동시에 빌드할 수 있다</li>
+<li>이 buildx는 <code>buildkit</code>을 사용하는데 <code>buildkit</code>은 캐싱 메커니즘을 개선하며, 보안을 강화하고 빌드 속도를 향상시킬수있게 도와주는 빌드엔진이다. 제공하는 기능중에는 병렬빌드도 있다..  <mark style="background: #D2B3FFA6;">buildkit은 Docker Engine v23. 0부터 디폴트 빌드엔진이다</mark></li>
+</ul>
+
+<p>병렬빌드는 아래와 같은 걸 의미함. C++  Go를 베이스를한 이미지빌드 과정이다<br />
+보면 알겠지만 cpp, go 빌드 스테이지를 병렬로 실행 할 수 있을 것같다 그리고 buildkit은 이러한 병렬빌드를 실행시켜준다 </p>
+
+<pre><code class="Dockerfile language-Dockerfile">FROM ubuntu:18.04 AS build-cpp ########### C++ 빌드
+RUN apt-get update &amp;&amp; apt-get install -y build-essential
+COPY src/cpp .
+RUN gcc -o libfoo.so -shared foo.c
+
+FROM golang:1.16 AS build-go ########### Go 빌드 
+COPY src/go .
+RUN go build -o app
+
+FROM debian:buster
+COPY --from=build-cpp libfoo.so .
+COPY --from=build-go app .
+</code></pre>
+
+<p>한 번 위의 이미지를 빌드 해봤다(내 작업디렉토리에는 src없다). 신기하게도<br />
+동시에 <code>src/go</code>, <code>src/cpp</code>에서 오류가 난다!<br />
+<img src="https://i.imgur.com/9nKMAxH.png" alt="" /></p>
+
+<p>여튼 다시 본론으로 돌아와서 멀티 아키텍처 빌드를 위해 이미지를 buildx로 빌드한다.</p>
+
+<pre><code>docker buildx build --platform linux/arm64/v8 -t icehongssi/uvicorn-gunicorn-fastapi-arm:latest  --load
+</code></pre>
+
+<p>각 옵션에 대한 설명 그리고 docker build</p>
+
+<ul>
+<li><code>--platform linux/amd64, linux/arm64/v8</code> :빌드 대상으로 AMD64(일반적인 x86_64 아키텍처 컴퓨터에서 사용됨)와 ARM64(ARM v8, 예를 들어 새로운 Apple Silicon Macs나 많은 최신 Android 스마트폰에서 사용됨) 아키텍처를 지정함. 로컬에서만 사용 할 것이므로 arm64로 명시한다 </li>
+<li><code>--push</code> : 원래 그냥 <code>dockr build</code> 에서는 빌드 후에 레지스트리로 곧바로 푸시 할 수 없다 하지만 buildx에서는 --push를 통해 빌드 완료후 생성된 이미지를 도커 허브 또는 설정된 컨테이너 레지스트리에 푸시할 수 있다 </li>
+<li><code>--load</code> : 곧바로 빌드된 이미지를 로컬로 가져온다  </li>
+</ul>
+
+<p>만약 amd64로도 빌드하고 싶다면 아래와 같이 하면 된다.. amd64는 m1에서 호환되지 않으므로 레지스트리에 저장한다</p>
+
+<pre><code>docker buildx build --platform linux/amd64,linux/arm64/v8 -t icehongssi/uvicorn-gunicorn-fastapi-arm:latest --push . 
+</code></pre>
+
+<p><code>docker buildx build</code> 를 통해 멀티 아키텍처 이미지를 빌드했다면</p>
+
+<p><code>--load</code>를 통해 이미지를 로컬에서 빌드했으므로  그리고 나서 <code>docker run</code>으로 실행시켜주면 해당 이미지를 사용 할 수 있다</p>
+
+<hr />
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li>https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker/issues/5</li>
+<li><a href="https://medium.com/@artur.klauser/building-multi-architecture-docker-images-with-buildx-27d80f7e2408">https://medium.com/@artur.klauser/building-multi-architecture-docker-images-with-buildx-27d80f7e2408</a>  </li>
+<li><a href="https://collabnix.com/building-arm-based-docker-images-on-docker-desktop-made-possible-using-buildx/">https://collabnix.com/building-arm-based-docker-images-on-docker-desktop-made-possible-using-buildx/</a></li>
+<li>buildkit https://www.youtube.com/watch?v=5EuDY6ayNs8</li>
+<li>https://blukat.me/2021/07/docker-buildkit-speedup/</li>
+<li>https://minkukjo.github.io/devops/2020/04/06/Docker-01/</li>
+<li>https://docs.docker.com/reference/cli/docker/buildx/</li>
+</ul>
+
+    </div>  
+    <!---->  
+</article>
+</main>
+
+    <!-- </main> -->
+
+    <!-- 하단에 계속 붙어있는 메뉴 -->
+    <footer>
+        <div class="container">
+            <center><img src="https://icehongssii.github.io/static/assets/icepersimmon.png" class='my-icon'></center>
+            <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+            <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

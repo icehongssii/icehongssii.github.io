@@ -104,9 +104,9 @@
 <main  id="main" class="container">
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>AWS 비용폭탄, 왜 15만원이나</h1>    
+        <h1 class='title'>k8s 훑어보기</h1>    
         <div class="date">
-            <strong>마지막수정 2024-04-12 13:33 - 최초작성 2024-04-12 13:33</strong>
+            <strong>마지막수정 2023-05-10 15:32 - 최초작성 2023-05-10 15:32</strong>
         </div>
     <!---->
 
@@ -116,13 +116,17 @@
             <tr>
                 <td><strong>태그</strong></td>
                 <td>         
+                    
+                    <a href='/tags/#2023-k8s-bootcamp'><span>2023-k8s-bootcamp</span></a>                                                        
+                    
+                    <a href='/tags/#k8s'><span>k8s</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    
+                    k8s 기초
                 </td>
             </tr>                
         </table>
@@ -131,135 +135,183 @@
 
     <!--본문-->
     <div class="entry">
-        <h2>👯‍♂️ Intro &amp; tl;dr</h2>
+        <h2>k8s 워크로드</h2>
 
-<p><img src="https://i.imgur.com/xMRyunq.png" alt="" /></p>
+<p>k8s는 선언적. yaml로 리소스를 구성 할 수 있는데 최초의 10개의 컨테이너를 유지하겠다고 작성하고 실행시켰지만 이를 8개로 수정시킨다면 두개의 리소스를 지울 필요 없이 8로 수정하면 k8s이 알아서 상태를 업데이트 해줌</p>
 
-<p>3월한달간 가장 많이 사용한 서비스</p>
+<blockquote>
+  <p>[!tip]<br />
+  미리 알아두면 좋은것
+  - kubectl 별칭 k로 지정
+  - <code>--dry-run=client</code> 
+  - 업데이트시에 히스토리를 남기기위해 <code>--record=true</code>옵션</p>
+</blockquote>
 
-<table>
-<thead>
-<tr>
-  <th>서비스명</th>
-  <th>금액</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>VPC</td>
-  <td>$19.41</td>
-</tr>
-<tr>
-  <td>ELB</td>
-  <td>$16.26</td>
-</tr>
-<tr>
-  <td>ECS</td>
-  <td>$58.41</td>
-</tr>
-</tbody>
-</table>
-
-<h2>왜 비용이 이만큼 나왔는지 궁금하다면? <code>Bills</code>확인!</h2>
-
-<p>왜 VPC 가격이 저만큼 나왔는지 계속 찾아다녔는데 시간낭비하지 말고<br />
-<code>Billig and Cost Management &gt; Bills</code>   에 가면 기본 화면에 나오는 것보다 더 자세하게 서비스 사용 내역을 볼 수가 있다.</p>
-
-<table>
-<thead>
-<tr>
-  <th>Billing ad Cost Mangement &gt; Cost Explore</th>
-  <th>Billing ad Cost Mangement &gt; Bills</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><img src="https://i.imgur.com/HxulQoP.png" alt="" /><br></td>
-  <td><img src="https://i.imgur.com/d8cQblM.png" alt="" /><br></td>
-</tr>
-</tbody>
-</table>
-
-<h2>👯‍♂️ VPC 비용</h2>
-
-<p>Amazon VPC(가상 사설 클라우드) 자체의 생성 및 사용에 대한 추가 요금은 없다.<br />
-하지만 VPC를 제어, 연결, 모니터링 보안과 같은 서비스를 추가적으로 이용 할 경우 이에 대해 과금됨</p>
-
-<p>VPC 과금이 되었다면 아래 4가지를 의심해 볼 수 있다.<br />
-하지만 보통 <code>퍼블릭 IPv4주소</code>에서 가장 많이 청구가 되는 것 같다.[^1]</p>
+<h3>Pod</h3>
 
 <ul>
-<li>NAT 게이트웨이</li>
-<li>IPAM</li>
-<li>네트워크 분석</li>
-<li><strong>퍼블릭 IPv4주소</strong></li>
+<li>k8s 기본 빌딩블럭</li>
+<li>보통 하나의 pod에 하나의 컨테이너 사용</li>
+<li>하나의 pod는 단일 노드에만 배치 (하나의 pod이 두개 이상의 노드에 있을 수 없음)</li>
+<li>pod 네트워크? </li>
 </ul>
 
-<h3>NAT 게이트웨이 요금</h3>
+<pre><code># run 명령어로 디폴트 네임스페이스에 젠킨스 POD 배치 
+kubectl run [POD이름] --image=jenkins/jenkins --port:8080
+
+# 조회
+kubectl get po 
+kubectl describe po [POD이름]
+kubectl get po --show-labels
+
+# 출력물
+kubectl get po [POD이름] -o yaml 
+kubectl get po [POD이름] -o wide
+
+# POD 이름만 보기 
+kubectl get po -o --no-headers custom-columns="metadata.name"
+</code></pre>
 
 <ul>
-<li>VPC에 NAT 게이트웨이를 생성하는 경우 게이트웨이를 프로비저닝하고 사용하는 각 ‘NAT 게이트웨이 시간’에 대한 요금이 부과된다</li>
+<li>상태조회
+<ul>
+<li>readiness probe</li>
+<li>liveness probe</li>
+<li>startup probe</li>
+</ul></li>
 </ul>
 
-<p>NAT 게이트웨이(Network Address Translation Gateway)는 AWS에서 제공하는 서비스로, VPC(Virtual Private Cloud) 내의 프라이빗 서브넷에 있는 인스턴스들이 인터넷에 접속할 수 있도록 해주면서도, 인터넷에서는 이 인스턴스들로 직접 접속할 수 없게 하는 역할을 합니다. 즉, NAT 게이트웨이는 보안과 격리를 유지하면서 인터넷 접근이 필요한 작업(예: 소프트웨어 업데이트, API 호출)을 수행할 수 있게 해주는 중요한 네트워크 구성 요소입니다.</p>
+<h3>레이블달기</h3>
+
+<pre><code>kubectl label [리소스타입] [리소스명] 키=밸류
+kubectl label pod http-go foo=test
+kubectl label pod http-go foo=test2 --overwrite
+</code></pre>
+
+<h3>Replicaset</h3>
 
 <ul>
-<li>NAT 게이트웨이의 주요 기능:</li>
-</ul>
-
-<ol>
-<li><strong>인터넷 접속 제공</strong>: 프라이빗 서브넷의 인스턴스가 인터넷에 접속해 필요한 데이터를 다운로드하거나 외부 API와 통신할 수 있도록 합니다.</li>
-<li><strong>인바운드 연결 차단</strong>: 외부에서 프라이빗 서브넷의 인스턴스로 직접 접근하는 것을 차단하여 보안을 강화합니다.</li>
-<li><strong>IP 주소 마스킹</strong>: NAT 게이트웨이는 프라이빗 서브넷의 인스턴스가 인터넷에 접속할 때 고정된 IP 주소(게이트웨이 자체의 IP)를 사용하여 출발지 IP 주소를 변환하고 응답을 해당 인스턴스로 라우팅합니다.
-<h3>IPAM 요금</h3></li>
-</ol>
-
-<h3>네트워크 분석 요금</h3>
-
-<h3>퍼블릭 IPv4주소</h3>
-
-<p>퍼블릭 IPv4 주소는 인터넷에 연결되는 모든 기기가 가지는 특별한 번호임. 인터넷 게임을 하거나 웹사이트 접속 할 때 이 주소를 사용함. 우리집에 우편물 보내려면 정확한 주소가 필요한 것처럼 인터넷에서 각 기기의 정확한 위치 알려주는 주소가 필요한거고 이게 퍼블릭 IPv4주소다.</p>
-
-<p>AWS VPC에서 시작하는 대부분의 리소스들은 서로 연결되어야 하기때문에 IP주소와 함께 제공된다. 이때 대부분은 프라이빗 IP주소(인터넷에 공개되지 않음)로 제공되지만 인터넷에 직접 연결되어야하는 경우 퍼블릭  IP주소를 사용한다.
-(내가 만든 웹서버를 인터넷 통해 보여주고 싶다든가 할 때)</p>
-
-<p>이때!  VPC에서 시작된 리소스와 연결된 모든 퍼블릭 IPv4주소에 요금이 부과되는데. 주소별로 시간당 0.005 USD이다. (리로스 연결과 상관없이 과금됨)</p>
-
-<p>예를들면 아래의 경우 이번달에 <code>IP주소 10개 * 24시간 * 30일 * $0.005 = $36</code> 만큼 과금된다. </p>
-
-<p>• 사용 중인 퍼블릭 IPv4 주소가 1개씩 있는 Amazon EC2 인스턴스 3개<br />
-• 사용 중인 퍼블릭 IPv4 주소가 2개 있는 Elastic Load Balancer 1개(포함)<br />
-• 사용 중인 퍼블릭 IPv4 주소가 1개 있는 Amazon RDS 데이터베이스 1개<br />
-• AWS 계정의 유휴 탄력적 IP 주소 4개</p>
-
-<p>이의 계산대로 보면 
-나는 IPv4가 한 5~6개를 쓰고 있는걸로 확인된다.. <code>19.41/(24*30*0.005)</code> (ALB )</p>
-
-<p>그런데 내가 사용하고 있는  IPv4는 1개 일텐데?  내 블로그 도메인과 연결된 ALB에서 
-<img src="https://i.imgur.com/vd4vo1H.png" alt="" />
-아그런데 이게 VPC1, 서브넷4개에서 사용중이기 떄문에 총 5개.. 그러면 계산이 맞다. </p>
-
-<p><img src="https://i.imgur.com/ZwU7Oac.png" alt="" />
-<img src="https://i.imgur.com/mMCePwq.png" alt="" />
-<img src="https://i.imgur.com/mMCePwq.png" alt="mMCePwq.png" /></p>
-
-<h2>ECS 비용</h2>
-
-<p><img src="https://i.imgur.com/33l5Yqr.png" alt="" /></p>
-
-<p>ECS total 58.34</p>
+<li>pod들을 관리하는 상위 객체. </li>
+<li>pod에 문제가 생겼을 때 몇개를 생성할것인지</li>
+<li>다수의 객체를 생성하는 것이기 때문에 각각의 pod의 붙여진 레이블로 관리한다 </li>
+<li><p>1.8버전 전까지  replication controller라는 api 를 사용했으나 큰 차이는 없음 다만 replicaset이 더 다양한 레이블 선택 가능케함 </p></li>
+<li><p>세가지방법</p>
 
 <ul>
-<li>ECS APN2 fargate ARM-GB-hours -> aws fargate ARM memory 0.15hrs=$0</li>
-<li>ECS APN2 fargate ARM-vCPU-hours:perCPU -> aws fargate ARM vCPU 0.05hrs=$0</li>
-<li>ECS APN2 fargate GB-hours -> aws fargate memory 2,828.023hrs = $14.45</li>
-<li>ECS APN2 fargate vCPU-hours:perCPU -> aws fargate vCPU 942.674hrs = $43.89</li>
+<li>edit</li>
+<li>apply</li>
+<li>scale --replicas=5  </li>
+</ul></li>
 </ul>
 
-<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+<h3>Deploy</h3>
 
-<p>https://aws.amazon.com/ko/blogs/korea/new-aws-public-ipv4-address-charge-public-ip-insights/
-- [^1]: <a href="https://www.reddit.com/r/aws/comments/1ajvdn9/comment/kp3qw8x/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button">reddit, VPC 왜 요금청구 되는거죠?</a></p>
+<ul>
+<li>replicaset을 관리하는 상위 객체</li>
+<li>pod 배포시 어떻게 업데이트를 할 것이니 관리하는 객체</li>
+<li>undo, revision등으로 기존 버전으로 갈 수 있음</li>
+</ul>
+
+<pre><code>
+# deploy 생성
+k create deploy tomcat --image=consol/tomcat --dry-run=client -o yaml
+# 롤아웃 변경사항 저장
+kubectl edit deploy http-go --record=true
+# 히스토리
+kubectl rollout history deploy/tomcat
+</code></pre>
+
+<ul>
+<li>세가지방법
+<ul>
+<li>edit</li>
+<li>apply</li>
+<li>rollout</li>
+</ul></li>
+</ul>
+
+<h3>Namesapce</h3>
+
+<ul>
+<li>클러스터 내에 여러개의 네임스페이스 가질 수 있음</li>
+<li>게임서버가 여러개 있는 것 마냥 하나의 게임의 여러 네임스페이스</li>
+</ul>
+
+<pre><code># 모든 네임스페이스 내에 있는 리소스 조회
+kubectl get all --all-namespaces
+# office 네임스페이스 내에 deployment 조회 
+kubectl get deploy -n office
+
+</code></pre>
+
+<h2>k8s 서비스</h2>
+
+<ul>
+<li>k8s 클러스터 내의 리소스 끼리 통신하거나 클러스터와 외부와 통신하기 위한 k8s 의 자원 이름</li>
+<li>직업 pod에 통신 할 수도 있지만 스케일링시 바뀌는 IP 때문에 고정된 IP를 가진 서비스라는 리소스가 필요하게됨</li>
+<li>서비스의 종류 
+<ul>
+<li>ClusterIP 
+<ul>
+<li>Endpoints 리소스 </li>
+</ul></li>
+<li>NodePort</li>
+<li>LoadBalancer</li>
+</ul></li>
+<li>k8s의 리소스를 외부와 통신 가능하게 만들려면?
+<ul>
+<li>Nodeport</li>
+<li>Loadbalancer</li>
+<li>Ingress</li>
+</ul></li>
+</ul>
+
+<h3>clusterIP</h3>
+
+<ul>
+<li>YML 파일 또는 <code>kubectl expose</code> 로 생성한 디폴트 서비스.</li>
+<li>deploy 통해서  rs, pod등을 생성하게 되면 여기와 통신하게 될 클러스터 내 고정 IP</li>
+<li>외부와 통신 X</li>
+<li>로드 밸런싱되므로 이 IP로 접근하게 되면 클러스터 내 여러 pod과 통신가능 다만 로그인 기능 같은 경우 세션이 유지되어야하는데 이떄는 <code>sesionAffinity</code>를 통해 설정가능</li>
+</ul>
+
+<h3>노드포트</h3>
+
+<ul>
+<li>외부와 통신하게 도와주는 노드포트 </li>
+<li>노드 자체에 포트를 열어줌</li>
+<li>vm이나 클라우드 사용시 방화벽 해제해줘야함</li>
+<li>port, targetPort, 노드자체포트를 yaml에 선언해줘야함</li>
+</ul>
+
+<h3>로드밸런서</h3>
+
+<ul>
+<li>외부와 통신하게 도와주는 k8s 포트 일종</li>
+<li>클라우드 이용시에 자주쓰이게 됨</li>
+</ul>
+
+<h3>Ingress</h3>
+
+<ul>
+<li>외부와 통신하게 도와주는 k8s </li>
+<li>nginx-ingress 설치후 실습했었음</li>
+<li>하나의 endpoint. 하나의 포트로 다양한 서비스에 접근할 수 있게 도와주는 일종의 룰 테이블? </li>
+<li>자체적으로 로드 밸런서 기능있음 /welcome/test 로 요청이 들어올 때만 이벤트가 일어나게 할 수 있음 </li>
+</ul>
+
+<p><img src="https://i.imgur.com/RK6YWyL.png" alt="" /></p>
+
+<h2>스토리지</h2>
+
+<ul>
+<li>emptyDir : pod내에서 컨테이너끼리 </li>
+<li>hostPath : pod와 컨테이너간</li>
+<li>수동적 pv, pvc</li>
+<li>동적 pvc, storageclass 그리고 headless service </li>
+<li>configMap</li>
+<li>스테이트풀셋 : 포드 상태 유지와 관련된 컨트롤러</li>
+</ul>
 
     </div>  
     <!---->  
