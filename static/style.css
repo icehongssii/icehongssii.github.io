@@ -795,6 +795,6 @@ img.my-icon{
                 height: auto; /* Maintains aspect ratio */ } 
 
 
-.all_tags{
+.all_tags .about_list{
     margin-top: 0px;
 }
