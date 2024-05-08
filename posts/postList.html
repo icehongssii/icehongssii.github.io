@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="eng">
+
+<head>
+  <!--메타 정보 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="ART / TECH 그리고 ?? ">
+  <meta property="og:description" content="ART / TECH 그리고 ?? ">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>icehongssii의 일지</title>
+  <link rel="stylesheet" type="text/css" href="https://icehongssii.github.io/static/style.css">
+  <link rel="icon" href="https://icehongssii.github.io/static/assets/icepersimmon.png" type="image/x-icon">
+
+
+<!-- 아래 프리즘 순서 지킬 것  -->
+    <!-- 1. 프리즘 코어 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- 2. 프리즘 플러그인(show-language, copy-to-clipboard)을 위한 추가적인 플러그인  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-cu2C9EssrOrVXT4thyL4gz/qWyh3Lq9XbICUXYyh3zJRCSKk1J08tBKPXnsSpdpZXOliaK/OJBygw/l0twAmwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-DSAA0ziYwggOJ3QyWFZhIaU8bSwQLyfnyIrmShRLBdJMtiYKT7Ju35ujBCZ6ApK3HURt34p2xNo+KX9ebQNEPQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+     <!-- 3. 프리즘 플러그인 스타일 -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/diff-highlight/prism-diff-highlight.min.css">
+ 
+     <!-- 4. 프리즘 플러그인 스크립트 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/show-language/prism-show-language.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"></script>
+ 
+     <!-- 5. 프리즘 추가적인 언어  -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-markdown.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+ 
+     
+     <!-- 프리즘 하이라이팅이 obsidian admonition에 영향받지않게
+        language-ad로 생성되는 클래스 삭제하는 스크립트
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all 'pre' and 'code' elements
+            const elements = document.querySelectorAll('pre, code');
+        
+            // Iterate over each element
+            elements.forEach(element => {
+                // Iterate over each class in the class list
+                element.classList.forEach(cls => {
+                    // Check if the class starts with 'language-ad'
+                    if (cls.startsWith('language-ad')) {
+                        // Remove the class
+                        element.classList.remove(cls);
+                    }
+                });
+            });
+        });
+     </script>
+
+
+
+</head>
+
+
+<body>
+    <!-- 상단 세개의 메뉴 헤더 변하지 않는경로 -->
+    <header>
+        <div class="container">
+            <div class="site-info">
+                <a href="/" class="site-title">icehongssii의 일지</a>
+                <p class="site-description">ART / TECH 그리고 ?? </p>
+            </div>
+
+            <div class="grower"></div>
+            <nav class="site-nav">
+                <a href="/"><img src="https://icehongssii.github.io/static/assets/sun.svg"></a>
+                <p>ABOUT</p>
+            </nav>
+            <nav class="site-nav">
+                
+                <a href="/posts"><img src="https://icehongssii.github.io/static/assets/monster.svg">
+
+                <p>POSTS</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/tags.html"><img src="https://icehongssii.github.io/static/assets/cloud.svg"></a>
+                <p>TAGS</p>
+            </nav>
+        </div>
+    </header>
+    
+
+    <!-- <main  id="main" class="container"> -->
+        
+<article id="main" class="container">
+    <div class="posts">
+
+    <header class="year">
+        <h1>2024년</h1>
+        <span>27개의 글</span> 
+    </header>
+
+    <!-- 포스트리스트 -->
+     
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/API%20%ED%98%B8%EC%B6%9C%20%EC%88%98%EB%A5%BC%20%EC%A4%84%EC%9D%B4%EA%B8%B0%20%EC%9C%84%ED%95%9C%20Redis%20%EC%97%B0%EA%B2%B0">
+                API 호출 수를 줄이기 위한 Redis 연결.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/AWS%20%EB%B9%84%EC%9A%A9%ED%8F%AD%ED%83%84,%20%EC%99%9C%2015%EB%A7%8C%EC%9B%90%EC%9D%B4%EB%82%98">
+                AWS 비용폭탄, 왜 15만원이나.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/Docker%20multistage%20build">
+                Docker multistage build.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/Docker%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%ED%81%AC%EA%B8%B0%20%EC%B5%9C%EC%A0%81%ED%99%94">
+                Docker 이미지 크기 최적화.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/ECS%20service%EC%97%86%EC%97%90%20task%EC%97%90%20%EC%82%AC%EC%84%A4%20%EB%8F%84%EB%A9%94%EC%9D%B8%20%EB%B6%99%EC%9D%BC%20%EC%88%98%20%EC%9E%88%EC%9D%84%EA%B9%8C%3F..">
+                ECS service없에 task에 사설 도메인 붙일 수 있을까?...md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/Flask%20%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%20%EB%B0%B0%ED%8F%AC%EC%8B%9C%20usgi%2Bnginx%20%EA%B0%99%EC%9D%B4%EC%93%B0%EC%9D%B8%EB%8B%A4">
+                Flask 프로덕션 배포시 usgi+nginx 같이쓰인다.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/RigidBody%EC%99%80%20KinematicBody%20%EC%B0%A8%EC%9D%B4">
+                RigidBody와 KinematicBody 차이.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/SSL%20%EC%9D%B8%EC%A6%9D%EC%84%9C%20%EC%A0%81%EC%9A%A9%ED%95%98%EB%8B%88%20CSS%EA%B0%80%20%EC%A0%81%EC%9A%A9%EC%9D%B4%20%EC%95%88%EB%90%9C%EB%8B%A4">
+                SSL 인증서 적용하니 CSS가 적용이 안된다.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/aws%2B%EB%A7%88%EC%9D%B8%ED%81%AC%EB%9E%98%ED%94%84%ED%8A%B8%20%ED%8C%A8%EB%B8%8C%EB%A6%AD">
+                aws+마인크래프트 패브릭.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/github%20action%20%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0">
+                github action 알아보기.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/k8s%20%ED%9B%91%EC%96%B4%EB%B3%B4%EA%B8%B0">
+                k8s 훑어보기.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/k8s-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%99%B8%EB%B6%80%EB%A1%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%85%B8%EC%B6%9C%ED%95%98%EB%8A%94%20%EC%84%B8%EA%B0%80%EC%A7%80%EB%B0%A9%EB%B2%95">
+                k8s-서비스-외부로 서비스 노출하는 세가지방법.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/k8s-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%99%80clusterIP">
+                k8s-서비스와clusterIP.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/k8s-%ED%8C%8C%EB%93%9C%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%EA%B3%BC%EC%9E%A1%EC%8B%A4%ED%96%89">
+                k8s-파드디자인패턴과잡실행.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/mysql%20%EC%BF%BC%EB%A6%AC%EC%B5%9C%EC%A0%81%ED%99%94%20-%20offset">
+                mysql 쿼리최적화 - offset.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/sprite%20sheet%EB%A1%9C%20%EB%A7%8C%EB%93%A4%EC%96%B4%20%EB%86%93%EC%9E%90">
+                sprite sheet로 만들어 놓자.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/uvicorn-gunicorn-fastapi%20does%20not%20support%20ARM64;%20docker%20buildx">
+                uvicorn-gunicorn-fastapi does not support ARM64; docker buildx.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EB%AC%B4%ED%95%9C%20%ED%9A%A1%EC%8A%A4%ED%81%AC%EB%A1%A4%20%ED%91%9C%ED%98%84">
+                무한 횡스크롤 표현.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EB%B9%84%20%EB%82%B4%EB%A6%AC%EB%8A%94%20%ED%9A%A8%EA%B3%BC%EB%8A%94%20%EC%96%B4%EB%96%BB%EA%B2%8C%3F%20Particle%20effect">
+                비 내리는 효과는 어떻게? Particle effect.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EC%95%A0%EC%9E%90%EC%9D%BC%20%EA%B0%9C%EB%B0%9C%EC%9D%B4%20%EC%B2%98%EC%9D%8C%EC%9D%B8%20%EB%82%B4%EA%B0%80%20%EC%B6%9C%EA%B7%BC%ED%96%88%EB%8D%94%EB%8B%88%20%EC%8A%A4%ED%81%AC%EB%9F%BC%20%EB%A7%88%EC%8A%A4%ED%84%B0%EA%B0%80%20%EB%90%9C%20%EA%B1%B4%EC%97%90%20%EB%8C%80%ED%95%98%EC%97%AC">
+                애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EC%9E%94%ED%98%B9%ED%95%9C%20%EC%B2%9C%EC%82%AC%EC%9D%98%20%ED%85%8C%EC%A0%9C%20%EA%B0%80%EC%82%AC%20%EB%B0%8F%20%EB%8F%85%EC%9D%8C%201">
+                잔혹한 천사의 테제 가사 및 독음 1.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EC%9E%94%ED%98%B9%ED%95%9C%20%EC%B2%9C%EC%82%AC%EC%9D%98%20%ED%85%8C%EC%A0%9C%EB%A1%9C%20%EC%9D%BC%EB%B3%B8%EC%96%B4%20%EB%B0%B0%EC%9A%B0%EA%B8%B0%20-%20%EA%B0%9C%EC%9A%94%201">
+                잔혹한 천사의 테제로 일본어 배우기 - 개요 1.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EC%A0%90%ED%94%84%EB%A5%BC%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EA%B5%AC%ED%98%84%ED%95%A0%EA%B9%8C%3F%20state%20machine">
+                점프를 어떻게 구현할까? state machine.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%20%EB%A0%88%EC%9D%B4%EB%B8%94(Labels)%EC%97%90%20%EB%8C%80%ED%95%9C%209%EA%B0%80%EC%A7%80%20%EB%AA%A8%EB%B2%94%20%EC%82%AC%EB%A1%80">
+                쿠버네티스 레이블(Labels)에 대한 9가지 모범 사례.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-idontwaitingforwater">
+                프로젝트-idontwaitingforwater.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-obsidianBlog">
+                프로젝트-obsidianBlog.md
+                </a>
+            </div>
+        </div>
+    
+        <div class="post-info">
+            <div class="entry">
+                <a href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%94%94%EC%8A%A4%EC%BD%94%EB%93%9C%20%ED%99%80%EB%8D%94%20%EC%9D%B8%EC%A6%9D%20%EB%B4%87">
+                프로젝트-디스코드 홀더 인증 봇.md
+                </a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- 포스트리스트 -->
+
+</article>
+
+    <!-- </main> -->
+
+    <!-- 하단에 계속 붙어있는 메뉴 -->
+    <footer>
+        <div class="container">
+            <center><img src="https://icehongssii.github.io/static/assets/icepersimmon.png" class='my-icon'></center>
+            <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+            <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
