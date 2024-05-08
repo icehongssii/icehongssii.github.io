@@ -103,9 +103,9 @@
         
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>ecs service 만들지 않고 task에 service 붙일 수 있나?</h1>    
+        <h1 class='title'>애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</h1>    
         <div class="date">
-            <strong>마지막수정 2024-03-16 22:17 - 최초작성 2024-03-16 22:16</strong>
+            <strong>마지막수정 2024-02-16 17:26 - 최초작성 2024-02-16 17:26</strong>
         </div>
     <!---->
 
@@ -116,16 +116,20 @@
                 <td><strong>태그</strong></td>
                 <td>         
                     
-                    <a href='/tags/#troubleshooting'><span>troubleshooting</span></a>                                                        
+                    <a href='/tags/#book'><span>book</span></a>                                                        
                     
-                    <a href='/tags/#aws'><span>aws</span></a>                                                        
+                    <a href='/tags/#PM'><span>PM</span></a>                                                        
+                    
+                    <a href='/tags/#career'><span>career</span></a>                                                        
+                    
+                    <a href='/tags/#책-애자일은처음'><span>책-애자일은처음</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    ecs task 직접 사설 도메인 붙이는건 안티패턴이다
+                    스크럼 적용시 용어 정리
                 </td>
             </tr>                
         </table>
@@ -134,22 +138,54 @@
 
     <!--본문-->
     <div class="entry">
-        <p>2018.05-2019.03</p>
+        <h2>👯‍♂️ 기본개념</h2>
 
-<h2>👯‍♂️ 붙일 수 있지만 Best Practice는 아닌 듯 하다</h2>
+<h3>👯‍♂️ 애자일</h3>
+
+<p>특정한 개발 방법론이라기보다 다양한 개발 기법들 사이에서 공통된 가치관과 행동원칙에 이름  붙여진거임<br />
+당시 SW 개발 프로세스는 변화에 취약했는데 이러한 점을 보완하고자 했던 사람들이 모여서 <a href="https://agilemanifesto.org/iso/ko/principles.html">애자일 소프트웨어의 12가지 원칙</a> 이런걸 만들고 이 가치관을 실현하기 위한 기법으로 스크럼, 칸반, 익스트림 프로그래밍등이 있다.<br />
+그런 가치관으로는 
+- 목적달성하기 위한 적극적 협업
+- 타임박스 안에 시연가능한 제품을 만들고
+- 피드백을 받아 계속해서 제품을 보완</p>
+
+<h3>👯‍♂️ 스크럼</h3>
+
+<p>애자일을 개발 기법 중 하나로 일하는 절차와 지켜야 할 규칙이 정의된 프레임워크임.<br />
+제프서덜랜드, 켄 슈와버가 1986에 실린 논문보고 영감얻어서 공산품 생산하는 내용을 SW 개발해 접목해서 만든게 스크럼임(이름도 거기서 따온거)<br />
+애자일 기법 중의 하나라서 타임박스(정해진 시간), 투명성(문제 없는지), 점검(피드백), 보완등의 특징가지고 3가지 역할(role)<br />
+, 5가지 활동(event), 3가지 산출물(artifact)만 있어도 스크럼을 시작할 수 있다</p>
 
 <ul>
-<li>AWS ECS에서는 서비스 없이 단독으로 실행되는 태스크에 직접 ALB(Application Load Balancer)를 연결하는 것은 지원하지 않는다</li>
-<li>ALB는 ECS 서비스에 등록된 태스크 세트와 통합되어 동작하기 위해 설계되어있기 때문이다</li>
-<li>따라서 ECS 서비스를 생성하고 ALB와 연동해서 트래픽을 태스크로 라우팅</li>
-<li>서비스 없이 단독 태스크를 실행하는 경우에는 ALB를 사용하지 못하고, 태스크가 제공하는 특정 포트에 직접 접근해야한다.. 근데. 이는 보통 개발 환경이나 일시적인 배치 작업에 사용되는 패턴이라고한다 </li>
+<li>3가지 역할:  스크럼 마스터, 개발자, PO</li>
+<li>5가지 활동; 스프린트, 회고, 시연, 데일리 스크럼, 스프린트 플래닝</li>
+<li>3가지 산출물; 프로덕트 백로그, 스프린트 백로그, 인크레먼트</li>
 </ul>
 
-<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+<p>백로그 리파인먼트; 다음 스프린트 일감부터 ㅈ어제 우선순위 높은것부터 구체화</p>
+
+<pre><code class="ad-important language-ad-important">title: 인크리먼트
+스프린트 기간 중 작업한 결과물을 인크리먼트라고함
+이때 개발자, PO는 어떤 상태를 완료라고 볼 지 정해야하는데 예는 다음과 같다
+
+완료 조건 definition of done
+- 위키문서에 제품 명세 등록했다
+- 위키 문서에 관련 자료 등록
+- 리조에 소스 코드 등록
+- 모든 public 메서드 테스트 코드 구현
+- 모든 테스트 성공
+- 소스 코드 빌드 및 시연가능
+</code></pre>
+
+<p>PO와 스크럼 마스터를 겸임 할 수 없다(하지 않는 걸 추천한다)<br />
+왜냐면 둘이 지향하는 바가 다르기 때문임 PO는 제품 만드는 사람으로써 개발자에게 무리한 요구를 줄 수 있지만 스크럼 마스터는 프로젝트가 원활하게 돌아가게 만드는 사람으로써 개발자가 무리하는걸 사려야한다.</p>
+
+<p>자고로 PO는 개발자에게 쫄면 안된다. 경험이 짧을 수록 잘 쫀다. 일감 추가나 일정이 지연되는 경우 개발자와 꼭 소통한다 .<code>이 일감보다 더 우선순위 높은게 있을까요?</code> 또는 <code>이 기능을 쪼개는건 어떨까요?</code></p>
+
+<h2>👯‍♂️ Ref</h2>
 
 <ul>
-<li>https://shaungc.medium.com/protect-your-aws-ecs-service-behind-application-load-balancer-alb-and-create-them-by-terraform-6db816d329f7</li>
-- 
+<li>책-애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여 </li>
 </ul>
 
     </div>  

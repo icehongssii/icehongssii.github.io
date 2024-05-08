@@ -103,9 +103,9 @@
         
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>ecs service 만들지 않고 task에 service 붙일 수 있나?</h1>    
+        <h1 class='title'>프로젝트-디스코드 홀더 인증 봇</h1>    
         <div class="date">
-            <strong>마지막수정 2024-03-16 22:17 - 최초작성 2024-03-16 22:16</strong>
+            <strong>마지막수정 2024-03-22 00:36 - 최초작성 2024-03-22 00:36</strong>
         </div>
     <!---->
 
@@ -116,16 +116,18 @@
                 <td><strong>태그</strong></td>
                 <td>         
                     
-                    <a href='/tags/#troubleshooting'><span>troubleshooting</span></a>                                                        
+                    <a href='/tags/#discord'><span>discord</span></a>                                                        
                     
-                    <a href='/tags/#aws'><span>aws</span></a>                                                        
+                    <a href='/tags/#js'><span>js</span></a>                                                        
+                    
+                    <a href='/tags/#web3'><span>web3</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    ecs task 직접 사설 도메인 붙이는건 안티패턴이다
+                    
                 </td>
             </tr>                
         </table>
@@ -134,23 +136,53 @@
 
     <!--본문-->
     <div class="entry">
-        <p>2018.05-2019.03</p>
+        <h2>👯‍♂️ 개요</h2>
 
-<h2>👯‍♂️ 붙일 수 있지만 Best Practice는 아닌 듯 하다</h2>
-
-<ul>
-<li>AWS ECS에서는 서비스 없이 단독으로 실행되는 태스크에 직접 ALB(Application Load Balancer)를 연결하는 것은 지원하지 않는다</li>
-<li>ALB는 ECS 서비스에 등록된 태스크 세트와 통합되어 동작하기 위해 설계되어있기 때문이다</li>
-<li>따라서 ECS 서비스를 생성하고 ALB와 연동해서 트래픽을 태스크로 라우팅</li>
-<li>서비스 없이 단독 태스크를 실행하는 경우에는 ALB를 사용하지 못하고, 태스크가 제공하는 특정 포트에 직접 접근해야한다.. 근데. 이는 보통 개발 환경이나 일시적인 배치 작업에 사용되는 패턴이라고한다 </li>
-</ul>
-
-<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+<p>NFT 프로젝트 관련 디스코드 채널에서 홀더 인증을 위한 디스코드 봇만들기 </p>
 
 <ul>
-<li>https://shaungc.medium.com/protect-your-aws-ecs-service-behind-application-load-balancer-alb-and-create-them-by-terraform-6db816d329f7</li>
-- 
+<li><a href="https://github.com/icehongssii12345/idontwaitingforwater ">GIthub</a>
+<ul>
+<li><a href="https://d1emjrld223cpx.cloudfront.net/index.html">Website</a></li>
+<li>진행기간 :   2024.03.22 - 2024.03.29</li>
+<li>목표 : 크롬 다이노같은 게임을 브라우저 기반으로 동작되게 만들어보자 </li>
+</ul></li>
 </ul>
+
+<h2>👯‍♂️ 요구사항</h2>
+
+<table>
+<thead>
+<tr>
+  <th>홀더 인증 채널 방문</th>
+  <th>회원은 디스코드의 NFT홀더 인증 채널에 방문하여 디스코드 홀더 인증 봇을 사용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>웹페이지 방문</td>
+  <td>1) 디스코드 봇의 "Let's verify" 버튼 사용하여 모바일 최적화 된 웹페이지로 이동  <br>2) 화면 중앙 랜딩된 "HOLDER VERIFY" 버튼 클릭</td>
+</tr>
+<tr>
+  <td>지갑 서명 검증</td>
+  <td>디스코드 봇에 이더리움 Wallet 서명을 제출함으로서 지갑이 자기 것이라는것을 인증</td>
+</tr>
+<tr>
+  <td>API 호출</td>
+  <td>디스코드 봇은 컨트랙트 VAULT에 귀속된 NFT 토큰 ID의 OWNER 지갑 리스트 DB를 불러옴</td>
+</tr>
+<tr>
+  <td>DB 대조</td>
+  <td>1) DB 테이블에서 NFT 토큰에 대한 OWNERSHIP이 1개 있는 지갑 식별  <br>2) DB 테이블에서 NFT 토큰에 대한 OWNERSHIP이 2개 이상 있는 지갑 식별</td>
+</tr>
+</tbody>
+</table>
+
+<h2>👯‍♂️ 역할</h2>
+
+<h2>👯‍♂️ 사용기술/툴</h2>
+
+<h2>👯‍♂️ 프로젝트 진행하면서 경험하고 체득한 부분</h2>
 
     </div>  
     <!---->  

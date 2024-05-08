@@ -1,0 +1,635 @@
+
+<!doctype html>
+<html lang="eng">
+
+<head>
+  <!--메타 정보 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="MOM, I am gonna ROCK">
+  <meta property="og:description" content="MOM, I am gonna ROCK">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>icehongssii</title>
+  <link rel="stylesheet" type="text/css" href="https://icehongssii.github.io/static/style.css">
+  <link rel="icon" href="https://icehongssii.github.io/static/assets/icepersimmon.png" type="image/x-icon">
+
+
+<!-- 아래 프리즘 순서 지킬 것  -->
+    <!-- 1. 프리즘 코어 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- 2. 프리즘 플러그인(show-language, copy-to-clipboard)을 위한 추가적인 플러그인  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-cu2C9EssrOrVXT4thyL4gz/qWyh3Lq9XbICUXYyh3zJRCSKk1J08tBKPXnsSpdpZXOliaK/OJBygw/l0twAmwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-DSAA0ziYwggOJ3QyWFZhIaU8bSwQLyfnyIrmShRLBdJMtiYKT7Ju35ujBCZ6ApK3HURt34p2xNo+KX9ebQNEPQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+     <!-- 3. 프리즘 플러그인 스타일 -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/diff-highlight/prism-diff-highlight.min.css">
+ 
+     <!-- 4. 프리즘 플러그인 스크립트 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/show-language/prism-show-language.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"></script>
+ 
+     <!-- 5. 프리즘 추가적인 언어  -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-markdown.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+ 
+     
+     <!-- 프리즘 하이라이팅이 obsidian admonition에 영향받지않게
+        language-ad로 생성되는 클래스 삭제하는 스크립트
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all 'pre' and 'code' elements
+            const elements = document.querySelectorAll('pre, code');
+        
+            // Iterate over each element
+            elements.forEach(element => {
+                // Iterate over each class in the class list
+                element.classList.forEach(cls => {
+                    // Check if the class starts with 'language-ad'
+                    if (cls.startsWith('language-ad')) {
+                        // Remove the class
+                        element.classList.remove(cls);
+                    }
+                });
+            });
+        });
+     </script>
+
+
+
+</head>
+
+
+<body>
+    <!-- 상단 세개의 메뉴 헤더 변하지 않는경로 -->
+    <header>
+        <div class="container">
+            <div class="site-info">
+                <a href="/" class="site-title">icehongssii</a>
+                <p class="site-description">MOM, I am gonna ROCK</p>
+            </div>
+
+            <div class="grower"></div>
+
+            <nav class="site-nav">
+                
+                <a href="/posts"><img src="https://icehongssii.github.io/static/assets/monster.svg">
+
+                <p>POSTS</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/"><img src="https://icehongssii.github.io/static/assets/sun.svg"></a>
+                <p>ABOUT</p>
+            </nav>
+            <nav class="site-nav">
+                <a href="/tags.html"><img src="https://icehongssii.github.io/static/assets/cloud.svg"></a>
+                <p>TAGS</p>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main  id="main" class="container">
+        
+
+    <div id="main" role="main" class="container">
+
+    <!--TODO @icehongssii 이상한 계층구조 및 메타정보-->
+    <article class="post-page">
+        <header class='title'>태그</header>
+    <!---->
+    
+   
+        <!--태그이름-->
+        <div class="entry">
+            <div class="all_tags" id="all_tags">
+                <div class="tags">
+                    
+                    <a href="#gameDev">#gameDev(7)</a>
+                    
+                    <a href="#toyproject">#toyproject(7)</a>
+                    
+                    <a href="#2023-k8s-bootcamp">#2023-k8s-bootcamp(5)</a>
+                    
+                    <a href="#k8s">#k8s(5)</a>
+                    
+                    <a href="#aws">#aws(4)</a>
+                    
+                    <a href="#godot">#godot(4)</a>
+                    
+                    <a href="#troubleshooting">#troubleshooting(4)</a>
+                    
+                    <a href="#ci">#ci(3)</a>
+                    
+                    <a href="#ci/cd">#ci/cd(3)</a>
+                    
+                    <a href="#docker">#docker(3)</a>
+                    
+                    <a href="#python">#python(3)</a>
+                    
+                    <a href="#에반게리온">#에반게리온(2)</a>
+                    
+                    <a href="#일본어">#일본어(2)</a>
+                    
+                    <a href="#book">#book(1)</a>
+                    
+                    <a href="#career">#career(1)</a>
+                    
+                    <a href="#cloud">#cloud(1)</a>
+                    
+                    <a href="#CS">#CS(1)</a>
+                    
+                    <a href="#db">#db(1)</a>
+                    
+                    <a href="#discord">#discord(1)</a>
+                    
+                    <a href="#fastapi">#fastapi(1)</a>
+                    
+                    <a href="#github">#github(1)</a>
+                    
+                    <a href="#js">#js(1)</a>
+                    
+                    <a href="#minecraft">#minecraft(1)</a>
+                    
+                    <a href="#mysql">#mysql(1)</a>
+                    
+                    <a href="#obsidian">#obsidian(1)</a>
+                    
+                    <a href="#PM">#PM(1)</a>
+                    
+                    <a href="#redis">#redis(1)</a>
+                    
+                    <a href="#web">#web(1)</a>
+                    
+                    <a href="#web3">#web3(1)</a>
+                    
+                    <a href="#책-애자일은처음">#책-애자일은처음(1)</a>
+                    
+                </div>
+            </div>
+        <!--태그이름-->
+
+            <!-- 태그목록 -->
+            <div class="tag_boxes">
+                
+                <div class="tag_box">
+                    <h4 id="gameDev">#gameDev</h4>
+                    
+                    <div class="post_list">
+                        <a href="/RigidBody와 KinematicBody 차이.html">RigidBody와 KinematicBody 차이</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/sprite sheet로 만들어 놓자.html">sprite sheet로 만들어 놓자</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/무한 횡스크롤 표현.html">무한 횡스크롤 표현</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/비 내리는 효과는 어떻게? Particle effect.html">비 내리는 효과는 어떻게? Particle effect</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/점프를 어떻게 구현할까? state machine.html">점프를 어떻게 구현할까? state machine</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-idontwaitingforwater.html">프로젝트-idontwaitingforwater</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/aws+마인크래프트 패브릭.html">aws+마인크래프트 패브릭</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="toyproject">#toyproject</h4>
+                    
+                    <div class="post_list">
+                        <a href="/RigidBody와 KinematicBody 차이.html">RigidBody와 KinematicBody 차이</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/sprite sheet로 만들어 놓자.html">sprite sheet로 만들어 놓자</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/무한 횡스크롤 표현.html">무한 횡스크롤 표현</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/비 내리는 효과는 어떻게? Particle effect.html">비 내리는 효과는 어떻게? Particle effect</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/점프를 어떻게 구현할까? state machine.html">점프를 어떻게 구현할까? state machine</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-idontwaitingforwater.html">프로젝트-idontwaitingforwater</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-obsidianBlog.html">프로젝트-obsidianBlog</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="2023-k8s-bootcamp">#2023-k8s-bootcamp</h4>
+                    
+                    <div class="post_list">
+                        <a href="/k8s 훑어보기.html">k8s 훑어보기</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-서비스-외부로 서비스 노출하는 세가지방법.html">k8s-서비스-외부로 서비스 노출하는 세가지방법</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-서비스와clusterIP.html">k8s-서비스와clusterIP</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-파드디자인패턴과잡실행.html">k8s-파드디자인패턴과잡실행</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/쿠버네티스 레이블(Labels)에 대한 9가지 모범 사례.html">쿠버네티스 레이블(Labels)에 대한 9가지 모범 사례</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="k8s">#k8s</h4>
+                    
+                    <div class="post_list">
+                        <a href="/k8s 훑어보기.html">k8s 훑어보기</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-서비스-외부로 서비스 노출하는 세가지방법.html">k8s-서비스-외부로 서비스 노출하는 세가지방법</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-서비스와clusterIP.html">k8s-서비스와clusterIP</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/k8s-파드디자인패턴과잡실행.html">k8s-파드디자인패턴과잡실행</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/쿠버네티스 레이블(Labels)에 대한 9가지 모범 사례.html">쿠버네티스 레이블(Labels)에 대한 9가지 모범 사례</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="aws">#aws</h4>
+                    
+                    <div class="post_list">
+                        <a href="/API 호출 수를 줄이기 위한 Redis 연결.html">API 호출 수를 줄이기 위한 Redis 연결</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/ECS service없에 task에 사설 도메인 붙일 수 있을까?...html">ECS service없에 task에 사설 도메인 붙일 수 있을까?..</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/github action 알아보기.html">github action 알아보기</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/aws+마인크래프트 패브릭.html">aws+마인크래프트 패브릭</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="godot">#godot</h4>
+                    
+                    <div class="post_list">
+                        <a href="/RigidBody와 KinematicBody 차이.html">RigidBody와 KinematicBody 차이</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/비 내리는 효과는 어떻게? Particle effect.html">비 내리는 효과는 어떻게? Particle effect</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/점프를 어떻게 구현할까? state machine.html">점프를 어떻게 구현할까? state machine</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-idontwaitingforwater.html">프로젝트-idontwaitingforwater</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="troubleshooting">#troubleshooting</h4>
+                    
+                    <div class="post_list">
+                        <a href="/ECS service없에 task에 사설 도메인 붙일 수 있을까?...html">ECS service없에 task에 사설 도메인 붙일 수 있을까?..</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/SSL 인증서 적용하니 CSS가 적용이 안된다.html">SSL 인증서 적용하니 CSS가 적용이 안된다</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/mysql 쿼리최적화 - offset.html">mysql 쿼리최적화 - offset</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/uvicorn-gunicorn-fastapi does not support ARM64; docker buildx.html">uvicorn-gunicorn-fastapi does not support ARM64; docker buildx</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="ci">#ci</h4>
+                    
+                    <div class="post_list">
+                        <a href="/Docker multistage build.html">Docker multistage build</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/Docker 이미지 크기 최적화.html">Docker 이미지 크기 최적화</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/github action 알아보기.html">github action 알아보기</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="ci/cd">#ci/cd</h4>
+                    
+                    <div class="post_list">
+                        <a href="/Docker multistage build.html">Docker multistage build</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/Docker 이미지 크기 최적화.html">Docker 이미지 크기 최적화</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/github action 알아보기.html">github action 알아보기</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="docker">#docker</h4>
+                    
+                    <div class="post_list">
+                        <a href="/Docker multistage build.html">Docker multistage build</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/Docker 이미지 크기 최적화.html">Docker 이미지 크기 최적화</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/uvicorn-gunicorn-fastapi does not support ARM64; docker buildx.html">uvicorn-gunicorn-fastapi does not support ARM64; docker buildx</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="python">#python</h4>
+                    
+                    <div class="post_list">
+                        <a href="/Flask 프로덕션 배포시 usgi+nginx 같이쓰인다.html">Flask 프로덕션 배포시 usgi+nginx 같이쓰인다</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/SSL 인증서 적용하니 CSS가 적용이 안된다.html">SSL 인증서 적용하니 CSS가 적용이 안된다</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/uvicorn-gunicorn-fastapi does not support ARM64; docker buildx.html">uvicorn-gunicorn-fastapi does not support ARM64; docker buildx</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="에반게리온">#에반게리온</h4>
+                    
+                    <div class="post_list">
+                        <a href="/잔혹한 천사의 테제 가사 및 독음 1.html">잔혹한 천사의 테제 가사 및 독음 1</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/잔혹한 천사의 테제로 일본어 배우기 - 개요 1.html">잔혹한 천사의 테제로 일본어 배우기 - 개요 1</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="일본어">#일본어</h4>
+                    
+                    <div class="post_list">
+                        <a href="/잔혹한 천사의 테제 가사 및 독음 1.html">잔혹한 천사의 테제 가사 및 독음 1</a>        
+                    </div>
+                    
+                    <div class="post_list">
+                        <a href="/잔혹한 천사의 테제로 일본어 배우기 - 개요 1.html">잔혹한 천사의 테제로 일본어 배우기 - 개요 1</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="book">#book</h4>
+                    
+                    <div class="post_list">
+                        <a href="/애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여.html">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="career">#career</h4>
+                    
+                    <div class="post_list">
+                        <a href="/애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여.html">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="cloud">#cloud</h4>
+                    
+                    <div class="post_list">
+                        <a href="/aws+마인크래프트 패브릭.html">aws+마인크래프트 패브릭</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="CS">#CS</h4>
+                    
+                    <div class="post_list">
+                        <a href="/uvicorn-gunicorn-fastapi does not support ARM64; docker buildx.html">uvicorn-gunicorn-fastapi does not support ARM64; docker buildx</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="db">#db</h4>
+                    
+                    <div class="post_list">
+                        <a href="/mysql 쿼리최적화 - offset.html">mysql 쿼리최적화 - offset</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="discord">#discord</h4>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-디스코드 홀더 인증 봇.html">프로젝트-디스코드 홀더 인증 봇</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="fastapi">#fastapi</h4>
+                    
+                    <div class="post_list">
+                        <a href="/API 호출 수를 줄이기 위한 Redis 연결.html">API 호출 수를 줄이기 위한 Redis 연결</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="github">#github</h4>
+                    
+                    <div class="post_list">
+                        <a href="/github action 알아보기.html">github action 알아보기</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="js">#js</h4>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-디스코드 홀더 인증 봇.html">프로젝트-디스코드 홀더 인증 봇</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="minecraft">#minecraft</h4>
+                    
+                    <div class="post_list">
+                        <a href="/aws+마인크래프트 패브릭.html">aws+마인크래프트 패브릭</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="mysql">#mysql</h4>
+                    
+                    <div class="post_list">
+                        <a href="/mysql 쿼리최적화 - offset.html">mysql 쿼리최적화 - offset</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="obsidian">#obsidian</h4>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-obsidianBlog.html">프로젝트-obsidianBlog</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="PM">#PM</h4>
+                    
+                    <div class="post_list">
+                        <a href="/애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여.html">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="redis">#redis</h4>
+                    
+                    <div class="post_list">
+                        <a href="/API 호출 수를 줄이기 위한 Redis 연결.html">API 호출 수를 줄이기 위한 Redis 연결</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="web">#web</h4>
+                    
+                    <div class="post_list">
+                        <a href="/Flask 프로덕션 배포시 usgi+nginx 같이쓰인다.html">Flask 프로덕션 배포시 usgi+nginx 같이쓰인다</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="web3">#web3</h4>
+                    
+                    <div class="post_list">
+                        <a href="/프로젝트-디스코드 홀더 인증 봇.html">프로젝트-디스코드 홀더 인증 봇</a>        
+                    </div>
+                    
+                </div>
+                
+                <div class="tag_box">
+                    <h4 id="책-애자일은처음">#책-애자일은처음</h4>
+                    
+                    <div class="post_list">
+                        <a href="/애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여.html">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a>        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <!-- 태그목록 -->
+
+
+        </div>
+    </article>
+</div>
+    
+        
+    
+
+    </main>
+
+    <!-- 하단에 계속 붙어있는 메뉴 -->
+    <footer>
+        <div class="container">
+            <img src="https://icehongssii.github.io/static/assets/icepersimmon.png" class='my-icon'>          
+            <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+            <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

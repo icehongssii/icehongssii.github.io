@@ -103,9 +103,9 @@
         
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>ecs service 만들지 않고 task에 service 붙일 수 있나?</h1>    
+        <h1 class='title'>RigidBody와 KinematicBody 차이</h1>    
         <div class="date">
-            <strong>마지막수정 2024-03-16 22:17 - 최초작성 2024-03-16 22:16</strong>
+            <strong>마지막수정 2024-03-19 14:32 - 최초작성 2024-03-19 14:32</strong>
         </div>
     <!---->
 
@@ -116,16 +116,18 @@
                 <td><strong>태그</strong></td>
                 <td>         
                     
-                    <a href='/tags/#troubleshooting'><span>troubleshooting</span></a>                                                        
+                    <a href='/tags/#gameDev'><span>gameDev</span></a>                                                        
                     
-                    <a href='/tags/#aws'><span>aws</span></a>                                                        
+                    <a href='/tags/#godot'><span>godot</span></a>                                                        
+                    
+                    <a href='/tags/#toyproject'><span>toyproject</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    ecs task 직접 사설 도메인 붙이는건 안티패턴이다
+                    노드가 캐릭터를 밀어낼 수 있다면 RigidBody이다
                 </td>
             </tr>                
         </table>
@@ -134,22 +136,33 @@
 
     <!--본문-->
     <div class="entry">
-        <p>2018.05-2019.03</p>
+        <h2>👯‍♂️ Rigidbody? Kinematic Body?</h2>
 
-<h2>👯‍♂️ 붙일 수 있지만 Best Practice는 아닌 듯 하다</h2>
+<p>Godot에서 쓰이는 용어들에 대해서 조금씩 익숙해져가고 있다. </p>
 
 <ul>
-<li>AWS ECS에서는 서비스 없이 단독으로 실행되는 태스크에 직접 ALB(Application Load Balancer)를 연결하는 것은 지원하지 않는다</li>
-<li>ALB는 ECS 서비스에 등록된 태스크 세트와 통합되어 동작하기 위해 설계되어있기 때문이다</li>
-<li>따라서 ECS 서비스를 생성하고 ALB와 연동해서 트래픽을 태스크로 라우팅</li>
-<li>서비스 없이 단독 태스크를 실행하는 경우에는 ALB를 사용하지 못하고, 태스크가 제공하는 특정 포트에 직접 접근해야한다.. 근데. 이는 보통 개발 환경이나 일시적인 배치 작업에 사용되는 패턴이라고한다 </li>
+<li><p>rigidbody란 한국어로 강체, 물리학에서 형태가 고정되어 변하지 않는 물체를 가리킨다. 강체는 외력이 가해져도 모양이나 크기가 변형되지 않는다.(위키출처) 유니티에서 쓰인느 리지드 바디는...  게임 오브젝트의 물리적 동작을 가능하게 하는 주요 컴포넌트입니다. 리지드바디가 연결된 오브젝트는 중력에 즉시 반응합니다.. 흥미로운건 고닷에서도 리지드 바디는 스크립트로 다이렉트로 컨트롤하면 안되고 이 물체에 물리엔진을 통해 우밎ㄱ이도록해야한다(중력, impulses등)</p></li>
+<li><p>한편 키네마틱바디는 유니티에서 리지드바디 2D는 시뮬레이션에서 매우 명시적인 사용자 제어 하에서만 움직이도록 설계됩니다.동역학 리지드바디 2D는 중력과 힘의 영향을 받지만, 키네마틱 리지드바디 2D는 그렇지 않습니다.따라서 키네마틱 리지드바디 2D는 동적 리지드바디 2D보다 시스템 리소스를 덜 소모해서 더 빠르게 시뮬레이션할 수 있습니다. &lt; 라고 표현되어있다, </p></li>
+<li><p>한편 캐릭터바디는 캐릭터를 위해 만들어진거임 그리고 충돌이나 반응과정이 스크립트로 반드시 구현되어야햄</p></li>
+</ul>
+
+<p><img src="https://i.imgur.com/Fd5yAqe.png" alt="" /></p>
+
+<h2>👯‍♂️ 결론</h2>
+
+<ul>
+<li><code>내가 만들고 싶어하는 노드가 캐릭터 밀어낼 수 있는가?</code> 를 질문해보자!
+<ul>
+<li>예스: -> rigidbody</li>
+<li>놉! -> characterbody</li>
+</ul></li>
+<li>이 노드를 무엇이 움직이게 하는가 물리엔진이라면 Rigidbody이고  이 노드를 움직이는게 스크립트라면 CharacterBody</li>
 </ul>
 
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
 <ul>
-<li>https://shaungc.medium.com/protect-your-aws-ecs-service-behind-application-load-balancer-alb-and-create-them-by-terraform-6db816d329f7</li>
-- 
+<li><a href="https://docs.godotengine.org/en/4.1/tutorials/physics/physics_introduction.html">웹,  godot tutorial</a></li>
 </ul>
 
     </div>  

@@ -103,9 +103,9 @@
         
 <article class="post-page">
     <!--TODO @icehongssii 메타 정보에 들어가야함-->
-        <h1 class='title'>ecs service 만들지 않고 task에 service 붙일 수 있나?</h1>    
+        <h1 class='title'>sprite sheet로 만들어 놓자</h1>    
         <div class="date">
-            <strong>마지막수정 2024-03-16 22:17 - 최초작성 2024-03-16 22:16</strong>
+            <strong>마지막수정 2024-03-19 10:43 - 최초작성 2024-03-19 10:43</strong>
         </div>
     <!---->
 
@@ -116,16 +116,16 @@
                 <td><strong>태그</strong></td>
                 <td>         
                     
-                    <a href='/tags/#troubleshooting'><span>troubleshooting</span></a>                                                        
+                    <a href='/tags/#gameDev'><span>gameDev</span></a>                                                        
                     
-                    <a href='/tags/#aws'><span>aws</span></a>                                                        
+                    <a href='/tags/#toyproject'><span>toyproject</span></a>                                                        
                                                    
                 </td>
             </tr>
             <tr>
                 <td><strong>tl;dr</strong></td>
                 <td>
-                    ecs task 직접 사설 도메인 붙이는건 안티패턴이다
+                    sprite sheet형태로 애셋관리시 성능도움
                 </td>
             </tr>                
         </table>
@@ -134,22 +134,69 @@
 
     <!--본문-->
     <div class="entry">
-        <p>2018.05-2019.03</p>
+        <pre><code class="ad-note language-ad-note">title: 키워드
+- 스프라이트
+- 스프라이트 시트 사용이유
+</code></pre>
 
-<h2>👯‍♂️ 붙일 수 있지만 Best Practice는 아닌 듯 하다</h2>
+<h2>👯‍♂️ 스프라이트란?</h2>
 
 <ul>
-<li>AWS ECS에서는 서비스 없이 단독으로 실행되는 태스크에 직접 ALB(Application Load Balancer)를 연결하는 것은 지원하지 않는다</li>
-<li>ALB는 ECS 서비스에 등록된 태스크 세트와 통합되어 동작하기 위해 설계되어있기 때문이다</li>
-<li>따라서 ECS 서비스를 생성하고 ALB와 연동해서 트래픽을 태스크로 라우팅</li>
-<li>서비스 없이 단독 태스크를 실행하는 경우에는 ALB를 사용하지 못하고, 태스크가 제공하는 특정 포트에 직접 접근해야한다.. 근데. 이는 보통 개발 환경이나 일시적인 배치 작업에 사용되는 패턴이라고한다 </li>
+<li>게임 개발에서 '스프라이트(Sprite)'는 주로 2D 비트맵 이미지 또는 애니메이션을 지칭하는용어</li>
+<li>게임 내의 캐릭터, 물체, 배경 요소 등을 표현하기 위해 사용됨</li>
+<li>(게임 내 아트 에셋으로 이해했다)</li>
 </ul>
+
+<p><img src="https://i.imgur.com/QS9pcEx.png" alt="" /></p>
+
+<h2>👯‍♂️ 근데 스프라이트 시트를 왜 쓰는거지?</h2>
+
+<p>캐릭터 sprite sheet이라고 하면 아래 표에서 첫번째 사진처럼 하나의 파일에 캐릭터의 여러가지 동작을 프레임단위로 구성한 것을 의미한다.. 근데 왜 캐릭터 스프라이트 시트를 사용해야하는가? 여러개의 이미지파일로 한 동작을 구현하는 것보다 하나의 이미지 파일에서 여러개의 동작을 표현하는게 메모리와 퍼포먼스 측면에서 좋기 때문이었다..</p>
+
+<blockquote>
+  <p>A sprite sheet is a large image that contains multiple smaller images, called sprites, that are used for animation or graphics in games. <a href="https://www.artstation.com/marketplace/game-dev/assets/2d/sprite-sheets">A sprite sheet can reduce the number of files and memory needed to load and display the sprites, as well as improve the performance and efficiency of the game1</a><a href="https://opengameart.org/">2</a>. <a href="https://www.gamedeveloper.com/design/texturepacker---sprite-sheets-creator-for-your-games">A sprite sheet can be created manually or with a tool like TexturePacker3</a>, which can automatically pack and optimize the sprites into a single image.</p>
+</blockquote>
+
+<p>여튼 보통 스프라이트 시트는 이런식으로 구성되어있어서 뛰는 것만 나름 만들어 보았는데</p>
+
+<table>
+<thead>
+<tr>
+  <th>정상적인 스프라이트시트</th>
+  <th>내가 만든 스프라이트 시트. 간격이 엉망진창이다 딱 봐도</th>
+  <th>고닷에서 자를 수 있다</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><img src="https://i.imgur.com/hv7qsla.png" alt="" /><br></td>
+  <td><img src="https://i.imgur.com/aPFf1k2.png" alt="" /><br></td>
+  <td><img src="https://i.imgur.com/ULyt6gb.png" alt="" /><br></td>
+</tr>
+</tbody>
+</table>
+
+<p>각 프레임들이 중앙 정렬되어있지 않고 간격도 엉망진창이라 실제로 뛰는걸 보면 저 캡슐형 타원에서 계속 빠져나가는게 보인다. 그래서 결국 메모리 관리는 포기하고 하나씩 svg 파일로 만들어서 임포트하니까 많이 벗어나지 않는게 보인다</p>
+
+<table>
+<thead>
+<tr>
+  <th>타원에서 많이 벗어난다(스프라이트 시트)</th>
+  <th>타원에서 덜 벗어난다(하나씩 임포트)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><img src="https://i.imgur.com/QWDoJxo.png" alt="" /></td>
+  <td><img src="https://i.imgur.com/1ULIQde.png" alt="" /></td>
+</tr>
+</tbody>
+</table>
 
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
 <ul>
-<li>https://shaungc.medium.com/protect-your-aws-ecs-service-behind-application-load-balancer-alb-and-create-them-by-terraform-6db816d329f7</li>
-- 
+<li><a href="https://spritesheeteditor.com/spritesheet.html">웹, what is sprite sheet</a></li>
 </ul>
 
     </div>  
