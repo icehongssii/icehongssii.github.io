@@ -178,7 +178,7 @@
 <ul>
 <li>기존에 로컬환경에서 실행되던 파이썬 어플리케이션 4개를 AWS 이용해 클라우드 마이그레이션, 이후 작업시간 약 90% 감소(6시간 → 30분)</li>
 <li>데이터 분석 전 후 작업 코드 분리 (AS-IS 단일 배치 -> TO-BE 병렬 배치)</li>
-<li><a href="/posts/mysql%20%EC%BF%BC%EB%A6%AC%EC%B5%9C%EC%A0%81%ED%99%94%20-%20offset.md?ref=main">MySQL 쿼리 최적화</a>, <a href="/posts/Docker%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%ED%81%AC%EA%B8%B0%20%EC%B5%9C%EC%A0%81%ED%99%94.md?ref=main">Docker 이미지 최적화</a></li>
+<li><a href="/posts/mysql%20%EC%BF%BC%EB%A6%AC%EC%B5%9C%EC%A0%81%ED%99%94%20-%20offset">MySQL 쿼리 최적화</a>, <a href="/posts/Docker%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%ED%81%AC%EA%B8%B0%20%EC%B5%9C%EC%A0%81%ED%99%94">Docker 이미지 최적화</a></li>
 <li>AWS lambda로 운영 중이던 프로젝트 ECS로 이관작업 진행</li>
 <li>파이썬 코드 품질 관리 도입(black, isort)</li>
 <li>원활한 협업을 위해 브랜치, 커밋 룰 도입</li>
@@ -242,23 +242,23 @@
 
 <p><br></p>
 
-<h3>1. <a Id ="블로그" href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-obsidianBlog.md">ECR, ECS + 메모 어플 이용한 블로그 제작</a></h3>
+<h3>1. <a Id ="블로그" href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-obsidianBlog">ECR, ECS + 메모 어플 이용한 블로그 제작</a></h3>
 
 <ul>
 <li>기간: 2024.03.05 - 계~에속 진행중</li>
 <li>Skills: Python, FastAPI, Docker build, buildX, GitubAction, AWS (ECS, ECR)</li>
 <li>프로젝트 진행하면서 배우거나 체득한 내용
 <ul>
-<li>클라우드 서비스 배포 : <a href="/posts/ECS%20service없에%20task에%20사설%20도메인%20붙일%20수%20있을까%3F)">ECS service와 사설 도메인</a>, <a href="/posts/API%20%ED%98%B8%EC%B6%9C%20%EC%88%98%EB%A5%BC%20%EC%A4%84%EC%9D%B4%EA%B8%B0%20%EC%9C%84%ED%95%9C%20Redis%20%EC%97%B0%EA%B2%B0.md?ref=main">API 호출 수를 줄이기 위한 Redis 연결</a>,<a href="/posts/github%20action%20%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0">github action</a></li>
+<li>클라우드 서비스 배포 : <a href="/posts/ECS%20service없에%20task에%20사설%20도메인%20붙일%20수%20있을까%3F)">ECS service와 사설 도메인</a>, <a href="/posts/API%20%ED%98%B8%EC%B6%9C%20%EC%88%98%EB%A5%BC%20%EC%A4%84%EC%9D%B4%EA%B8%B0%20%EC%9C%84%ED%95%9C%20Redis%20%EC%97%B0%EA%B2%B0">API 호출 수를 줄이기 위한 Redis 연결</a>,<a href="/posts/github%20action%20%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0">github action</a></li>
 <li>웹 보안: <a href="/posts/SSL%20인증서%20적용하니%20CSS가%20적용이%20안된다">SSL 적용 &amp; CSS </a></li>
-<li>웹 서버 및 프레임워크 : <a href="/posts/Flask%20%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%20%EB%B0%B0%ED%8F%AC%EC%8B%9C%20usgi%2Bnginx%20%EA%B0%99%EC%9D%B4%EC%93%B0%EC%9D%B8%EB%8B%A4.md?ref=main">Flask 프로덕션 배포</a></li>
-<li>도커 연관 호환성 및 배포 문제 : <a href="/posts/uvicorn-gunicorn-fastapi%20does%20not%20support%20ARM64%3B%20docker%20buildx.md">buildx</a></li>
+<li>웹 서버 및 프레임워크 : <a href="/posts/Flask%20%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%20%EB%B0%B0%ED%8F%AC%EC%8B%9C%20usgi%2Bnginx%20%EA%B0%99%EC%9D%B4%EC%93%B0%EC%9D%B8%EB%8B%A4">Flask 프로덕션 배포</a></li>
+<li>도커 연관 호환성 및 배포 문제 : <a href="/posts/uvicorn-gunicorn-fastapi%20does%20not%20support%20ARM64%3B%20docker%20buildx">buildx</a></li>
 </ul></li>
 </ul>
 
 <p><img src="https://i.imgur.com/dnh95kc.png" alt="" /></p>
 
-<h3>2. <a id="게임" href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-idontwaitingforwater.md"> Godot 게임 엔진을 이용한 러닝 액션게임</a></h3>
+<h3>2. <a id="게임" href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-idontwaitingforwater"> Godot 게임 엔진을 이용한 러닝 액션게임</a></h3>
 
 <ul>
 <li><a href="https://d1emjrld223cpx.cloudfront.net/index.html">idontwaitingforwater플레이하기(모바일 제외한 기기에서 크롬 브라우저로 실행가능)</a></li>
@@ -266,10 +266,10 @@
 <li>Skills: Godot,  AWS S3 </li>
 <li>프로젝트 진행하면서 배우거나 체득한 내용
 <ul>
-<li>아트 : <a href="/posts/sprite%20sheet%EB%A1%9C%20%EB%A7%8C%EB%93%A4%EC%96%B4%20%EB%86%93%EC%9E%90.md?ref=main"> sprite sheet로 만들어 놓자</a></li>
-<li>게임 개발 용어  : <a href="/posts/rigidbody%ec%99%80%20kinematicbody%20%ec%b0%a8%ec%9d%b4.md?ref=main">Rigidbody? Kinematic Body?</a></li>
-<li>게임 프로그래밍 : <a href="/posts/%EB%B9%84%20%EB%82%B4%EB%A6%AC%EB%8A%94%20%ED%9A%A8%EA%B3%BC%EB%8A%94%20%EC%96%B4%EB%96%BB%EA%B2%8C%3F%20Particle%20effect.md?ref=main">비 내리는 효과는 어떻게? Particle effect</a>, <a href="/posts/%EC%A0%90%ED%94%84%EB%A5%BC%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EA%B5%AC%ED%98%84%ED%95%A0%EA%B9%8C%3F%20state%20machine.md?ref=main">점프를 어떻게 구현할까? state machine</a>, <a href="/posts/%EB%AC%B4%ED%95%9C%20%ED%9A%A1%EC%8A%A4%ED%81%AC%EB%A1%A4%20%ED%91%9C%ED%98%84.md?ref=main"> 무한 횡스크롤 표현 </a></li>
-<li>애자일용어 : <a href="/posts/%EC%95%A0%EC%9E%90%EC%9D%BC%20%EA%B0%9C%EB%B0%9C%EC%9D%B4%20%EC%B2%98%EC%9D%8C%EC%9D%B8%20%EB%82%B4%EA%B0%80%20%EC%B6%9C%EA%B7%BC%ED%96%88%EB%8D%94%EB%8B%88%20%EC%8A%A4%ED%81%AC%EB%9F%BC%20%EB%A7%88%EC%8A%A4%ED%84%B0%EA%B0%80%20%EB%90%9C%20%EA%B1%B4%EC%97%90%20%EB%8C%80%ED%95%98%EC%97%AC.md">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a></li>
+<li>아트 : <a href="/posts/sprite%20sheet%EB%A1%9C%20%EB%A7%8C%EB%93%A4%EC%96%B4%20%EB%86%93%EC%9E%90"> sprite sheet로 만들어 놓자</a></li>
+<li>게임 개발 용어  : <a href="/posts/rigidbody%ec%99%80%20kinematicbody%20%ec%b0%a8%ec%9d%b4">Rigidbody? Kinematic Body?</a></li>
+<li>게임 프로그래밍 : <a href="/posts/%EB%B9%84%20%EB%82%B4%EB%A6%AC%EB%8A%94%20%ED%9A%A8%EA%B3%BC%EB%8A%94%20%EC%96%B4%EB%96%BB%EA%B2%8C%3F%20Particle%20effect">비 내리는 효과는 어떻게? Particle effect</a>, <a href="/posts/%EC%A0%90%ED%94%84%EB%A5%BC%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EA%B5%AC%ED%98%84%ED%95%A0%EA%B9%8C%3F%20state%20machine">점프를 어떻게 구현할까? state machine</a>, <a href="/posts/%EB%AC%B4%ED%95%9C%20%ED%9A%A1%EC%8A%A4%ED%81%AC%EB%A1%A4%20%ED%91%9C%ED%98%84"> 무한 횡스크롤 표현 </a></li>
+<li>애자일용어 : <a href="/posts/%EC%95%A0%EC%9E%90%EC%9D%BC%20%EA%B0%9C%EB%B0%9C%EC%9D%B4%20%EC%B2%98%EC%9D%8C%EC%9D%B8%20%EB%82%B4%EA%B0%80%20%EC%B6%9C%EA%B7%BC%ED%96%88%EB%8D%94%EB%8B%88%20%EC%8A%A4%ED%81%AC%EB%9F%BC%20%EB%A7%88%EC%8A%A4%ED%84%B0%EA%B0%80%20%EB%90%9C%20%EA%B1%B4%EC%97%90%20%EB%8C%80%ED%95%98%EC%97%AC">애자일 개발이 처음인 내가 출근했더니 스크럼 마스터가 된 건에 대하여</a></li>
 </ul></li>
 </ul>
 
@@ -324,7 +324,7 @@
 <li><p>2024, 고려사이버대학교 졸업</p></li>
 </ul>
 
-<h3>스킬.</h3>
+<h3>스킬.</h3>
 
 <ul>
 <li><p>Backend &amp; DB: Python, FastAPI, Flask</p></li>
