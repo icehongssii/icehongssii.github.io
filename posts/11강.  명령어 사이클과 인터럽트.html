@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <title>icehongssii</title>
+    <link
+      rel="icon"
+      href="assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+
+        <div class="grower"></div>
+
+        <nav class="site-nav">
+          <a href="/posts"><img src="/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/"><img src="/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+      </div>
+    </header>
+
+    <div id="main" role="main" class="container">
+      <article class="post-page">
+        <h1 class="title">11강.  명령어 사이클과 인터럽트</h1>
+
+        <div class="date">
+          <strong
+            >마지막수정 2024-03-08 00:22 - 최초작성
+            2024-02-27 12:55</strong
+          >
+        </div>
+
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags/##CS"><span>CS</span></a>
+                
+                <a href="/tags/##책-혼공컴운"><span>책-혼공컴운</span></a>
+                
+                <a href="/tags/##book"><span>book</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="entry"><h2>👯‍♂️ Intro &amp; tl;dr</h2>
+
+<pre><code class="ad-note language-ad-note">title: 키워드
+- 명령어 사이클
+    - 인출 사이클
+    - 실행 사이클
+    - 간접 사이클
+- 인터럽트 ✨✨✨ (중요한 개념 )
+    - 동기 인터럽트 / 비동기 인터럽트 
+    - NMI 
+    - 인터럽트 플래그
+    - 인터럽트 벡터
+    - 인터럽트 벡터 테이블
+    - 인터럽트 서비스 루틴
+    - 백업 =&gt; 메모리의 스특에 저장
+</code></pre>
+
+<ul>
+<li>cpu는 메모리로부터 명령어, 데이터들을 갖고와 실행하고 필요시 값 저장한다.</li>
+<li>이때 cpu가 메모리에 저장되어 있는 프로그램 실행하는 과정에  일정한 패턴, 일정한 주기가 있다! 👉 즉 cpu는 메모리 안에 있는 프로그램 어떤 정해진 흐름대로 처리하는데 그 정해진 흐름 주기를 명령어 사이클이라고 한다</li>
+<li>간혹 그 정해진 흐름, 명렁어 사이클 방해한느 신호가 cpu에게 올 수 있는데 이 흐름을 끊는 신호를 인터럽트라고 한다</li>
+</ul>
+
+<hr />
+
+<p><img src="https://i.imgur.com/p1jq7le.png" alt="" /></p>
+
+<h2>👯‍♂️ 명령어 사이클</h2>
+
+<ul>
+<li>즉 cpu는 메모리 안에 있는 프로그램 어떤 정해진 흐름대로 처리하는데 그 정해진 흐름 주기를 명령어 사이클이라고 한다
+<ul>
+<li>예) 프로그램을 실행한다면? 🤔💭
+<ol>
+<li>인출사이클; 메모리에 있는 값을 cpu 레지스터 OR cpu 내부로 갖고온다. 이 작업을 인출이라고 한다, 이렇게 인출하는 주기를 인출사이클이라함</li>
+<li>실행사이클; 내부로 가져온 프로그램을 실행한다<br />
+👉 일반적으로 cpu는 인출 사이클과 실행 사이클 반복, 이게 명령어 사이클의 일부이다 </li>
+</ol></li>
+<li>간접사이클; 인출하더라도 곧바로 실행되는게 아니라 추가적으로 메모리에 접근해야하는 경우도있다. (간접 주소 지정 방식,  몇번 더 메모리에 접근해야하는 경우가) 이렇게 메모리접근 더 필요하면 간접사이클 돌입하게 되고 간접사이클 끝나면 실행사이클로 돌아간다.</li>
+</ul></li>
+</ul>
+
+<p><img src="https://i.imgur.com/p1jq7le.png" alt="" /></p>
+
+<h2>👯‍♂️ 인터럽트</h2>
+
+<ul>
+<li>인터럽트; 정해진 흐름 대로(명령어 사이클대로) cpu가 프로그램 처리하고 있는데 정해진 흐름을 끊어버리는 신호. CPU가 얼른 처리해야하는 작업 생겼을 때 인터럽트 발생
+<ul>
+<li>동기인터럽트(aka. 예외 Exception): CPU가 예기치 못한 상황 접했을때 발생. 0으로 나누거나 메모리 주소에 접근했는데 원하는 데이터가 없는등 etc
+<ul>
+<li>폴트</li>
+<li>트랩</li>
+<li>중단(abort)</li>
+<li>소프트웨어 인터럽트</li>
+</ul></li>
+<li>비동기인터럽트(aka. 하드웨어 인터럽트): 주로 입출력 장치에의해 발생. 알림과 같은 역할. 전자렌지나 세탁기가 작업 완료 되면 울리는 알림.  CPU가 프린터한테 "프린트하고 있어! 그리고 내가 다른 일 할 동안 프린트가 다 완료되면 다시 불러줘"라고 하면 이 하드웨어가 CPU한테 보내는 알림</li>
+</ul></li>
+</ul>
+
+<h3>👯‍♂️ 비동기 인터럽트</h3>
+
+<ul>
+<li>왜쓰는거지?; CPU가 입출력 작업 도중에도 효율적으로 명령어 처리하기위해. 입출력 장치 입출력 작업은 보통 CPU에 비해 느림. 만약에 HW 인터럽트가 없었다면 CPU가 계속해서 입출력작업 완료 여부 확인 하기 위해 주기적으로 확인을 해줘야한다. 근데 HW 인터럽트가 있어서 다른일 할 동안 완료되면 알림으로 작업 종료 여부를 알 수 있어 그 동안 확인이 나리 다른 일을 할 수있게 되는것! 비로소 그 입출력 작업끝나면 하던일 중단하고 그 알림 확인하면 된느것임</li>
+</ul>
+
+<h3>👯‍♂️ 인터럽트 처리순서와 서비스 루틴</h3>
+
+<p><mark style="background: #FF5582A6;">인터럽트 처리순서</mark><br />
+- 👉 입출력 장치는 cpu한테 인터럽트 요청 신호를 보냅니다<br />
+- 👉그리고 cpu는 실행 사이클이 끝나고 명령어를 인출하기 전에 항상 인터럽트가 있었나 인터럽트를 받아들일 수 있었나 뭐 이런 식으로   인터럽트 여부를 확인합니다<br />
+- 👉그리고 cpu가 인터럽트 요청을 확인하면 어 이런 알람이 있었네 어 이런 알림이 있었네 이런 식으로 인터럽트 요청을 확인을 하면은<br />
+- 👉플래그 레지스터에 있는 인터럽트 플래그를 통해서 현재 인터럽트를 받을 수 있는지 여부를 확인을 합니다 만약에 이런 것들이 처리할 수 있다면 cpu는 지금까지 했던 작업을 잠시 백업을 하고요  (자기가 실행 중인 프로그램을  쭉 실행을 하다가 만약에 인터럽트가 땅 발생을 하면은 해당 명령어까지는 실행을 끝내고 그 인터럽트로 도달아서 되돌아가서 그 인터럽트를 실행한 다음에 다시 되돌아와서 수행을 제기하게 됩니다)<br />
+- 👉 인터럽트 벡터를 참조해서 인터럽트 서비스 루틴이라고 하는 프로그램을 실행합니다 
+- 👉 인터럽트 서비스 루팅 실행이 끝나면 잠시 백업해둔 그 작업을 복구해서 다시 하던 일을 합니다.</p>
+
+<ul>
+<li>인터럽트 요청신호; HW 인터럽트를 보내는 주체들(키보드, 마우스같은)이 CPU한테 지금  끼어들어도 되나요?라고 요청을 보내는 신호. 인터럽트는 CPU 정상적 실행 흐름 끊는 것이기 때문에 이런식으로 요청신호를 보내게 된다 </li>
+<li>CPU는 이런식으로 인터럽트 요청신호를 받으면 실행사이클 끝나고 명령어 인출 전 플래그 레지스터 속 인터럽트 플래그를 확인한다</li>
+<li>인터럽트 플래그;  현재 인터럽트를 받아들일 수 있다 없다를 0,1과 1로 표기한것.  받아 들일 수 있는 상황이면 인터럽트 처리하고 그렇지 않으면 인터럽트 요청신호와도 해당 인터럽트 처리 X  👉👉👉👉 근데 인터럽트 플래그 여부로 모든 인터럽트 처리를 막을 수 있는건 아니다!! 꼭 처리해야하는 긴급 인터럽트는 인터럽트 플래그로도 막을 수 없다 🥵🥵🥵🥵🥵 이러한 인터럽트를  Non-maskable interrupt (NMI interrupt)라고 한다 . 하드웨어 고장이나 정전같은 경우 </li>
+<li>인터럽트 서비스 루틴;  메모리 안에서 실행되는 프로그램의 일종인데 이는 인러터럽트가 발생 했을 때 해당 인터럽트를 어떻게 처리하면 되는지 적혀있는 프로그램 HW(⌨️🖱️🔊)들이 인터럽트 요청을 보내면 이렇게 행동하세요~ 라고 적혀있는 프로그램. 이것또한 프로그램이라서 메모리에 저장되어있고 인터럽트 보내는 주체 따라 각기 시작 주소를 갖고 있다. 프린터(or 키보드)기 인터럽스 서비스 루틴은 프린터(or 키보드)가 인터럽트 신호 보내면 해당 인터럽트를 어떻게 처리한다라고 적혀있다!  인터럽트를 보낼 수 있는 주체에 따라 각기 다른 인터럽트 서비스 루틴을 갖고 있다 </li>
+<li>
+<img src="https://i.imgur.com/xVssNp7.png" alt="" /></li>
+</ul>
+
+<p>cpu가 인터럽트를 받아들이기로 했다면 여기서 처리하는 명령까지는 처리를 한 다음에 그 인터럽트에 해당하는 인터럽트 서비스 루틴으로 점프를 합니다 그리고 그 인터럽트 서비스 루틴을 쭉 실행을 하고 아까 전에 점프했던 곳으로 되돌아간 다음에  다시 수행을 재개합니다</p>
+
+<ul>
+<li>인터럽트 벡터;  다시 말해서 인터럽트마다  고유한 인터럽트 서비스 루틴의 시작 주소를 가지고 있습니다 예를 들어서 만약에 얘가 키보드의 인터럽트 서비스 루틴이었다면 키보드 인터럽트 서비스 루틴의 시작 주소는 여기겠죠 그럼 cpu는 이렇게 인터럽트를 보낼 수 있는 주체에 따라서 인터럽트 서비스 루틴의 시작 주소가 달라질 수 있는데 cpu가 해당 인터럽트 서비스 루틴의 시작 주소는 무엇인지 그 인터럽트를 구분할 수 있는 정보가 필요하겠죠 각각의 인터럽트를 구분하기 위한 정보를 인터럽트 벡터 라고함.</li>
+</ul>
+
+<p><img src="https://i.imgur.com/xmLZ5wA.png" alt="" /></p>
+
+<ul>
+<li>인터럽트 벡터 테이블 인터럽트 벡터를 통해서 쭉 모아놓은 표의 형태로 모아놓은 인터럽트 벡터들을 표처럼 모아놓은 인터럽트 벡터 테이블 이라고 하는 것도 있다</li>
+<li>인터럽트 벡터  = 각 각의 인터럽트 구분하기 위한 정보</li>
+<li><p>인터럽트 벡터 왜 필요? = CPU가 해당 인터럽트 서비스 루틴 시작 주소 알기 위해 필요. 보통 인터럽트 보내는 주체가 해당 인터럽트 요청신호와 인터럽트 벡터도 데이터 버스를 통해 보내게 된다 </p></li>
+<li><p>CPU가 인터럽트를 처리한다 = 인터럽트 서비스 루틴을 실행하고 원래 수행하던 작업으로 표현한다. </p></li>
+<li>백업?; CPU가 인터럽트 요청신호 받아 처리하려면 인터럽트 서비스 루틴으로 점프해 인터럽트 서비스 루틴을 실행하고 원래 작업으로 돌아온다. 근데 기존에 작업 처리하기 위해 프로그램 카운터나 레지스터에 저장된 값들은 어떻</li>
+</ul>
+
+<p><img src="https://i.imgur.com/jSvjdn1.png" alt="" /></p>
+
+<pre><code>
+</code></pre>
+
+<p>인터럽트 서비스 루틴을 실행하게 되면 만약에 10번지에 있는 인터럽트 서비스 루트는 실행하면 이것들을 프로그램 카운터라고 한다면 1,500을 10으로 바꿔야겠죠<br />
+그렇죠 근데이 1,500이라고 하는이 값 있죠 다음 실행할 명령어는 1500번지야라고 하는 이런 레지스터 값들을 그냥 버려 버리면 될까요 그럼 안 됩니다 왜냐면 언제든 다시 되돌아와서 수행을 재개해야 되기 때문에 현재 레지스터에는 어떤 값들이 담겨있는지 현재 이제 cpu는 어떤 상태인지가 다 기억이 되어 있어야 돼요 그렇기 때문에 인터럽트로 점프하는 것은 좋은데 그 전에 그 전에 지금까지 했던 작업을 어디다가 백업을 한 다음에 그 다음에 인터럽트 서비스로 등을 실행하면서 이런저런 레지스터 값들을 사용을 해야 됩니다 인터럽트 서비스 루틴도 프로그램이니까 당연히 이런저런 레지스터를 쓸 거 아니에요 그쵸 근데 그 전까지 있었던 레지스터들은 어딘가에 백업을 해둬야 된다고요<br />
+그렇죠 자 이러기 위해서 <mark style="background: #FF5582A6;">그걸 위해서</p>
+
+<p>백업을 하기 위해서 지금까지의 작업</p>
+
+<p>내용 이를테면 뭐 레지스터 안에 담겨</p>
+
+<p>있는 이런 값들은 전부 다</p>
+
+<p>스택에 백업을 해두게 됩니다 그<br />
+</mark><br />
+다음에 인터럽트 서비스 루틴을 위해서 이제 레지스터를 쓸 수가 있는 거죠 이런 식으로 그럼 이제 인터럽트 서비스 루틴을 실행하기 위한 어떤 정보들이 레지스터 안에 담기게 되고 가령 프로그램 카운터에는 10 11 12 이런 식으로 담길 수가 있겠죠 그쵸 자 만약에 인터럽 서비스 루틴에 실행이 끝났다라고 하면은 다시 이거를 쭉 복구를 해서 다시 프로그램 카운터 값은 1500이야 메모리 주소 레지스터에는 이런 값이 있었고 뭐 범용 레지스터에는 이런 값이 있었어 뭐 이런 식으로 다시 스택에서 백업을 해오게 됩니다 그러면 다음 다음 실행할 명령어가 어딘지 알 수 있겠죠 그쵸 곧바로 다음으로 실행할 명령어부터 쭉 수행을 제기할 수가 있겠죠 그죠 인터럽트가 발생하면은 지금 상태를 백업하고 해당 인터럽트 서비스로 진에 해당하는 것들을 쭉 cpu로 갖고 와서 실행을 하게 된다라고 보시면 됩니다 자 그럼</p>
+
+<hr />
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=kFWP6sFKyp0&list=PLYH7OjNUOWLUz15j4Q9M6INxK5J3-59GC">책/유튜브 인강-혼자 공부하는 컴퓨터구조+운영체제, 강민철, 한빛미디어</a></li>
+</ul>
+</div>
+
+        <div>
+          <center>
+            <img
+              src="/assets/icepersimmon.png"
+              class="my-icon"
+            />
+          </center>
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
