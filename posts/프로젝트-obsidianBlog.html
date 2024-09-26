@@ -1,0 +1,275 @@
+<html lang="eng">
+  <head>
+    <!--메타 정보 -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="ART / TECH 그리고 ?? " />
+    <meta property="og:description" content="ART / TECH 그리고 ?? " />
+    <meta name="author" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>icehongssii의 일지</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://icehongssii.github.io/static/style.css"
+    />
+    <link
+      rel="icon"
+      href="https://icehongssii.github.io/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+
+    <!-- 아래 프리즘 순서 지킬 것  -->
+    <!-- 1. 프리즘 코어 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-okaidia.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- 2. 프리즘 플러그인(show-language, copy-to-clipboard)을 위한 추가적인 플러그인  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.js"
+      integrity="sha512-cu2C9EssrOrVXT4thyL4gz/qWyh3Lq9XbICUXYyh3zJRCSKk1J08tBKPXnsSpdpZXOliaK/OJBygw/l0twAmwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/toolbar/prism-toolbar.min.css"
+      integrity="sha512-DSAA0ziYwggOJ3QyWFZhIaU8bSwQLyfnyIrmShRLBdJMtiYKT7Ju35ujBCZ6ApK3HURt34p2xNo+KX9ebQNEPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- 3. 프리즘 플러그인 스타일 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/diff-highlight/prism-diff-highlight.min.css"
+    />
+
+    <!-- 4. 프리즘 플러그인 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/show-language/prism-show-language.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/highlight-keywords/prism-highlight-keywords.min.js"></script>
+
+    <!-- 5. 프리즘 추가적인 언어  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+
+    <!-- 프리즘 하이라이팅이 obsidian admonition에 영향받지않게
+        language-ad로 생성되는 클래스 삭제하는 스크립트
+    -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all 'pre' and 'code' elements
+        const elements = document.querySelectorAll("pre, code");
+
+        // Iterate over each element
+        elements.forEach((element) => {
+          // Iterate over each class in the class list
+          element.classList.forEach((cls) => {
+            // Check if the class starts with 'language-ad'
+            if (cls.startsWith("language-ad")) {
+              // Remove the class
+              element.classList.remove(cls);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="https://icehongssii.github.io/static//assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="https://icehongssii.github.io/static//assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="https://icehongssii.github.io/static//assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">프로젝트-obsidianBlog</h1>
+
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-03-18 17:48 - 최초작성2024-03-18 17:48
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags/##toyproject"><span>toyproject</span></a>
+                
+                <a href="/tags/##obsidian"><span>obsidian</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td>토이 프로젝트 개발기</td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>Obsidian 블로그 개발기</h2>
+
+<p><img src="https://i.imgur.com/1Gy30lv.png" alt="diagram.excalidraw.svg" /></p>
+
+<h2>👯‍♂️ 개요</h2>
+
+<p>기술 블로그에 포스팅할려면.. 개인적으로 공부한 내용을 이쁘게/가독성 좋게 꾸미는 과정이 필요합니다....</p>
+
+<p>예를 들면 요즘에 노션에다가 개인 공부 한 내용 많이 저장하던데 이 내용 그대로  복붙해서 네이버 블로그에 못 올립니다.. 마크다운 호환이 안돼서.. 그래서 글씨 두껍게하는거 이런거 다 일일이 바꿔줘야합니다..</p>
+
+<p><mark style="background: #ABF7F7A6;">이 작업이 귀찮아서 그냥 개인 공부 저장된 메모어플 통째로 블로그로 만들고 싶었습니다..</mark></p>
+
+<p>사실 옵시디언(메모어플)-> 곧바로 웹페이지 만들어주는 서비스들이 존재합니다만.. 저는 인프라부터 제가 해보고 싶어서 굳이 굳이 처음부터 만들어봤습니다..</p>
+
+<ul>
+<li><a href="https://github.com/icehongssii/personal-blog-render">GIthub</a></li>
+<li><a href="https:///www.xxxx.icehogssii.xyz">Website</a></li>
+<li>진행기간  2024.03.05 - 계~에속 진행중 / 마일스톤 추후 업데이트 예정</li>
+<li>목표 
+<ul>
+<li>메모 어플에서 작성한 내용을 곧바로 블로그로 퍼블리싱 가능하게하자</li>
+<li>기존에 비슷한 서비스를 하는 곳(obsidian flower show, obisidian publish)이 있긴하지만 직접 서버까지 운영해보고 싶어서 만들었다</li>
+</ul></li>
+<li>추가 해야하는 기능
+<ul>
+<li>✔️ 검색</li>
+<li>✔️ 페이징 </li>
+<li>✔️ 카테고리리</li>
+<li>✔️ 댓글 </li>
+<li>✔️ CI 구현(테스트, 린트)</li>
+<li>✔️ 인프라 구조 테라폼으로 작성</li>
+<li>✔️ ECS task 무중단 배포 (FastAPI 코드 수정하면 ECR에 올라가지만 이 최신 이미지를 토대로 컨테이너가 생성되지는 않음) -> CD구현</li>
+</ul></li>
+</ul>
+
+<h2>👯‍♂️ 역할</h2>
+
+<ul>
+<li>기획 / 개발 </li>
+</ul>
+
+<h2>👯‍♂️ 사용기술</h2>
+
+<ul>
+<li>Python</li>
+<li>Docker build, buildX, GitubAction</li>
+<li>AWD ECS, ECR, ALB,</li>
+</ul>
+
+<h2>👯‍♂️ 프로젝트 진행하면서 경험하고 체득한 부분</h2>
+
+<ul>
+<li><strong>클라우드 서비스 및 배포</strong>: ECS, Redis, SSL, GitHub Actions
+<ul>
+<li><a href="https://xxx.icehongssii.xyz/posts/ECS%20service없에%20task에%20사설%20도메인%20붙일%20수%20있을까%3F...md">ECS service없에 task에 사설 도메인 붙일 수 있을까?..</a></li>
+<li><a href="https://xxx.icehongssii.xyz/posts/API%20%ED%98%B8%EC%B6%9C%20%EC%88%98%EB%A5%BC%20%EC%A4%84%EC%9D%B4%EA%B8%B0%20%EC%9C%84%ED%95%9C%20Redis%20%EC%97%B0%EA%B2%B0.md?ref=main">API 호출 수를 줄이기 위한 Redis 연결</a></li>
+<li><a href="https://xxx.icehongssii.xyz/posts/github%20action%20%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0.md?ref=main">github action 알아보기</a></li>
+</ul></li>
+<li><strong>웹 보안</strong>: SSL 적용, mixed contents 에러
+<ul>
+<li><a href="https://xxx.icehongssii.xyz/posts/SSL%20인증서%20적용하니%20CSS가%20적용이%20안된다.md">SSL 인증서 적용하니 CSS가 적용이 안된다</a></li>
+</ul></li>
+<li><strong>웹 서버 및 프레임워크</strong>
+<ul>
+<li><a href="https://xxx.icehongssii.xyz/posts/Flask%20%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%20%EB%B0%B0%ED%8F%AC%EC%8B%9C%20usgi%2Bnginx%20%EA%B0%99%EC%9D%B4%EC%93%B0%EC%9D%B8%EB%8B%A4.md?ref=main">Flask 프로덕션 배포시 usgi+nginx 같이쓰인다</a></li>
+</ul></li>
+<li><strong>호환성 및 배포 문제</strong>
+<ul>
+<li><a href="https://xxx.icehongssii.xyz/posts/uvicorn-gunicorn-fastapi%20does%20not%20support%20ARM64%3B%20docker%20buildx.md">uvicorn-gunicorn-fastapi does not support ARM64; docker buildx</a></li>
+</ul></li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img
+              src="https://icehongssii.github.io/static//assets/icepersimmon.png"
+              class="my-icon"
+            />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
