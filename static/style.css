@@ -1,0 +1,800 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css:wght@200;300;500;600&display=swap);
+@import url(//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css);
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    font:inherit;
+    vertical-align:baseline
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+    display:block
+}
+body{
+    line-height:1
+}
+ol,ul{
+    list-style:none
+}
+blockquote,q{
+    quotes:none
+}
+blockquote:before,blockquote:after,q:before,q:after{
+    content:'';
+    content:none
+}
+table{
+    border-collapse:collapse;
+    border-spacing:0
+}
+*,*:before,*:after{
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box
+}
+html{
+    font-size:15px
+}
+body{
+    background:#fff;
+    font-family:'Nanum Gothic', sans-serif;
+    color:#000a12
+}
+h1,h2,h3,h4,h5,h6{
+    color:#000a12;
+    font-weight:600;
+    line-height:1.5;
+    margin:1em 0 10px;
+    padding:0
+}
+h1{
+    font-size:2rem
+}
+h1 a{
+    color:inherit
+}
+h2{
+    margin:64px 0 0 0;
+    font-size:1.67rem
+}
+h3{
+    margin:32px 0 0 0;
+    font-size:1.33rem
+}
+h4{
+    margin:24px 0 0 0;
+    font-size:1.17rem
+}
+h5{
+    color:#6f7277
+}
+h6{
+    font-size:0.8rem;
+    color:#6f7277
+}
+a{
+    color:inherit;
+    text-decoration:none;
+    transition:color .3s ease
+}
+a:hover{
+    color:#1565c0
+}
+p{
+    letter-spacing:.2px;
+    line-height:1.3;
+    font-weight:300
+}
+strong,b,dt{
+    font-weight:700
+}
+em,i{
+    font-style:italic
+}
+ul,ol{
+    margin:15px 0;
+    padding-left:30px;
+    line-height:1.8em
+}
+ul{
+    list-style-type:disc;
+    font-weight:300
+}
+ol{
+    list-style-type:decimal;
+    font-weight:400
+}
+ol ul,ul ol,ul ul,ol ol{
+    margin:0
+}
+ul ul,ol ul{
+    list-style-type:circle
+}
+blockquote{
+    margin:16px 8px;
+    border-left:6px solid #a3a5a9;
+    padding:12px 8px;
+    color:#6f7277;
+    font-style:italic
+}
+blockquote>p{
+    margin:0
+}
+table{
+    padding:0
+}
+table tr{
+    border-top:1px solid #cccccc;
+    background-color:white;
+    margin:0;
+    padding:0
+}
+table tr:nth-child(2n){
+    background-color:#f8f8f8
+}
+table tr th{
+    font-weight:700;
+    border:1px solid #cccccc;
+    text-align:left;
+    margin:0;
+    padding:12px 20px
+}
+table tr td{
+    font-weight:300;
+    border:1px solid #cccccc;
+    text-align:left;
+    margin:0;
+    padding:12px 20px
+}
+table tr th :first-child,table tr td :first-child{
+    margin-top:0
+}
+table tr th :last-child,table tr td :last-child{
+    margin-bottom:0
+}
+img{
+    max-width:100%
+}
+a.footnote{
+    vertical-align:super;
+    font-size:0.6em;
+    padding:0px 3px
+}
+.container{
+    margin:0 auto;
+    max-width:800px;
+    padding:0 10px;
+    box-sizing:border-box;
+    width:100%
+}
+header .container{
+    padding:30px 10px;
+    display:flex;
+    border-bottom:.5px solid #888
+}
+header .container .site-info a.site-title{
+    font-size:2rem;
+    font-weight:700;
+    line-height:3rem
+}
+header .container .site-info p.site-description{
+    font-size:1rem
+}
+header .container .grower{
+    flex-grow:1
+}
+header .container nav.site-nav{
+    padding-right:4px
+}
+header .container nav.site-nav a img{
+    width:60px;
+    height:60px;
+    transition:transform .3s ease
+}
+header .container nav.site-nav a img:hover{
+    transform:scale(1.05)
+}
+header .container nav.site-nav p{
+    font-size:0.8rem;
+    text-align:center
+}
+#main{
+    padding:30px 10px
+}
+#main p{
+    line-height:1.65
+}
+footer .container{
+    padding:30px 0 150px 0;
+    border-top:.5px solid #888
+}
+footer .container p{
+    font-weight:200;
+    font-size:0.8rem;
+    text-align:center;
+    line-height:1.8
+}
+.posts .post-info{
+    box-sizing:border-box;
+    padding:32px 0 24px 0;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight:300;
+    border-bottom:1px solid #eaeaea
+}
+.posts .post-info:last-child{
+    border:none
+}
+.posts .post-info h1{
+    font-size:1.2rem;
+    font-weight:600;
+    margin:0;
+    line-height:2.5rem
+}
+.posts .post-info .date{
+    padding:4px;
+    font-size:0.8rem;
+    color:#888
+}
+.posts .post-info .entry{
+    margin:16px 0
+}
+.posts .post-info .read-more{
+    font-weight:200;
+    color:#6f7277
+}
+.posts .post-info .read-more:hover{
+    color:#1565c0
+}
+.pagination{
+    margin:20px 0;
+    text-align:right;
+    font-weight:200
+}
+.pagination span,.pagination a{
+    cursor:pointer;
+    display:inline-block;
+    border-radius:3px;
+    padding:10px 15px;
+    background:#fff;
+    transition:background-color .3s ease
+}
+.pagination span:hover,.pagination a:hover{
+    background:#f0f0f0;
+    color:inherit
+}
+.pagination .current-page,.pagination .disabled{
+    cursor:not-allowed
+}
+.pagination .current-page{
+    font-weight:bold
+}
+.post-page{
+    margin-bottom:20px
+}
+.post-page .entry{
+    margin-bottom:60px
+}
+.post-page h1.title{
+    text-align:center;
+    margin:0;
+    margin-bottom:10px
+}
+.post-page .date{
+    text-align:center;
+    margin-bottom:64px;
+    color:#6f7277;
+    font-weight:200
+}
+.post-page .meta-information{
+    background:#fafafa;
+    padding:20px 30px;
+    margin-bottom:50px;
+    color:#6f7277;
+    line-height:1.6;
+    font-size:0.89rem
+}
+@media screen and (max-width: 640px){
+    .post-page .meta-information{
+        padding:10px 4px
+    }
+}
+.post-page .meta-information table tr,.post-page .meta-information table td{
+    border:none;
+    background:none
+}
+.post-page .meta-information table td{
+    padding:8px 12px
+}
+.post-page .meta-information table td:first-child{
+    white-space:nowrap
+}
+.post-page .meta-information table td>span,.post-page .meta-information table td>a>span{
+    padding:0px 4px
+}
+.post-page .meta-information table td>span:first-child,.post-page .meta-information table td>a>span:first-child{
+    padding:0 4px 0 0
+}
+.post-page .meta-information table td>span:before,.post-page .meta-information table td>a>span:before{
+    content:"#";
+    font-style:normal
+}
+.post-page .meta-information table tr td:first-child:before{
+    content:"🍊";
+    padding-right:10px
+}
+.post-page p{
+    line-height:1.65;
+    margin:20px 0;
+    text-indent:10px
+}
+.post-page a{
+    color:#1565c0
+}
+.post-page li p,.post-page blockquote p{
+    margin:0;
+    padding:0
+}
+.post-page figure{
+    text-align:center;
+    margin:40px 0
+}
+.post-page figure figcaption{
+    margin-top:8px;
+    margin-bottom:12px;
+    font-size:0.9em;
+    color:#6f7277
+}
+.post-page figure figcaption:before{
+    content:"▲";
+    margin-right:8px;
+    font-size:0.4em;
+    vertical-align:3px
+}
+div.hr{
+    display:block;
+    width:60%;
+    position:relative;
+    height:1px;
+    margin:100px auto;
+    background:#ccc;
+    text-align:center;
+    overflow:visible
+}
+div.hr>div{
+    display:inline-block;
+    margin-top:-45px;
+    background:white;
+    padding:0px 20px
+}
+div.hr>div img{
+    height:90px;
+    transition:all .3s ease
+}
+div.hr>div img:hover{
+    transform:scale(1.2)
+}
+img.my-icon{
+    display:block;
+    position:relative;
+    overflow:visible;
+    margin-top:80px;
+    height:80px;
+    transition:all .3s ease
+}
+img.my-icon:hover{
+    transform:scale(1.2)
+}
+pre.highlight{
+    background-color:#2b303a;
+    padding:18px;
+    border-radius:4px;
+    margin:20px 0 20px 0;
+    overflow:scroll;
+    font-size:1rem;
+    line-height:1.3
+}
+pre.highlight>code{
+    background:none;
+    padding:0;
+    border:none
+}
+
+.highlight,pre.highlight{
+    color:#abb2bf
+}
+.highlight .hll{
+    background:#282c34
+}
+.highlight .c{
+    color:#5c6370;
+    font-style:italic
+}
+.highlight .err{
+    color:#960050;
+    background-color:#1e0010
+}
+.highlight .k{
+    color:#c678dd
+}
+.highlight .l{
+    color:#98c379
+}
+.highlight .n{
+    color:#abb2bf
+}
+.highlight .o{
+    color:#abb2bf
+}
+.highlight .p{
+    color:#abb2bf
+}
+.highlight .cm{
+    color:#5c6370;
+    font-style:italic
+}
+.highlight .cp{
+    color:#5c6370;
+    font-style:italic
+}
+.highlight .c1{
+    color:#5c6370;
+    font-style:italic
+}
+.highlight .cs{
+    color:#5c6370;
+    font-style:italic
+}
+.highlight .ge{
+    font-style:italic
+}
+.highlight .gs{
+    font-weight:700
+}
+.highlight .kc{
+    color:#c678dd
+}
+.highlight .kd{
+    color:#c678dd
+}
+.highlight .kn{
+    color:#c678dd
+}
+.highlight .kp{
+    color:#c678dd
+}
+.highlight .kr{
+    color:#c678dd
+}
+.highlight .kt{
+    color:#c678dd
+}
+.highlight .ld{
+    color:#98c379
+}
+.highlight .m{
+    color:#d19a66
+}
+.highlight .s{
+    color:#98c379
+}
+.highlight .na{
+    color:#d19a66
+}
+.highlight .nb{
+    color:#e5c07b
+}
+.highlight .nc{
+    color:#e5c07b
+}
+.highlight .no{
+    color:#e5c07b
+}
+.highlight .nd{
+    color:#e5c07b
+}
+.highlight .ni{
+    color:#e5c07b
+}
+.highlight .ne{
+    color:#e5c07b
+}
+.highlight .nf{
+    color:#abb2bf
+}
+.highlight .nl{
+    color:#e5c07b
+}
+.highlight .nn{
+    color:#abb2bf
+}
+.highlight .nx{
+    color:#abb2bf
+}
+.highlight .py{
+    color:#e5c07b
+}
+.highlight .nt{
+    color:#e06c75
+}
+.highlight .nv{
+    color:#e5c07b
+}
+.highlight .ow{
+    font-weight:700
+}
+.highlight .w{
+    color:#f8f8f2
+}
+.highlight .mf{
+    color:#d19a66
+}
+.highlight .mh{
+    color:#d19a66
+}
+.highlight .mi{
+    color:#d19a66
+}
+.highlight .mo{
+    color:#d19a66
+}
+.highlight .sb{
+    color:#98c379
+}
+.highlight .sc{
+    color:#98c379
+}
+.highlight .sd{
+    color:#98c379
+}
+.highlight .s2{
+    color:#98c379
+}
+.highlight .se{
+    color:#98c379
+}
+.highlight .sh{
+    color:#98c379
+}
+.highlight .si{
+    color:#98c379
+}
+.highlight .sx{
+    color:#98c379
+}
+.highlight .sr{
+    color:#56b6c2
+}
+.highlight .s1{
+    color:#98c379
+}
+.highlight .ss{
+    color:#56b6c2
+}
+.highlight .bp{
+    color:#e5c07b
+}
+.highlight .vc{
+    color:#e5c07b
+}
+.highlight .vg{
+    color:#e5c07b
+}
+.highlight .vi{
+    color:#e06c75
+}
+.highlight .il{
+    color:#d19a66
+}
+.highlight .gu{
+    color:#75715e
+}
+.highlight .gd{
+    color:#f92672
+}
+.highlight .gi{
+    color:#a6e22e
+}
+img.small-icon{
+    height:22px;
+    vertical-align:text-bottom
+}
+.embeds.youtube{
+    margin:32px auto;
+    font-size:0;
+    position:relative
+}
+.embeds.youtube iframe,.embeds.youtube object,.embeds.youtube embed{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    width:100%;
+    height:100%
+}
+.all_tags{
+    margin-top:24px
+}
+.all_tags .tags a{
+    border-radius:50px;
+    border:1px solid #eaeaea;
+    text-transform:uppercase;
+    padding:4px 16px;
+    line-height:2rem;
+    font-size:0.8rem;
+    transition:background-color .3s ease
+}
+.all_tags .tags a:hover{
+    background:#eaeaea;
+    color:#a0bed2
+}
+.tag_boxes{
+    padding-top:28px
+}
+.tag_boxes .tag_box{
+    box-sizing:border-box;
+    padding:16px 0 24px 0;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight:300;
+    border-bottom:1px solid #eaeaea
+}
+.tag_boxes .tag_box:last-child{
+    border:none
+}
+.tag_boxes .tag_box>h4{
+    padding:8px 0;
+    margin:0
+}
+.tag_boxes .tag_box>h4:before{
+    content:"✏️";
+    font-size:0.8rem;
+    vertical-align:0.1rem;
+    padding-right:8px;
+    font-style:normal
+}
+.tag_boxes .tag_box .post_list{
+    padding:6px 0 0 12px
+}
+.tag_boxes .tag_box .post_list:before{
+    content:"•";
+    font-size:0.6rem;
+    padding-right:4px;
+    font-style:normal
+}
+.tag_boxes .tag_box .date{
+    color:#888;
+    font-size:0.8rem;
+    margin-left:6px
+}
+
+
+/*****************************************************************************************************/
+
+footer .container{
+    padding:30px 0 100px 0;
+    /* padding:30px 0 150px 0;  << original */
+    border-top:.5px solid #888
+}
+
+.posts .post-info{
+    box-sizing:border-box;
+    padding:8px 0 6px 0;
+    /* padding:32px 0 24px 0; <<< original */
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    font-weight:300;
+    border-bottom:1px solid #eaeaea
+}
+
+.posts .post-info .entry{
+    margin:4px 0;
+    /* margin:16px 0; <<< original*/
+}
+
+
+.year {
+    padding-top:10px;
+    padding-bottom:10px;
+    display: flex; /* Aligns children inline and allows alignment control */
+    align-items: center; /* Vertically centers the children */
+    justify-content: start; /* Aligns children at the start of the container */
+    gap: 10px; /* Adds space between the h1 and span elements */
+    /* Add additional styles as needed, such as padding, background, etc. */
+}
+
+.year h1 {
+    margin: 0; /* Removes default margin from h1 for better control */
+    /* Additional h1 styles like font-size, color etc., as needed */
+}
+
+.year span {
+    /* Styles for the span tag */
+    font-size: 0.8em; /* Smaller than the h1 tag, adjust as needed */
+    color: #666; /* Example color, adjust as needed */
+    /* Additional span styles like background, padding etc., as needed */
+}
+
+/* Example of different styling for <code> elements with the "ad-note" class */
+
+code[class^="ad-"]  /* code.ad-note*/ {
+    padding: 20px 30px;
+    margin-bottom: 50px;
+    color: #6f7277;
+    line-height: 1.6;
+
+    width: 100%;
+    color: black; /* Light text color */
+    background-color: #fafafa;    ; /* Dark background color */
+    padding: 30px 20px; /* Padding inside the box */
+    border-radius: 20px; /* Rounded corners */
+    font-family: Arial, sans-serif; /* Example font */
+    display: inline-flex; /* Use flex to align icon and text */
+    align-items: center; /* Center items vertically */
+    font-size: 1rem; /* Text size */
+    padding-right:10px;
+    overflow: scroll;
+}
+
+@media screen and (max-width: 640px){
+    .post-page .meta-information{
+        padding:10px 4px
+    }
+}
+
+.tags {
+    overflow:scroll;
+}
+
+
+
+
+/* 전체 코드 블록 스타일 */
+code[class^="ad-"] {
+    background-color: #c8c8c8; /* 배경색 */
+    color: #ffffff; /* 글자색 */
+    border-radius: 10px; /* 모서리 둥글기 */
+    padding: 20px; /* 패딩 */
+    font-family: 'Courier New', Courier, monospace; /* 글꼴 */
+    width: auto; /* 너비 자동 조절 */
+    display: block; /* 블록 레벨 요소로 표시 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+/* 코드 블록 내부 스타일 */
+code.ad-note code {
+    color: #aeeff0; /* 코드 글자색 */
+}
+
+/* 코드 블록 제목 스타일 */
+code.ad-note::before {
+    content: attr(title); /* ::before 가상 요소로 title 속성값 표시 */
+    font-weight: bold; /* 제목 글자 두께 */
+    display: block; /* 블록 레벨 요소로 표시 */
+    margin-bottom: 10px; /* 제목 아래 여백 */
+}
+
+/* 중앙으로 오게 만들기 */
+img.my-icon{
+    display: block;
+    margin: 0 auto;
+}
+
+
+.about a:link { color: blue; } 
+.about a:visited { color: black; } 
+.about a:hover { color: red; } 
+.about a:active { color: green; }
+.about .center-image { display: block; margin: auto; width: 50%; /* Or your specific width */ 
+                height: auto; /* Maintains aspect ratio */ } 
+
+
+.all_tags .about_list{
+    margin-top: 0px;
+}

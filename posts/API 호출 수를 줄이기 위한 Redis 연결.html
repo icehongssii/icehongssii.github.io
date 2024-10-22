@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">API 호출 수를 줄이기 위한 Redis 적용</h1>
+
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-03-13 13:25 - 최초작성2024-03-13 13:25
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#aws"><span>aws</span></a>
+                
+                <a href="/tags#redis"><span>redis</span></a>
+                
+                <a href="/tags#fastapi"><span>fastapi</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td>Redis 컨테이너 보안그룹 인바운드 타켓이 서버 보안그룹으로</td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><pre><code class="ad-note language-ad-note">title: 키워드
+- redis
+- 보안그룹
+- 사이드카패턴
+</code></pre>
+
+<p>이 글은 FastAPI와 Redis를 어떻게 연결하는지에 대해 맞췄기 떄문에 코드레벨에서 redis와 어떻게 통신하고 캐싱하는지에 대해선 깊게 다루지 않는다!</p>
+
+<h2>👯‍♂️ Redis와 FastAPI 컨테이너 같은 태스크에 정의할까?</h2>
+
+<ol>
+<li><strong>동일한 작업 정의</strong>: Redis 컨테이너를 FastAPI 애플리케이션과 동일한 ECS 작업 정의에 추가한다면  Redis를 메인 애플리케이션 컨테이너의 사이드카로 사용할 수 있다. 따라서 동일한 수명 주기, 네트워크 공간 및 기타 작업 수준 리소스를 공유가능
+<ul>
+<li>단 확장성이 떨어짐. Redis가 FastAPI 애플리케이션의 각 인스턴스에 묶여 있기 때문에 고가용성에는 적합하지 않다</li>
+</ul></li>
+<li><strong><mark style="background: #FFB8EBA6;">별도 작업 정의</mark> - 선택</strong>: 별도의 작업에서 Redis 컨테이너를 실행하면 FastAPI 애플리케이션과 독립적으로 관리하고 확장할 수 있다.
+<ul>
+<li>첫 번째보다는 조금 더 설정해야 할 것이 있지만 확장성과 유연성 향상</li>
+</ul></li>
+</ol>
+
+<p>따라서 별도의 작업에 Redis를 정의했다. 아래와 같은 상황임</p>
+
+<ul>
+<li>클러스터A/서비스A/태스크A/FastaPI컨테이너</li>
+<li>클러스터A/서비스A/태스크B/FastaPI컨테이너</li>
+</ul>
+
+<h2>👯‍♂️ Redis와 FastAPI 통신하려면?</h2>
+
+<h3>보안그룹설정</h3>
+
+<p>6379는 Redis 서버가 기본적으로 사용하는 포트 번호. Redis 클라이언트와 서버 간의 통신을 위해 이 포트를 사용한다. 보안 그룹을 설정할 때 이 포트를 열어 Redis 서버에 접근할 수 있도록 해야 함.</p>
+
+<ul>
+<li><p>FastAPI 작업정의 보안그룹에서 Redis  보안그룹에 대한 인바운운드 트래픽 허용해야함</p>
+
+<ul>
+<li>인바운드에 6379 포트 -> 타겟에 redis 보안그룹 ID (custom TCP)</li>
+<li>= Redis가 FastAPI 서버에 접근하는 데 필요한 포트를 여는과정</li>
+</ul></li>
+<li><p>Reids 작업정의 보안그룹에서 FastAPI 보안 그룹에대한 인바운드 트래픽 허용해야함</p>
+
+<ul>
+<li>인바운드에 6379 포트 -> 타겟에 fastapi 보안그룹 ID (custom TCP)</li>
+<li>= FastAPI 서비스가 Redis 서버에 접근하는 데 필요한 포트를 여는과정</li>
+</ul></li>
+</ul>
+
+<h3>레디스 IP와 비밀번호는 어떻게 받지?</h3>
+
+<ul>
+<li>자체 호스팅 Redis 사용하므로 코드 내에서Redis 서버 IP와 비밀번호를 이용해 참조한다</li>
+<li><p>이때 코드에 Redis의 IP주소와 비밀번호를 명시적으로 적어두는건 지양해야하므로 Github에다가  Github Action에서 사용 할 환경변수로 IP와 비밀번호를 저장해놨다. 이때  이미지 빌드시 github에 저장된 환경변수를 사용해 docker image에서 사용함 </p></li>
+<li><p>github action에서 사용하는 워크 플로우 일부 </p></li>
+</ul>
+
+<pre><code class="yaml language-yaml">- name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+        BRANCH_NAME: ${{ github.ref_name }}
+        COMMIT_SHA: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$COMMIT_SHA \
+                    --build-arg REDIS_HOST=${{ secrets.REDIS_HOST }} \
+                    --build-arg REDIS_PWD=${{ secrets.REDIS_PWD }} \
+
+</code></pre>
+
+<ul>
+<li>도커 파일에는 아래와 같이 작성됨</li>
+</ul>
+
+<pre><code class="dockerfile language-dockerfile">ARG REDIS_HOST
+ARG REDIS_PWD
+
+ENV REDIS_HOST=${REDIS_HOST}
+ENV REDIS_PWD=${REDIS_PWD}
+</code></pre>
+
+<ul>
+<li>그리고 FastAPI에서는 이 환경변수로 아래와 같이 작성되었고 연결 성공!</li>
+</ul>
+
+<pre><code class="python language-python">import os
+import redis
+
+
+redis_host = os.getenv("REDIS_HOST")
+redis_client = redis.Redis(host=redis_host, port=6379, decode_responses=True)
+</code></pre>
+
+<h3>레디스 캐싱이용하기(파이썬 코드)</h3>
+
+<pre><code class="python language-python">def fetch_github_content(url):
+    cache_key = f"content:{url}"
+    try:
+        cache_data = redis_client.get(cache_key)
+    except redis.exceptions.ConnectionError:
+    # Redis 연결 문제 처리
+        print("Redis 연결에 실패")
+        cache_data = None
+    if cache_data:
+        return cache_data
+    else:
+        response = req.get(url)
+        data = response.text
+        # 3600초동안 컨텐츠 보관
+        redis_client.setex(cache_key, 3600, data) 
+        return data
+</code></pre>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=reNPNDustQU">유튜브, redis+fastAPI </a></li>
+<li><a href="https://www.reddit.com/r/learnpython/comments/12xrx4r/how_to_deploy_redis_with_a_fastapi_docker/">레딧,  fastapi와 redis 컨테이너 만들떄 ? </a></li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
