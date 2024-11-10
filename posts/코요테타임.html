@@ -77,11 +77,11 @@
     <div id="main" role="main" class="container">
       <!--본문article-->
       <article class="post-page">
-        <h1 class="title">비 내리는 효과는 어떻게 Particle effect</h1>
+        <h1 class="title">무제 파일</h1>
         <!--수정날짜-->
         <div class="date">
           <strong
-            >마지막수정 2024-03-19 10:23 - 최초작성2024-03-19 10:23
+            >마지막수정 2024-03-19 02:11 - 최초작성2024-03-19 02:11
           </strong>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
@@ -93,125 +93,72 @@
               <td><strong>태그</strong></td>
               <td>
                 
-                <a href="/tags#gameDev"><span>gameDev</span></a>
-                
-                <a href="/tags#godot"><span>godot</span></a>
-                
                 <a href="/tags#toyproject"><span>toyproject</span></a>
+                
+                <a href="/tags#gameDev"><span>gameDev</span></a>
                 
               </td>
             </tr>
             <tr>
               <td><strong>tl;dr</strong></td>
-              <td>godot에서 particle effect구현해보자</td>
+              <td></td>
             </tr>
           </table>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
 
         <!--마크다운변환된내용 본문-->
-        <div class="entry"><pre><code class="ad-note language-ad-note">title: 키워드
-- particle effect
-- opeGL
-- METAL API  
-</code></pre>
-
-<h2>👯‍♂️ 비 효과도 OOP로 구현 가능??;</h2>
-
-<p>내 생각에는 
-- 빗방울 하나 ==  객체
-- 내리는 여러개의 빗방울(=비) == 인스턴스들</p>
-
-<p>원래는 "아하! 그러면 빗방울 인스턴스를 여러개 만들면 되겠구나 " 라는 생각을했다</p>
-
-<p>[d][Drawing 2024-04-26 13.22.51.excalidraw.svg]</p>
-
-<p>아래는 내 행복회로</p>
+        <div class="entry"><p>아래는 내 행복회로</p>
 
 <ol>
 <li>빗방울 객체 만든다(고닷에서는 빗방울 하나를 scene으로 만들고 이를 인스턴스화해서 사용 할 계획이었다)<br />
 그리고 아래 RainDropBackground를 Main 씬에서 넣었음</li>
 </ol>
 
-<pre><code>- RainDropBackground(Node2D)
-|- Raindrop(RigidBody)
-||- AnimationSprite2D
-||-CollisionShape2D
-</code></pre>
+<p><code>- RainDropBackground(Node2D) |- Raindrop(RigidBody) ||- AnimationSprite2D ||-CollisionShape2D</code></p>
 
 <ol start="2">
-<li><p>0.25초마다 동시에 10방울이 동시에 떨어진다. → Timer 노드를 사용. 0.25초 타임아웃때마다 빗방울객체 10개씩 만드는 함수 호출(0.25초마다 빗방울이 떨어진다)</p></li>
-<li><p>각 각의 방울들 인스턴스 속도는 랜덤하게 조정한다 근데 여기서 아래 두 가지를 고민했다</p>
+<li><p>0.25초마다 동시에 10방울이 동시에 떨어진다. → Timer 노드를 사용. 0.25초 타임아웃때마다 빗방울객체 10개씩 만드는 함수 호출</p></li>
+<li><p>각 각의 방울들 인스턴스 속도는 랜덤하게 조정한다</p>
 
 <ol>
-<li><p>첫번째 이미지→ 만약에 Raindrop 스크립트에서 객체자체에 만들고 속도를 랜덤하게 만들면? → 각 각의 물방울들 속도가 똑같아보인다</p></li>
-<li><p>두번째 이미지 → 만약에 RaindropBackground 스크립트에서 인스턴스 만들 때마다 속도를 변화시키면? → 각 각의 물방울들 속도가 달라진게 보인다</p></li>
+<li><p>첫번째 이미지→ 만약에 <code>Raindrop</code> 스크립트에서 객체자체에 만들고 속도를 랜덤하게 만들면? → 각 각의 물방울들 속도가 똑같아보인다</p></li>
+<li><p>두번째 이미지 → 만약에 <code>RaindropBackground</code> 스크립트에서 인스턴스 만들 때마다 속도를 변화시키면? → 각 각의 물방울들 속도가 달라진게 보인다</p></li>
 </ol></li>
 </ol>
 
-<table>
-<thead>
-<tr>
-  <th>객체 자체에 속도부여시(=모든 인스턴스 속도 같음)</th>
-  <th>각 인스턴스들의 속도가 다를경우</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><img src="https://i.imgur.com/gM16tKh.png" alt="" /></td>
-  <td><img src="https://i.imgur.com/B3Evupq.png" alt="" /></td>
-</tr>
-</tbody>
-</table>
+<p><img src="https://s.imgur.com/images/favicon-16x16.png" alt="" /></p>
 
-<p>파이썬으로 표현하자면 이런 느낌이다</p>
+<p><a href="https://i.imgur.com/gM16tKh.gif">Imgur</a></p>
 
-<pre><code class="python language-python">
-################## 첫 번째 시도 (객체 멤버변수에 직접적으로 랜던값 부여)
+<p><img src="https://s.imgur.com/images/favicon-16x16.png" alt="" /></p>
 
-class Drop2:
-  velocity = 0
+<p><a href="https://i.imgur.com/B3Evupq.gif">Imgur</a></p>
 
-drops = []
-for i in range(0,10):
-  temp = Drop2()
-  # Drop2의 모든 인스턴스에 공통적으로 적용됨
-  Drop2.velocity = random.random()
-  drops.append(temp)
+<p>무슨 차이인가 생각해봤었는데 내가 했던 짓이 아래와 같다는 걸 깨달았다. 파이썬으로 따지자면</p>
 
-################## 두 번째 시도 (객체 만들 때마다 랜덤값 부여 )
+<p><code>################## 첫 번째 시도 (객체 멤버변수에 직접적으로 랜던값 부여) class Drop2: velocity = 0 drops = [] for i in range(0,10): temp = Drop2() Drop2.velocity = random.random() drops.append(temp) ################## 두 번째 시도 (객체 만들 때마다 랜덤값 부여 ) import random class Drop: def __init__(self): self.velocity = random.random() for i in range(0,10): print(Drop().velocity)</code></p>
 
-import random
-class Drop:
-  def __init__(self):
-  # `Drop` 인스턴스는 서로 다른 `velocity` 값을 가지게 된다
-    self.velocity = random.random()
+<p>그리고 첫 번째를 GDScript로 다시 재현하자면 아래와 같은 짓을 해버린 것 같다</p>
 
-for i in range(0,10):
-  print(Drop().velocity) 
+<p>만약에 <code>_ready()</code>에서 velocity 선언했다면 아마 두 번 째 처럼 제대로 객체마다 다른 속도를 가지게 되었을 것으로 예상된다..</p>
 
-</code></pre>
+<p><code>########### RainDrop 객체 스크립트 extends RigidBody2D var velocity = Vector2(randf_range(0, 100), randf_range(0, 500)) # Called when the node enters the scene tree for the first time. func _ready(): pass ########### RainDropBackground 객체 스크립트 extends Node2D # or CanvasLayer var raindrop_scene = load("res://raindrop.tscn") var raindrop_instances = [] var raindrops_num = 10 func _ready(): var timer = Timer.new() timer.autostart = true timer.wait_time = 0.5 timer.timeout.connect(_on_timer_timeout) add_child(timer) timer.start() func _on_timer_timeout(): spawn_raindrops() func spawn_raindrops(): for i in range(raindrops_num): # Adjust the number of raindrops as needed var raindrop_instance = raindrop_scene.instantiate() # 만약에 RainDrop 스크립트에 속도말고 인스턴스별로 정의하고 싶다면 아래를 추가.. # raindrop_instance.linear_velocity = Vector2(randf_range(0, 100), randf_range(0, 500)) add_child(raindrop_instance)</code></p>
 
-<p>하지만 이러나 저러나 아무리 구현해봐도 빗방울 떨어지는 모습이 비같지가 않고 쌀 알처럼 무겁게 느껴졌다 그래서 찾아보니 파티클 효과란게 있었다; </p>
+<p>하지만 이러나 저러나 빗방울이 떨어지는게 꼭 쌀알처럼 떨어져서 게임 효과에 대해 찾아보던중 파티클에 대해 배웠다.. 그리고 이걸로 내가 원하는 빗방울을 구현할 수 있단걸 깨달음</p>
 
-<h2>👯‍♂️ 쉽고 빠른길; Particle Effect</h2>
-
-<pre><code class="ad-important language-ad-important">title: 파티클 효과란?
-
-입자 형태의 이미지를 사용하여 게임 화면에 만들어내는 화염, 폭발, 연기 등과 같은 효과  
-- 유니티에서 파티클 시스템이란, 파티클(Particles) 은 파티클 시스템에 의해 큰 숫자로 표시되고 이동되는 작고 단순한 이미지 또는 메시입니다. 각 파티클은 유체 또는 비정질 엔티티의 작은 부분을 나타내며, 모든 파티클의 효과가 전체 엔티티의 느낌을 만듭니다. 예를 들어 연기 구름을 사용하면 각 파티클마다 작은 구름과 비슷한 작은 연기 텍스처가 생깁니다. 이러한 소형 구름이 씬 영역에 다수 배치되면 전체적인 효과는 더욱 부피가 큰 구름이 형성됩니다.  
-- 그러니까 비라든가 불났을 때 연기구름 같은건 파티클이란걸 이용한다!
-</code></pre>
+<blockquote>
+  <p>파티클 효과란?<br />
+  - 입자 형태의 이미지를 사용하여 게임 화면에 만들어내는 화염, 폭발, 연기 등과 같은 효과<br />
+  - 유니티에서 파티클 시스템이란, 파티클(Particles) 은 파티클 시스템에 의해 큰 숫자로 표시되고 이동되는 작고 단순한 이미지 또는 메시입니다. 각 파티클은 유체 또는 비정질 엔티티의 작은 부분을 나타내며, 모든 파티클의 효과가 전체 엔티티의 느낌을 만듭니다. 예를 들어 연기 구름을 사용하면 각 파티클마다 작은 구름과 비슷한 작은 연기 텍스처가 생깁니다. 이러한 소형 구름이 씬 영역에 다수 배치되면 전체적인 효과는 더욱 부피가 큰 구름이 형성됩니다.<br />
+  - 그러니까 비라든가 불났을 때 연기구름 같은건 파티클이란걸 이용한다!</p>
+</blockquote>
 
 <p>그리고 Godot에서도 이러한 효과를 제공해준다</p>
 
-<p><img src="https://i.imgur.com/ZpxgEZt.png" alt="" /></p>
+<p>GPUParticle2D와 CPUParticle2D 노드가 존재하는데 애플 실리콘칩을 탑재한 M시리즈에서는 CPUParticle만 사용가능하다.. 튜토리얼에서는 GPUParticle2D로 해서 나도 할려고 했는데 고닷 프로젝트가 자꾸 멈춰서 놀랬었음.</p>
 
-<h3>하지만 m1을 사용 중이라면 Godot CPUParticle만 사용가능</h3>
-
-<p><mark style="background: #FFF3A3A6;">GPUParticle2D와</mark> CPUParticle2D 노드가 존재하는데 애플 실리콘칩을 탑재한 M시리즈에서는 CPUParticle만 사용가능하다.. 튜토리얼에서는 GPUParticle2D로 해서 나도 할려고 했는데 고닷 프로젝트가 자꾸 멈춰서 놀랬었음.</p>
-
-<p>찾아보니 애플 실리콘 맥에서는 OpenGL 드라이버가 빠져있고 저 GPUParticle은 OpenGL을 사용하고있다. 그리고 Godot4.2 stable version Compatibility에서는 OpenGL이 디폴트로 설정되어있어서 그렇다. 사용자가 실제로 OpenGL이 있는 것과 무관하게 디폴트로 이게 설정되어있어서 수정해달라고 이에 대한 <a href="https://github.com/godotengine/godot-proposals/issues/8006">논의</a>도 진행 중인 것으로 보인다 ㅜㅜ (240125기준)</p>
+<p>찾아보니 애플 실리콘 맥에서는 OpenGL 드라이버가 빠져있고 저 GPUParticle은 OpenGL을 사용하고있다. 그리고 Godot4.2 stable version Compatibility에서는 OpenGL이 디폴트로 설정되어있어서 그렇다. 사용자가 실제로 OpenGL이 있는 것과 무관하게 디폴트로 이게 설정되어있어서 수정해달라고 이에 대한 <a href="https://github.com/godotengine/godot-proposals/issues/8006" title="https://github.com/godotengine/godot-proposals/issues/8006">논의</a>도 진행 중인 것으로 보인다 ㅜㅜ (240125기준)</p>
 
 <blockquote>
   <p>Godot 4 currently supported Vulkan for its higher end RenderingDevice API (Forward+ and Mobile rendering methods), and OpenGL 3.3 for its Compatibility rendering method.</p>
@@ -231,11 +178,26 @@ for i in range(0,10):
   <p>2019년에 애플에서는 더 이상 OpenGL을 지원하지 않고 애플에서 자체 제발한 컴퓨터 그래픽 라이브러리 Metal API를 사용하겠다고 발표함. 이 메탈은 애플 기기를 위해 최적화된 그래픽 레이어를 제공한다고한다. 더 이상 OpenGL을 사용하지 않고 Metal을 사용하겠다고 한 것은 애플 플랫폼에서 동작하는 게임이나 그래픽을 많이 사용하는 어플을 만들려면 Metal을 사용해야한다는 뜻임 그렇지 않으면 Opengl → Metal로 번역하는 방법을 찾아야한다는 뜻 + 그리고 OpenGL을 사용하는 앱 또한 애플 기기에서 사용 할 수 없단느 뜻을 의미함</p>
 </blockquote>
 
+<p>하여튼 CPUParticle을 이용해서 비가 이렇게나 쉽게 만들어진다..</p>
+
+<p><img src="https://s.imgur.com/images/favicon-16x16.png" alt="" /></p>
+
+<p><a href="https://i.imgur.com/ZpxgEZt.gif">Imgur</a></p>
+
+<p>도움이 된 영상과 공식문서</p>
+
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=W5lR6Q31VFQ" title="https://www.youtube.com/watch?v=W5lR6Q31VFQ">https://www.youtube.com/watch?v=W5lR6Q31VFQ</a></p></li>
+<li><p>godot4 docs for 2d particle <a href="https://docs.godotengine.org/en/stable/tutorials/2d/particle_systems_2d.html"><img src="https://docs.godotengine.org/favicon.ico" alt="" />2D particle systems</a></p></li>
+<li><p>copilot <img src="https://icehongssiiii.atlassian.net/gateway/api/emoji/14e1083a-2856-4fd8-9da3-8dd6662895d4/1f642/path" alt=":slight_smile:" /></p></li>
+</ul>
+
+<hr />
+
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
 <ul>
-<li><a href="[https://www.youtube.com/watch?v=W5lR6Q31VFQ](https://www.youtube.com/watch?v=W5lR6Q31VFQ)">유튜브, godot에서 파티클 효과 구현</a></li>
-<li><a href="[https://docs.godotengine.org/en/stable/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/stable/tutorials/2d/particle_systems_2d.html)">웹, godot 공식문서</a></li>
+<li><a href="https://www.youtube.com/watch?v=kFWP6sFKyp0&list=PLYH7OjNUOWLUz15j4Q9M6INxK5J3-59GC">책/유튜브 인강-혼자 공부하는 컴퓨터구조+운영체제, 강민철, 한빛미디어</a></li>
 </ul>
 </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->

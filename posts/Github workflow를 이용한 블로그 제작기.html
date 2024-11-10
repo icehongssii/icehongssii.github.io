@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">obsidian으로 블로그 만들기</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-09-26 20:27:35 - 최초작성2024-09-26 20:27
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#obsidian"><span>obsidian</span></a>
+                
+                <a href="/tags#githubaction"><span>githubaction</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>👯‍♂️ 목표; 블로그와 개인메모 저장을 한 번에!</h2>
+
+<p>obsidian으로 TIL을 기록하고 있는데 이거를 블로그에 그대로 올리자니 관리 포인트가 늘어난다는 생각을 했다.
+예를 들자면 옵시디언에 TIL 기록하고 블로그에 게시를 했는데 뭔가 잘못된 내용이 있어 수정해야하는 경우 나는 obsidian과 블로그를 모두 수정해야한다는게 귀찮았다 ..
+그래서 그냥 ==내가 작성한 TIL을 곧바로 블로그에다가 퍼블리싱하자!== 이 프로젝트의 목표였다.
+(TIL을 블로그에 올리는게 무슨 의미가 있냐고 묻는다면 할 말은 없다.  블로그에는 자기가 배운거를 토대로 자신의 의견/생각/주장, 고민한 흔적이 남아야 의미가 있으니까 말이다. 그렇지만 나같이 한걸음 조차 내딛는게 힘든 사람한텐 TIL이 부담스럽지 않은 시발점이 될거라 생각한다.)</p>
+
+<pre><code class="ad language-ad">
+</code></pre>
+
+<h2>👯‍♂️ 태초의 뻘짓; AWS에 서버 호스팅해 마크다운 html로 변환</h2>
+
+<ul>
+<li><a href="https://icehongssii.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-obsidianBlog">태초에 이런 프로젝트가 있었다..</a></li>
+<li>프로젝트 요약
+<ul>
+<li>FastAPI, AWS, Github 이용해 깃허브에 저장된 내 마크다운 파일을 html로 변환해 주는 어플리케이션 개발</li>
+<li>obsidian이 저장된 내 private repository가 ==데이터베이스==,  AWS에 호스팅된 FastAPI 어플리케이션이 ==백엔드== 역할이었다. </li>
+</ul></li>
+</ul>
+
+<p><img src="https://i.imgur.com/jtesesn.png" alt="" /></p>
+
+<pre><code class="ad-important language-ad-important">title: 그런데 생각해보니까 개뻘짓이다
+</code></pre>
+
+<ol>
+<li>내 블로그 구글에 검색하면 검색 결과도 안나오는데(SEO 설정X), 트래픽이 0에 가깝다고 봐도 되는데 뭣하러 ==AWS에다가 돈내고 서버를 호스팅 했지?== </li>
+<li>방문자수가 0에 수렴하는데  캐싱에 필요한..... ==redis==가 필요한가..? 요청수가 애초에 없는데 캐싱할..게..? </li>
+<li>==내 블로그에 동적인 요청 처리가 필요하지도 않은데 왜 웹 프레임워크까지 필요한가..?== (동적인 처리란, 같은 요청을 해도 요청 시점이나 누가 요청했냐에 따라서 다른 결과를 보여주는건데 쇼핑몰에서 장바구니 담기페이지를 요청하는 경우가 그예이다.) 근데 내 블로그는 언제 누가 요청을 보내든 항상 같은 웹페이지html를 보여주는데? 데이터베이스도 사용하지 않는데 왜  fastapi로 만든 파이썬 어플리케이션이 필요하지..?</li>
+</ol>
+
+<h2>👯‍♂️  개선된 뻘짓; Github page를 블로그 사용하자</h2>
+
+<ul>
+<li>AWS에 호스팅 할 필요가 없어서 Github page로 이사를 결심했다. 블로그 손님 입장에서 보자면 아래와 같다..</li>
+</ul>
+
+<p><img src="https://i.imgur.com/y1vrlrn.png" alt="" /></p>
+
+<p>깃허브 페이지를 사용해보니 과정이 훨씬 단순해졌다!</p>
+
+<pre><code class="ad-important language-ad-important">title: 목표 -&gt;  그냥 내 볼트에 저장된 마크다운을 html로 변환해 깃허브 페이지 리포지토리에 올려주면 되구나!
+</code></pre>
+
+<p>나는 <a href="https://github.com/Vinzent03/obsidian-git">obisidian-git</a> 이라는 플러그인 사용해 내 로컬에 있는 볼트를 N 분마다 내 private github repository에 저장한다.
+ 따라서  ==저장될 때 마다 html로 변환해서 블로그가 호스팅될 githubpage 리포지토리 push. 하면 되는거였다! ==</p>
+
+<p><img src="https://i.imgur.com/sqiSpHu.png" alt="" /></p>
+
+<h2>👯‍♂️  그럼 이제 내 github workflow를 보자!</h2>
+
+<p>내 github action내의 worfklow는 과정은 크게 세가지로 이루어져있다. 
+1. 옵시디언이 저장된 리포지토리에서 블로그에 올릴 게시글만 html로 변환해주기
+2. github page 리포지토리에 해당 파일들 push</p>
+
+<p>먼저 주의 깊게 봐야하는 부분만 보여주겠다.</p>
+
+<pre><code class="yml language-yml">name: to-github-page
+
+on:
+  push:
+    branches:
+      - main # 또는 트리거하고 싶은 브랜치 지정
+
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - name: Convert md to html # html로 변환 이때 저장경로는 인스턴스 내 경로임
+        run: python ${{ github.workspace }}/scripts/blog-maker/md_to_html.py
+      - name: Upload generated template # 인스턴스 내 경로들 중 아티팩트로 업로드
+        uses: actions/upload-artifact@v4
+        id: upload-generated-template
+        with:
+          name: posts-output
+          path: ${{ github.workspace }}/export/html/**
+      - uses: actions/checkout@v4 # 블로그 깃허브로 checkout
+        with:
+          repository: "icehongssii/icehongssii.github.io"
+          ref: "main"
+          token: "깃허브토큰"
+      - name: posts-Download generated template # artifact 다운로드 받고
+        uses: actions/download-artifact@v4
+        with:
+          name: posts-output
+          path: ${{ github.workspace }}/posts
+      - name: Setup git config
+        run: |
+          git config user.name "icehongssii"
+          git config user.email "douner@adoc.co.kr"
+      - name: Commit and push generated template # commit 하기
+        run: |
+          git status
+          git add ${{ github.workspace }}/posts ./posts
+          git commit -m "자동 생성된 템플릿 업데이트" || echo "No changes to commit"
+          git push origin main
+
+</code></pre>
+
+<h3>1. 블로그 폴더 안에 있는 마크다운을 html로 변환</h3>
+
+<p>먼저 내 볼트는 대충 이렇게 생겼다.
+blog 디렉토리에는 블로그에 올리고 싶은 마크다운 파일이 저장되어있다.
+그리고 scripts폴더 안 <code>blog_maker/md_to_html.py</code> 에 마크다운을 html로 변환해주는 코드가 있다. </p>
+
+<pre><code>- .obsidian/
+- blogs/
+| - 옵시디언으로-블로그-만들기.md
+| - TIL.md
+- diary/
+    | - 3월-회고록.md
+- scripts/
+|- blog-maker/
+| | - requirements.txt
+| | - md_to_html.py
+| - templates/
+| | - index.html
+| | - post.html
+</code></pre>
+
+<p>worfklow파일에서 아래 부분에 해당한다. 
+이때 <code>${{github.workspace}}</code> 는 runner 인스턴스 안에 있는 경로이다</p>
+
+<pre><code class="yml language-yml">- name: Convert md to html # html로 변환 이때 저장경로는 인스턴스 내 경로임
+        run: python ${{ github.workspace }}/scripts/blog-maker/md_to_html.py
+
+</code></pre>
+
+<p>실행되는 ==md<em>to</em>html.py==는 이렇게 생겼다</p>
+
+<pre><code class="python language-python">def post_to_html():
+    for file in os.listdir("./blogs"):
+        if not file.endswith(".md"):
+            continue        
+        html = md2.markdown_path(POSTS_PATH+"/"+file, extras=["metadata", "highlightjs-lang", "spoiler", "tables", 'fenced-code-blocks', "admonitions"])        
+        post_detail_template = ENV.get_template("post.html")                
+        post_title = file.split(".md")[0] + '.html'
+        output_path = os.path.join(os.getcwd()+EXPORT_PATH, post_title)
+
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(post_detail_template.render({"meta": html.metadata, "html": html, "static_dir":STATIC_PATH}))
+</code></pre>
+
+<h3>2. github action artifact 에 인스톨하고 다운로드</h3>
+
+<ul>
+<li><ol start="3">
+<li>github page 리포지토리에 해당 파일들 push</li>
+</ol></li>
+</ul>
+
+<p>fastapi는 웹 어플리케이션 만드는걸 도와주는 웹 프레임워크인데.. 얘는 asgi 위에서 동작한다.
+무슨말이냐면 애초에 파이썬은 웹서버로부터 받은 요청을 곧바로 처리할 수 없기 때문에 중간에 cgi라는 놈을 두는데..이 cgi는 모든 요청에 따라 매번 프로세스를 만들기에 과부하 오기 딱 좋은 놈이다. (이놈의 연장선이 was임)
+여튼 이 에바스러운 상황에서 대안으로 나온게 wsgi이다. 
+cgi와 다른 방식으로 요청을 받아서 웹 어플리케이션을 실행한다</p>
+
+<p>FastAPI is built on top of Starlette, which is an ASGI (Asynchronous Server Gateway Interface) framewor</p>
+
+<p>웹서버에서 받은 요청 wsgi가 파이썬 어플리케이션에서 처리해줌 
+왜냐면 </p>
+
+<h2>👯‍♂️ 메인포인트1</h2>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=kFWP6sFKyp0&list=PLYH7OjNUOWLUz15j4Q9M6INxK5J3-59GC">책/유튜브 인강-혼자 공부하는 컴퓨터구조+운영체제, 강민철, 한빛미디어</a></p></li>
+
+<li><p>https://aliencoder.tistory.com/109</p></li>
+<li>https://devocean.sk.com/blog/techBoardDetail.do?ID=165282 selector에 관한 설명도나옴</li>
+</ul>
+
+<p>프레임워크 없이 웹 애플리케이션을 만든다는 것은 건물을 지을 때 기본적인 철골구조나 규격 없이 처음부터 모든 것을 직접 설계하고 건축하는 것과 비슷합니다.</p>
+
+<h3>비유를 조금 더 확장해보자면:</h3>
+
+<ul>
+<li><p><strong>프레임워크가 있는 경우:</strong> 건물을 지을 때, 이미 만들어진 철골구조와 규격에 따라 작업합니다. 예를 들어, 벽을 세우거나 창문을 설치할 때 표준화된 치수와 재료를 사용할 수 있습니다. 이렇게 하면 건축 과정이 훨씬 더 빠르고 효율적이며, 결과물의 품질도 일정하게 유지됩니다. 이처럼, 웹 프레임워크는 개발자가 복잡한 작업을 쉽게 할 수 있도록 기본 구조와 규칙을 제공하여, 더 빠르고 안정적으로 웹 애플리케이션을 만들 수 있게 도와줍니다.</p></li>
+<li><p><strong>프레임워크가 없는 경우:</strong> 반면, 프레임워크 없이 건물을 짓는다면, 철골부터 전기 배선까지 모든 것을 직접 설계하고 만들어야 합니다. 이 과정에서 발생할 수 있는 오류도 많고, 시간이 많이 소요될 뿐만 아니라 결과물의 품질도 보장하기 어렵습니다. 마찬가지로, 웹 프레임워크 없이 애플리케이션을 만든다면, HTTP 요청을 처리하거나 데이터베이스와 상호작용하는 등의 기본적인 기능을 모두 처음부터 직접 구현해야 합니다. 이는 많은 시간과 노력이 필요하며, 코드의 복잡성도 증가하게 됩니다.</p></li>
+</ul>
+
+<h3>결론:</h3>
+
+<p>프레임워크는 건축에서의 철골구조처럼, 웹 애플리케이션 개발에서의 기본 구조와 규격을 제공합니다. 이를 통해 개발자는 반복적인 작업을 줄이고, 더 빠르고 안정적으로 애플리케이션을 개발할 수 있습니다. 만약 이러한 프레임워크가 없다면, 개발자는 모든 것을 처음부터 구현해야 하므로, 개발 속도가 느려지고 오류 가능성이 높아지며 유지보수가 어려워질 수 있습니다.</p>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>

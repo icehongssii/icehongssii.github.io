@@ -77,11 +77,11 @@
     <div id="main" role="main" class="container">
       <!--본문article-->
       <article class="post-page">
-        <h1 class="title">Docker multistage build</h1>
+        <h1 class="title">Flask 프로덕션 배포시 usgi+nginx 같이쓰인다</h1>
         <!--수정날짜-->
         <div class="date">
           <strong
-            >마지막수정 2024-03-19 00:16 - 최초작성2024-03-19 00:16
+            >마지막수정 2024-03-11 16:23 - 최초작성2024-03-11 16:23
           </strong>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
@@ -93,92 +93,79 @@
               <td><strong>태그</strong></td>
               <td>
                 
-                <a href="/tags#docker"><span>docker</span></a>
+                <a href="/tags#python"><span>python</span></a>
                 
-                <a href="/tags#ci/cd"><span>ci/cd</span></a>
+                <a href="/tags#web"><span>web</span></a>
                 
               </td>
             </tr>
             <tr>
               <td><strong>tl;dr</strong></td>
-              <td>docker image 사이즈와 빌드속도 최적화</td>
+              <td>단순한 서버/개발용이라면 fastapi 사용. 복잡+프로덕션은 다른 프레임워크 고려</td>
             </tr>
           </table>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
 
         <!--마크다운변환된내용 본문-->
-        <div class="entry"><h2>👯‍♂️ Intro &amp; tl;dr</h2>
+        <div class="entry"><h2>👯‍♂️ Flask로만 프로덕션 환경에 배포 하지 않는다 .</h2>
 
-<p><mark style="background: #CACFD9A6;">도커이미지 사이즈 줄이는 방법중 하나 멀티스테이지.<br />
-멀티 스테이지는 하나의 도커파일에서 이미지를 빌드하는 단계를 여러개로 나누어 필요한 것만 마지막에 도커 이미지로 만들어 질 수록 함!</mark></p>
+<p>앗.. 단순리 flask app만든다고하면 그냥 이건 도커라이징해서 ECR에 올리고 ECS로 배포하면 되지 않아?라고 생각했었는데 좋지 않은 생각이라고 한다..</p>
 
-<p>아래는 python3.9이미지를 베이스로 이미 주피터와 판다스 빌드시킨 builder 이미지를 사용한다</p>
-
-<pre><code class="dockerfile language-dockerfile"># temp stage
-FROM python:3.9 as builder
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels jupyter pandas
-
-# final stage
-FROM python:3.9-slim
-WORKDIR /notebooks
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache /wheels/*
+<pre><code class="ad-warning language-ad-warning"> **Do not use the development server when deploying to production. It is intended for use only during local development. It is not designed to be particularly secure, stable, or efficient.**
+ - [flask 홈페이지](https://flask.palletsprojects.com/en/3.0.x/deploying/) - 
 </code></pre>
 
-<p>그럼 이렇게 사이즈가 가벼워집니다</p>
-
-<hr />
-
-<h2>👯‍♂️ 멀티 스테이지 빌드 목적</h2>
+<h3>개발 vs. 운영(Production)</h3>
 
 <ul>
-<li>도커 이미지 크기를 줄이는게 주 목적</li>
-<li>여러 단계의 빌드 단계를 만들고, 다른 단계의 결과물에서 특정 폴더만 복사해올 수 있다.</li>
-<li>컴파일이나 패키지 설치 과정에서 부수적으로 발생하는 불필요한 파일들은 배제하고, 애플리케이션 구동에 필요한 것만 선택하여 가져오므로 이미지를 경량화시킬 수 있다.</li>
+<li><strong>개발(Development)</strong>: 애플리케이션을 만들고 테스트하는 과정에서 사용. 개발용 서버는 일반적으로 디버깅이 용이하고 코드 변경 사항이 자동으로 적용되지만, 보안이나 안정성, 효율성 측면에서는 적합하지 않다</li>
+<li><strong>운영(Production)</strong>: 개발이 완료된 애플리케이션을 사용자들이 실제로 사용하는 환경을 말한다. 실제 사용자가 접속하고, 실제 데이터를 다루게 됩니다. 따라서 보안, 안정성, 효율성이 매우 중요함</li>
 </ul>
 
-<h2>👯‍♂️ 다른 베이스 이미지에서 필요 한 것만 가져 올 수 있다</h2>
+<h3>WSGI 서버</h3>
 
-<pre><code class="dockerfile language-dockerfile">FROM golang:1.16 AS builder
-WORKDIR /go/src/github.com/alexellis/href-counter/
-RUN go get -d -v golang.org/x/net/html  
-COPY app.go ./
-RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o app .
-
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /go/src/github.com/alexellis/href-counter/app ./
-CMD ["./app"]
-</code></pre>
-
-<p>두 번째 <code>FROM</code> 이 새 빌드 스테이지 시작 <code>alpine:latest</code> 를 베이스로 <code>COPY --from=0</code> 이 그전 스테이지에 있는 artifact를 가져와서 사용함. </p>
-
-<p>Go SDK랑 중간에 사용하지 않는 것들은 파이널 이미지로 사용하지 않음 . </p>
-
-<p>예제에서는 <code>--from=builder</code> 스테이지 이름 사용</p>
-
-<pre><code>docker build -t alexellis2/href-counter:latest .
-</code></pre>
-
-<h2>👯‍♂️ 특정 스테이지에서 멈출 수 있다!</h2>
-
-<p>위의 예제에서 <code>builder</code>를 대상으로 한 이미지를 빌드하는 거 가능</p>
-
-<pre><code>docker build --target builder -t alexellis2/href-counter:latest .
-</code></pre>
+<p><mark style="background: #FFF3A3A6;">Flask와 같은 Python 웹 애플리케이션은 WSGI(Web Server Gateway Interface)라는 표준을 사용하여 웹 서버와 통. 운영 환경에서는 Flask의 개발용 서버 대신 Gunicorn, uWSGI와 같은 WSGI 서버를 사용한다. 이 서버들은 Flask 애플리케이션을 안정적으로 운영할 수 있도록 설계되었으며, 다음과 같은 이유로 권장함:</mark></p>
 
 <ul>
-<li>--target builder : 이 옵션은 Dockerfile내에서 여러 빌드 스테이지 있을 때 특정 스테이지까지만 빌드하라는 의미임!<br />
-builder 스테이지까지만 빌드 수행하고 생성된 이미지를 href-counter에 저장하라는 의미이다</li>
+<li><strong>보안</strong>: WSGI 서버는 공개적으로 사용될 수 있도록 보안 측면에서 강화됨</li>
+<li><strong>안정성</strong>: 동시 요청 처리와 에러 관리가 더 잘 되어 있어, 애플리케이션이 더 안정적으로 실행</li>
+<li><strong>효율성</strong>: 리소스(메모리, CPU 등) 사용이 최적화되어 있어, 더 많은 사용자를 처리</li>
 </ul>
+
+<h3>따라서 보통은 프로덕션에서는 Flask + Nginx + WSGI로 배포한다</h3>
+
+<p><img src="https://i.imgur.com/xN8zNr9.png" alt="" /></p>
+
+<p>저글[^1] 에서도 아래 처럼 말한다..</p>
+
+<pre><code class="ad-note language-ad-note">flask에 기본적으로 개발용 서버 포함되지만 테스트와 개발 목적으로 주 목적이다.  
+따라서 flask 그냥 사용하지 않고 nginx와 wsgi와 같이 사용하게 되는 많다.  
+
+- nginx로는 느린 네트워크 연결 가진 사용자 요청 효율적으로 처리 가능, 보안강화 역할
+- wsgi는 nginx로 부터 받은 웹요청 flask로 어플리케이션 전달하고 flask 어플리케이션 응답을 다시 nginx로 보내는 역할
+</code></pre>
+
+<p>이렇게 자주 쓰이는 기술 스택이다 보니 <a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker">uwsgi-nginx-flask-docker</a> 이렇게 하나의 이미지로 묶어서 사용되는 듯하다..  그러나 해당 리포 리드미를 읽어보니 </p>
+
+<p><img src="https://i.imgur.com/AhXLx3A.png" alt="" /></p>
+
+<ul>
+<li>WSGI말고 ASGI를 사용한  fastapi나 starlette를 추천하고 있다</li>
+<li>왜냐면 이 둘을 사용사용하면 uwsgi-nginx-flask를 사용한 것보다 8배의 성능을 낼 수 있어서</li>
+<li>여전히 그래도 플라스크가 필요하다면 대안으로 <a href="https://github.com/tiangolo/meinheld-gunicorn-flask-docker">meinheld-gunicorn-flask-docker</a> 이 이미지를 추천하는데 확인해보니 이 이미지에서 지원되는 파이썬 최신버전은 3.9까지여서 사용 불가 </li>
+</ul>
+
+<p><img src="https://i.imgur.com/CfBwn1K.png" alt="" /><br />
+<a href="https://woolbro.tistory.com/94">마찬가지로 </a>[^3] nginx-wsgi-flask로 쓰이는걸 보여주신다..</p>
 
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
 <ul>
-<li><p><a href="https://testdriven.io/blog/docker-best-practices/">https://testdriven.io/blog/docker-best-practices/</a></p></li>
-<li><p><a href="https://docs.docker.com/build/building/multi-stage/">https://docs.docker.com/build/building/multi-stage/</a></p></li>
+<li><a href="https://flask.palletsprojects.com/en/3.0.x/deploying/">웹,  flask tutorial about Deploying Produciton</a></li>
+<li><a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker">웹, uwsgi-ngix-flask-docker 이미지</a></li>
+<li>https://woolbro.tistory.com/94</li>
+<li>[^1] <a href="https://www.reddit.com/r/devops/comments/e3riwk/dockerifying_a_flask_app_for_ecs/">reddit, # Dockerifying a Flask App for ECS -> Nginx+Gunicorn+Flask in 1 container?</a></li>
 </ul>
 </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->

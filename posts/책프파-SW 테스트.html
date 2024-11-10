@@ -1,0 +1,467 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">책</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-05-02 16:03 - 최초작성2024-05-01 19:38
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#책-프로그래머를위한파이썬"><span>책-프로그래머를위한파이썬</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><pre><code class="ad-abstract language-ad-abstract">title: 키워드
+- 테스트 더블
+- 테스트 스위트 
+- 테스트 케이스
+- 통합테스트
+- 유닛테스트
+- 통합테스트와 유닛테스트의 차이
+- 테스트 피라미드
+</code></pre>
+
+<h2>👯‍♂️ Intro &amp; tl;dr</h2>
+
+<ul>
+<li>처음에 테스트 코드라는 개념이 헷갈렸음</li>
+<li>우리가 실제로 프로덕션에 내 코드를 작성하긴 드래프트 마냥 작성하는 것도 테스트 코드가 아닌가? 라고 생각했지만 그런 개념이 아니었음</li>
+</ul>
+
+<pre><code class="ad-tldr language-ad-tldr">title: 요약
+- 기능 테스트 = 코드가 주어진 입력에 대해 예상 결과를 내는지
+- 테스트는 버그 잡아주고 리팩토링 코드 더 쉽게 만들어줌
+
+</code></pre>
+
+<h2>👯‍♂️ 더 알아보고 싶은거 &amp; 추가해야하는내용</h2>
+
+<ul>
+<li>회귀테스트</li>
+<li>수락테스트</li>
+<li>수동테스트</li>
+<li>테스트 스위트(rest suite)
+<ul>
+<li>테스트 케이스(보통 하나의 메소드 테스트하기 위한 테스트 메소드)들을 하나로 묶은것</li>
+<li>테스트 스위트를 정의하면 특정 클래스나 메소드 선태갷 단위테스트 가능</li>
+</ul></li>
+<li>테스트 더블에서 모킹, 페이킹, 스터빙차이 </li>
+<li>모킹</li>
+<li>넷플릭스 카오스 엔지니어링</li>
+</ul>
+
+<hr />
+
+<h2>👯‍♂️ 테스트 코드를 작성하자</h2>
+
+<ul>
+<li>테스트의 의도 
+<ul>
+<li>기능을 계속 추가해도 애플리케이션이 의도한대로 잘 동작하는지 확인하고 싶다면 테스트를 해라</li>
+<li>애플리케이션을 테스트 함으로써 새 기능을 추가 했을 때 새 기능이 의도한대로 동작하는지 확인 할 수 있고</li>
+<li>애플리케이션을 업데이트 할 때 마다 이러한 테스트 과정을 다시 실행해서 전처럼 올바르게 동작하는지 확인 할 수 있다</li>
+</ul></li>
+<li>SW 테스트 = SW가 예상되록 동작하는지 확인하는 것</li>
+<li>기능 테스트(functional test) : SW test에도 여러 종류가 있다(성능테스트등) 그 중에 기능테스트는 입력이 주어졌을 때 애플리케이션이 해당 입력에 대해 올바른 출력이 나오는지 확인하는 것을 기능테스트라고한다
+<ul>
+<li>기능테스트 또한 범위, 방법등이 다양하지만 보통 과정에서 아래의 네가지 과정을 일관적으로 포함한다
+<ul>
+<li>a. 주어진 입력 -> 개발자에 의해 결정된다</li>
+<li>b. 예상되는 출력 -> 개발자에 의해 결정된다</li>
+<li>c. 실제 출력 -> 실제 코드를 실행함으로써 주어진다</li>
+<li>d. 예상되는 출력과 실제 출력 비교 </li>
+</ul></li>
+</ul></li>
+<li>기능 테스트의 방법
+<ul>
+<li>수동테스트(Manual test)</li>
+<li>자동테스트(Automated test)</li>
+<li>수락테스트(Acceptace test) ->이해안감</li>
+<li>통합테스트</li>
+<li>회귀테스트 ->이해안감</li>
+<li>단위테스트(Unit test) : SW를 이루는 작은 기능/부분들이 잘 동작하는지 확인하는 테스트. 애플리케이션의 모든 개별코드가 예상대로 잘 동작하는지 확인한다. 이때 단위는 애플리케이션을 이루는 작은 코드 조각을 의미한다. 이러한 단위테스트들은 통합/E2E테스트등 대규모 테스트를 이루는 토대를 마련해줌. 가장 기본적인 테스트!</li>
+</ul></li>
+</ul>
+
+<pre><code class="ad-note language-ad-note">title: 단위테스트에서 단위(unit)이란?
+반지름이 1인 원을 단위원이라고 하는 것처럼 SW에서 가장 작은 기능을 하는 코드 조각을 unit(단위)라고 한다.
+보통은 단위테스트에서 함수를 의미하는 경우가 많은데 이는 기능테스트가 보통 입출력이 주어졌을 때를 전제로하는 경우가 많아서 그렇다
+</code></pre>
+
+<ul>
+<li><p>통합테스트</p>
+
+<ul>
+<li>단위테스트가 애플리케이션을 이루는 가장 작은 단위 하나 하나를 대상으로 하는 거였다면 통합테스트는 일련의 단위 작업전체가 잘 동작하는지 확인하는 테스트이다!</li>
+<li>애플리케이션에 10가지 기능이 있다고해서 그 10가지 기능을 결합해 필요한 기능을 구현하지 못한다면 필요없다.</li>
+<li>예를들면 DB CRUD와 관련된 4개의 함수가 있다고 하면 통합테스틑 이러한 4개의 함수가 서로 상호작용해서 잘 동작하는지 확인하는 것을 의미한다 </li>
+<li>예상가다시피 단위테스트보다 통합테스트가 작성하고 실행하는데 더 오래걸린다</li>
+</ul></li>
+<li><p>테스트 피라미드</p>
+
+<ul>
+<li>실행속도와 각 테스트간의 결합도를 보여주는 테스트 피라미드이다</li>
+<li>주어진 리소스(시간, 인력)을 고려해 적절한 테스트 계획을 세운다
+<ul>
+<li>수동테스트 </li>
+<li>통합테스트</li>
+<li>유닛테스트</li>
+</ul></li>
+</ul></li>
+<li><p>테스트 코드 작성 할 때 쓰이는 <code>assert</code>의 의미? 특정 비교가 거짓이면 거짓, 참이면 참이라고 알려주는 표현이다</p></li>
+<li>단위 테스트 예시</li>
+</ul>
+
+<p>리스트 <code>[1,2,3,4,5]</code> 가 주어졌을때 이 리스트 값에 대한 평균값 7.5을 해당 함수가 반환하는지 테스트해보자.</p>
+
+<pre><code class="python language-python">def calculate_mean(numbers):
+    return sum(numbers)/len(numbers)
+</code></pre>
+
+<p>그렇지만 이때 입력으로 음수가 들어오는 경우, 빈 리스트가 들어온다면 우리의 예상과 다른 결과가 도출된다! (=사용자가 이러한 문제를 마주하기전 개발자가 먼저 마주할 수 있다 ) 그래서 코드를 테스트가 통과되도록(=개발자가 의도한대로 도출되도록) 수정할 수 있다</p>
+
+<pre><code class="python language-python">def calculate_mean(numbers):
+    if not len(numbers): # 빈리스트가 들어오면
+        return 0
+    return sum(numbers)/len(numbers)
+
+</code></pre>
+
+<hr />
+
+<h2>👯‍♂️ 단위테스트코드 작성해보자</h2>
+
+<p>전자상거래에서 <code>상품</code> 객체
+- 모든 상품은 SKU(사내에서 고유 식별자로 쓰이는 문자열)을 갖고 있고 색깔, 사이즈옷이라는 속성을 가진다.
+- 상품의 SKU, 색깔, 사이즈에 접근 할 수 있는 메서드 3개도 가진다
+    - SKU를 만들기 위해 색깔을 대문자로 바꾸는 메서드
+    - SKU를 만들기 위해 이름을 대문자로 바꾸는 메서드
+    - 이름-사이즈-색깔로 SKU를 생성하는 메서드</p>
+
+<pre><code class="python language-python"># product.py
+
+class Product:
+
+    def __init__(self, name, size, color):
+        self.name = name
+        self.size = size
+        self.color = color
+
+    def transform_name_for_sku(self):
+        return self.name.upper()
+
+    def transform_color_for_sku(self):
+        return self.color.upper()
+
+    def generate_sku(self):
+        name = self.transform_name_for_sku()
+        color = self.transform_color_for_sku()
+        sku = f'{name}-{self.size}-{color}'
+        return sku
+
+</code></pre>
+
+<p>그리고 이에 대한 테스트 케이스를 작성한다면?<br />
+기능테스트에서는 일관적으로 아래의 네가지 과정을 포함한단걸 기억하자
+- 입력이 주어졌을때
+- 예상되는 출력
+- 실제로 코드에서 출력되는 값
+- 예상되는 출력값과 실제로 출력되는 값 비교 </p>
+
+<pre><code class="python language-python">class ProductTestCase:
+    def test_transform_name_for_sku(self):
+        small_black_shoes = Product('shoes', 'S', 'black')
+        assert small_black_shoes.transform_name_for_sku() == 'SHOES'
+
+    def transform_color_for_sku(self):
+        small_black_shoes = Product('shoes', 'S', 'black')
+        assert small_black_shoes.transform_color_for_sku() == 'BLACK'
+
+    def test_generate_sku(self):
+        small_black_shoes = Product('shoes', 'S', 'black')
+        assert small_black_shoes.generate_sku() == 'SHOES-S-BLACK'
+
+
+</code></pre>
+
+<h2>👯‍♂️ 통합테스트를 작성해보자</h2>
+
+<ul>
+<li>데이터베이스에서 CRUD 작업을 해야하고 각 각의 기능들을 함수라고 생각해보자. 이때 단위 테스트는 각 기능(수정, 삭제, 추가,  읽기)에 대해 중점을 두지만 통합테스틑 큰 그림에 대한 검사다!</li>
+<li>단위 테스트는 애플리케이션을 이루는 가장 작은 기능들에 대한 개별 검사였지만 통합테스트를 하지 않으면 이 작은 기능이 전체적으로 어떻게 어울러지는지 알 수 없다!</li>
+</ul>
+
+<p>위의 유닛테스트 예제에서는 상품 클래스를 구현했는데 이제는 이러한 상품들을 카트에 담을 수 있는 쇼핑카트를 구현해보자</p>
+
+<p>쇼핑카트는
+- product를 <code>{product_sku:{quantitay:1}}</code> 식으로 저장한다
+- 쇼핑카트 상태(=속성)에 접근할 수 있는 메서드는 다음과 같다(CRUD, 이때 수정, 읽기는 구현안함)
+    - 쇼핑카트에 물건 담는 메서드
+    - 쇼핑카트에 물건 삭제하는 메서드</p>
+
+<pre><code class="python language-python">from collections import defaultdict
+from product import Product
+
+class ShoppingCart:
+    def __init__(self):
+        self.products = defaultdict(lambda: defaultdict(int))
+
+    def add_product(self, product, quantity=1):
+        sku = product.generate_sku()
+        self.products[sku]['quantity']+=quantity
+
+    def remove_product(self, product, quantity=1):
+        sku = product.generate_sku()
+        self.products[sku]['quantity']-=quantity
+        if self.products[sku]['quantity'] == 0:
+            del self.products[sku]
+</code></pre>
+
+<pre><code class="ad-error language-ad-error">title: 왜 defaultdict(dict)이 아니고?
+- self.product = defaultdict(dict)을 왜 안쓸까?
+- 만약에 default(dict)으로 선언했다면 최초에 물건을 넣을때 KeyError quantity라는 키가 없다는 에러가 뜬다
+- 따라서 중첩된 defaultdict으로 선언해준다
+- defaultdict(defaultdict(int))로 선언은안된다 왜냐면 defaultdict 첫번째 인자값은 딕셔너리를 만들어야 할 떄 `호출(=callable)`되어야하는데 defaultdict(int)는 callable이 아니기 때문 따라서 중첩하고 싶다면
+- defaultdict(lambda: defaultdict(int))로 선언해야한다
+</code></pre>
+
+<p>이에 대해 생길 수 있는 경우는 다음과  같고 이는 단위테스트에 해당한다 
+- 쇼핑카트가 초기화되었는지 -> 단위테스트
+- 쇼핑카트에 1개를 추가 -> 단위테스트</p>
+
+<ul>
+<li>쇼핑카트에 같은 상품 2개를 추가 -> 단위테스트</li>
+<li>쇼핑카트에 서로다른 상품 1개 씩 추가 -> 단위테스트</li>
+<li>쇼핑카트에 상품 1개 추가하고 그 상품을 다시 삭제하기  -> 통합테스트</li>
+<li>쇼핑카트에 담고 있는 것보다 더 많은 것을 삭제하기  -> 통합테스트</li>
+- 
+</ul>
+
+<pre><code class="ad-important language-ad-important">title: 단위테스트와 통합테스트의 차이
+- 단위테스트는 메서드 하나의 코드만 실행하고 결과를 확인하는데
+- 통합테스트는 여러 메서드가 실행될 수 있다 
+</code></pre>
+
+<pre><code class="python language-python">from product import Product
+from cart import ShoppingCart
+
+def test_cart_init_empty():
+    cart = ShoppingCart()
+    assert cart.products == {}
+
+def test_add_product():
+    cart = ShoppingCart()
+    product = Product('shoes','S','black')
+    cart.add_product(product)
+    assert cart.products == {'SHOES-S-BLACK':{'quantity':1}}
+
+def test_add_two_a_product():
+    cart = ShoppingCart()
+    product = Product('shoes','S','black')
+    cart.add_product(product, quantity=2)
+    assert cart.products == {'SHOES-S-BLACK':{'quantity':2}}
+
+def test_add_two_diff_products():
+    cart = ShoppingCart()
+    shoes = Product('shoes','S','black')
+    shirts = Product('shirts','S','white')
+    cart.add_product(shoes, quantity=1)
+    cart.add_product(shirts, quantity=1)
+    assert cart.products == {'SHOES-S-BLACK':{'quantity':1}, 'SHIRTS-S-WHITE':{'quantity':1}}
+
+# 초기화 하고 물건을 넣었다가 삭제하는 경우 
+def test_add_and_remove_product():
+    product = Product('shoes','S','black')
+    cart = ShoppingCart()
+
+    # 물건을 넣었다가 삭제
+    cart.add_product(product,3)
+    cart.remove_product(product,3)
+
+    assert {} == cart.products
+
+def test_remove_too_many_product():
+    product = Product('shoes','K','black')
+    cart = ShoppingCart()
+    cart.add_product(product)
+
+    # 수량보다 많은거삭제, 이떄 오류가 발생할것 왜냐면 이에 대한 예외처리안했으니
+    cart.remove_product(product,3)
+    assert {} == cart.products
+
+</code></pre>
+
+<p>이떄 카트에 담긴 수량보다 더 많은 수량을 카트에서 삭제할려고하면 테스트가 실패한다 이를 구현하지 않았기 땜ㄴ에</p>
+
+<h2>👯‍♂️ 테스트 더블</h2>
+
+<p>다른 시스템과 연동하거나 데이터베이스나  API 호출 해야하는 경우가 있음<br />
+실제 데이터로 테스트하면 시스템이 느려질 수도 있으므로 테스트 더블을 이용한다</p>
+
+<ul>
+<li>테스트 더블 = test double = 테스트시 실제 객체 대신에 테스트 중 사용되는 객체 가르킨다</li>
+<li>테스트 더블의 유형
+<ul>
+<li>페이킹 : 실제와 비슷하게 동작하지만 실제 시스템 영향 X. 페이킹은 실제로 동작하는 객체를 대체하여 가짜 구현을 제공. 페이크 데이터베이스이용. ->이해안감</li>
+<li>스터빙 : 실제 시스템 값을 가져오는ㄷ ㅐ신 미리 결정된 값으로 응답 사용->이해안감</li>
+<li>모킹 : 실제와 동일한 인터->이해안감</li>
+</ul></li>
+</ul>
+
+<p>예를들면 아래처럼 외부 API 이용해야하는 경우 모킹을 이용할 수 있음</p>
+
+<pre><code class="python language-python">import requests as req
+
+def add_sales_tax(original_amnt, country, region):
+    res = req.get(f"https://api.com/{country}/{region}")
+    sales_tax_rate = req.json()['result']['tax_rate']
+
+</code></pre>
+
+<h2>👯‍♂️ 테스트 주도 개발</h2>
+
+<ul>
+<li>TDD = 단위테스트 + 통합테스트 사용해 개바라자</li>
+<li>넷플릭스는 카오스 엔지니어링이라는 개념으로 TDD를 극단으로 끌어올림. 시스템에 생길 ㅅ 잇는 모든 문제들을 적극적으로 고려해 그 상황을 코드로 던져보자!</li>
+<li>TDD는 어떻게 올바르게 하느냐 &lt; 올바르게 하지 않는 방법이 뭔가를 생각하게 한다. </li>
+</ul>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="">책-프로그래머를 위한 파이썬 </a></li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>

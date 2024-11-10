@@ -77,11 +77,11 @@
     <div id="main" role="main" class="container">
       <!--본문article-->
       <article class="post-page">
-        <h1 class="title">Docker multistage build</h1>
+        <h1 class="title">영상-마크 플러그인</h1>
         <!--수정날짜-->
         <div class="date">
           <strong
-            >마지막수정 2024-03-19 00:16 - 최초작성2024-03-19 00:16
+            >마지막수정 2024-02-09 00:06 - 최초작성2024-02-09 00:06
           </strong>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
@@ -93,92 +93,55 @@
               <td><strong>태그</strong></td>
               <td>
                 
-                <a href="/tags#docker"><span>docker</span></a>
+                <a href="/tags#gameDev"><span>gameDev</span></a>
                 
-                <a href="/tags#ci/cd"><span>ci/cd</span></a>
+                <a href="/tags#cloud"><span>cloud</span></a>
+                
+                <a href="/tags#minecraft"><span>minecraft</span></a>
                 
               </td>
             </tr>
             <tr>
               <td><strong>tl;dr</strong></td>
-              <td>docker image 사이즈와 빌드속도 최적화</td>
+              <td></td>
             </tr>
           </table>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
 
         <!--마크다운변환된내용 본문-->
-        <div class="entry"><h2>👯‍♂️ Intro &amp; tl;dr</h2>
+        <div class="entry"><h2>👯‍♂️ intro &amp; tl;dr</h2>
 
-<p><mark style="background: #CACFD9A6;">도커이미지 사이즈 줄이는 방법중 하나 멀티스테이지.<br />
-멀티 스테이지는 하나의 도커파일에서 이미지를 빌드하는 단계를 여러개로 나누어 필요한 것만 마지막에 도커 이미지로 만들어 질 수록 함!</mark></p>
+<p>Brief introduction about the topic or what the post will cover.</p>
 
-<p>아래는 python3.9이미지를 베이스로 이미 주피터와 판다스 빌드시킨 builder 이미지를 사용한다</p>
-
-<pre><code class="dockerfile language-dockerfile"># temp stage
-FROM python:3.9 as builder
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels jupyter pandas
-
-# final stage
-FROM python:3.9-slim
-WORKDIR /notebooks
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache /wheels/*
-</code></pre>
-
-<p>그럼 이렇게 사이즈가 가벼워집니다</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Geo-nr8plng&list=PLFmfRbhuHiDx-OCjHEjXChRSjKRbCd5uY&index=1&pp=iAQB">영상-유튜브, 팀테크, 마크 플러그인 IRIS(90가지 바이옴서버추가), 202311</a></li>
+<li><p><a href="https://www.youtube.com/watch?v=z6JOXsgBCJc&list=PLFmfRbhuHiDx-OCjHEjXChRSjKRbCd5uY&index=2&pp=iAQB">영상-유튜브, 팀테크, 마크 플러그인 HuskSync : 멀티 서버간 유저 데이터 동기화, 202312</a></p></li>
+<li><p><a href="https://youtu.be/v4hAMYZB-kU?list=PLFmfRbhuHiDx-OCjHEjXChRSjKRbCd5uY">영상-유튜브, 팀테크, 마크 플러그인 mcMMO : 16가지 스킬로 RPG, 202312</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=112j1FD2ctQ&list=PLFmfRbhuHiDx-OCjHEjXChRSjKRbCd5uY&index=4&pp=iAQB">영상-유튜브, 팀테크, 마크 플러그인 DiscordSRV(마크서버 디스코드연동), 202401</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=DyDW-iHocuU&list=PLFmfRbhuHiDx-OCjHEjXChRSjKRbCd5uY&index=5&pp=iAQB">영상-유튜브, 팀테크, 마크 플러그인 Xconomy : 멀티 마크서버간 경제(화폐) 동기화, 202401</a></p></li>
+</ul>
 
 <hr />
 
-<h2>👯‍♂️ 멀티 스테이지 빌드 목적</h2>
+<h2>👯‍♂️ Main</h2>
+
+<h3>👯‍♂️ Subheading</h3>
 
 <ul>
-<li>도커 이미지 크기를 줄이는게 주 목적</li>
-<li>여러 단계의 빌드 단계를 만들고, 다른 단계의 결과물에서 특정 폴더만 복사해올 수 있다.</li>
-<li>컴파일이나 패키지 설치 과정에서 부수적으로 발생하는 불필요한 파일들은 배제하고, 애플리케이션 구동에 필요한 것만 선택하여 가져오므로 이미지를 경량화시킬 수 있다.</li>
+<li>Here is a simple footnote [^1]:  With some additional text after it.</li>
 </ul>
 
-<h2>👯‍♂️ 다른 베이스 이미지에서 필요 한 것만 가져 올 수 있다</h2>
+<h2>👯‍♂️ Conclustion</h2>
 
-<pre><code class="dockerfile language-dockerfile">FROM golang:1.16 AS builder
-WORKDIR /go/src/github.com/alexellis/href-counter/
-RUN go get -d -v golang.org/x/net/html  
-COPY app.go ./
-RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o app .
+<p>Summarize the main points and conclude your post.</p>
 
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /go/src/github.com/alexellis/href-counter/app ./
-CMD ["./app"]
-</code></pre>
+<hr />
 
-<p>두 번째 <code>FROM</code> 이 새 빌드 스테이지 시작 <code>alpine:latest</code> 를 베이스로 <code>COPY --from=0</code> 이 그전 스테이지에 있는 artifact를 가져와서 사용함. </p>
-
-<p>Go SDK랑 중간에 사용하지 않는 것들은 파이널 이미지로 사용하지 않음 . </p>
-
-<p>예제에서는 <code>--from=builder</code> 스테이지 이름 사용</p>
-
-<pre><code>docker build -t alexellis2/href-counter:latest .
-</code></pre>
-
-<h2>👯‍♂️ 특정 스테이지에서 멈출 수 있다!</h2>
-
-<p>위의 예제에서 <code>builder</code>를 대상으로 한 이미지를 빌드하는 거 가능</p>
-
-<pre><code>docker build --target builder -t alexellis2/href-counter:latest .
-</code></pre>
+<h2>👯‍♂️ Ref</h2>
 
 <ul>
-<li>--target builder : 이 옵션은 Dockerfile내에서 여러 빌드 스테이지 있을 때 특정 스테이지까지만 빌드하라는 의미임!<br />
-builder 스테이지까지만 빌드 수행하고 생성된 이미지를 href-counter에 저장하라는 의미이다</li>
-</ul>
-
-<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
-
-<ul>
-<li><p><a href="https://testdriven.io/blog/docker-best-practices/">https://testdriven.io/blog/docker-best-practices/</a></p></li>
-<li><p><a href="https://docs.docker.com/build/building/multi-stage/">https://docs.docker.com/build/building/multi-stage/</a></p></li>
+<li>[^1]:  작성자. "제목," 사이트명, 발행날짜, <a href="www.naver.com">URL</a></li>
 </ul>
 </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->

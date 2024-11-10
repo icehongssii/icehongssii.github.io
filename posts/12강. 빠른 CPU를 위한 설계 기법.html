@@ -1,0 +1,393 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">12강. 빠른 CPU를 위한 설계 기법</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-03-08 00:36 - 최초작성2024-02-27 13:11
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#CS"><span>CS</span></a>
+                
+                <a href="/tags#book"><span>book</span></a>
+                
+                <a href="/tags#책-혼공컴운"><span>책-혼공컴운</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>👯‍♂️ Intro &amp; tl;dr</h2>
+
+<pre><code class="ad-note language-ad-note">title: 키워드
+- 코어
+- 스레드
+    - 하드웨어 스레드
+    - 소프트웨어 스레드 
+</code></pre>
+
+<hr />
+
+<pre><code class="ad-question language-ad-question">- 코어?
+- 스레드?ㅎ
+- 멀티코어
+- 멅티스레드
+</code></pre>
+
+<blockquote>
+  <p>CPU를 조금 더 빠르게 만들려면?<br />
+  a. 클럭신호높이기 -> 발열 되므로 X<br />
+  b. 코어늘리기<br />
+  c. 스레드 늘리기</p>
+</blockquote>
+
+<h2>👯‍♂️ 클럭 신호를 빠르게 만든다?</h2>
+
+<p>왜냐면 컴퓨터 부품들은 클럭 신호에 맞춰 일사분란 움직이기에. </p>
+
+<p>예를 들면 CPU는 명령어 사이클이라는 정해진 흐름에 맞춰 실행되니까.</p>
+
+<p>클럭 신호를  빠르게 만들면 명령어 사이클과 컴퓨터 부품도 빠른 신호에 맞춰 일사 분란하게 움직이지 않을까? -> 일반적으로 맞기는 하다.  </p>
+
+<ul>
+<li>클럭속도는 CPU 속도 단위로 간주되기도함</li>
+<li>클럭속도 = 헤르츠, 1초에 클럭 반복되는 횟수, 1초에 100번 똑딱하면 100헤르츠.</li>
+<li>실제 CPU 클럭수는 ? 맥스 4.9ghz 베이스 2.5라고 나와 있는데 기본적으로 1초에 25번 순간적으로 최대 49억번</li>
+<li>클럭신호가 시계처럼 일정한 것은 아니다. CPU가 어느정도 유도리있게 빠르게와 느리게를 ..</li>
+<li>여튼  클럭수를 높이면 CPU가 빨라지나? -> 아니다->왜?<mark style="background: #FF5582A6;">냐하면</li>
+</ul>
+
+<p>필요 이상으로 클럭을 높이면</p>
+
+<p>발열이 심해지거든</mark><br />
+    영상편집, 게임등 HW 무리가는 작업 장시간하면 발열발생</p>
+
+<p>따라서 일반적으로 는 두개 의 방법 1. 코어 늘리기 2스레드 늘리기</p>
+
+<h2>👯‍♂️ 코어 수 늘리기</h2>
+
+<p><img src="https://i.imgur.com/jZspSVH.png" alt="" /></p>
+
+<p>코어를  이해하기 위해서는 현대적인 관점에서 cpu라고 하는 용어를 재해석해야<br />
+됩니다 지금까지 여러분들은 cpu를 어떤 부품이라고 학습을 했냐면<br />
+명령어를 갖고 와서 해석해서 실행하는 부품이다. 라고 이해를 하셨쵸</p>
+
+<p>근데이 전통적인 관점에서 이렇게 명령어를 인출하고 해석하고 실행하는부품은<br />
+원칙적으로 하나만 있었습니다. (컴퓨터 내부에 하나) 근데 오늘날에는  CPU 안에도 명령어를 해석하고 인출하고 실행하는 부품이 여러 개 존재할 수가 있게<br />
+됐습니다.</p>
+
+<ul>
+<li>오늘날의 코어 =  CPU 안에서 명령어를 인출하고 해석하고 실행하는 부품을</li>
+<li>하나의 프로세서, 하나의 CPU 안에, 명령어를 인출하고 해석하는 부분(코어)이 여러 개 있을 수가 있게 되었다</li>
+<li><mark style="background: #FF5582A6;">즉 코어란 CPU 내에서 명령어를 실행하는 부품으로 CPU 즉 프로세서 안에 여러 개 있을 수 있게 되었습니다   </mark>  </li>
+<li>코어를 여러 개 갖고 있는 cpu를  멀티코어라고 부릅니다 멀티코어</li>
+<li><mark style="background: #FF5582A6;">전통적인 관점에서는이 코어가 하나밖에 없었다 그리고 그 단위란 코어가 곧 cpu였다라고 말씀드렸죠 그거는 싱글코어라고 부릅니다 하나밖에 없다는 거예요 싱글이 하나라는 뜻이</mark></li>
+</ul>
+
+<p><img src="https://i.imgur.com/fDDnxh0.png" alt="" /></p>
+
+<p>- - 코어두개 CPU = 듀얼코어 / 3개는 트리플 코어 등 ..
+- 일반적으로 두 개 이상의 코어를 갖고 있는 cpu를 오늘날 멀티코어라고 부르게 되었다라고  멀티코어 CPU=  멀티코어 프로세서 = 여러개의 코얼 포함하는 CPU
+- 하지만 CPU 안에 코어 100개, 2000개 늘린다고 비례해서 빨라지지 않는다. 조별과제 사람 많다고 꼭 그 처리 속도가 양이 많아지는게 아니듯  <mark style="background: #FF5582A6;">코어마다 처리할 연산이 적절하게 분배되지가 않는다면 꼭 코어 수의 비례해서 연산 속도가 증가하지는 않습니다 그리고 참고로 처리하고자 하는 작업량이 코어 수에 비해서 지나치게 많아도 성능에는 크게 영향이 없습니다</mark> . 100인분의 도시락 10명이 만들면 빠르다 근데 4개 도시락 10명이 만드나 100명이 만드나 크게 치이가 없다; 중요한 것은 이 명령어를 각 각의 코어한테 얼마나 적적절하게 분배허느냐 </p>
+
+<h2>👯‍♂️ 스레드, 멀티스레드</h2>
+
+<p>앞으로 공부하면서 스레드에 대해 많이 나올텐데 스레드에는 두 개의 종류가있다고 정리하자
+- 스레드
+    - 하드웨어 스레드
+    - 소프트웨어 스레드 </p>
+
+<ul>
+<li>하드웨어 스레드 :  <mark style="background: #FF5582A6;">하드웨어적인 스레드는 하나의 코어가 동시에 처리하는 명령어의 단위를 의미합니다 예를 들어서 하나의 코어가 이렇게 하나의 코어가 한 번에 하나의 명령어를 받아들여서 한 번에 하나의 명령으로 실행할 수 있다면 그거는 잃고 1스레드 cpu</mark>라고 볼 수잇다. 있습니다 하나의 코어가 동시에 하나의 명령어를 처리하니까요</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><img src="https://i.imgur.com/VZWs3R8.png" alt="" /></td>
+  <td><img src="https://i.imgur.com/cIup44G.png" alt="" /></td>
+</tr>
+<tr>
+  <td></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+<p>- 우측사진 = CPU 내부에 명령어 갖고와 실행하는 부품(=코어)이 두개가 있다.  각 각의 코어가 한 번에 두개씩의 명령어 처리 할 수 있을 경우 2코어 4스레드 CPU가 된다. 코어가 두개지만 한번에동시에 실행되는 명령어는 4개</p>
+
+<ul>
+<li><p><mark style="background: #FF5582A6;">다 그리고 이렇게 하나의 코어가 여러 개의 명령어를 동시에 처리할 수 있는 프로세서 이러한 종류의 cpu를 멀티스레드 프로세서 멀티스레드 cpu라고 부릅니다</mark></p></li>
+<li><p>8코어 16스레드, 하나의 CPU에서 명령어 인출&amp;실행할 수 있는 부품이 8개가있다 각 각의 스레드가 2개의 명령어 처리가능</p></li>
+<li><p>하이퍼 스레드 = 인텔사의 멀티르세드 기술 인증<br />
+<img src="https://i.imgur.com/66wQDwo.png" alt="" /></p></li>
+
+
+<li><p><mark style="background: #FF5582A6;">이게 8코 16수레드다 자 그렇다면 아이 CPU 안에는 명령어를 실행할 수 있는 부품이 이렇게 8개가 있구나 그리고 각각의 코어가동시에 실행할 수 있는 명령어가 두 개씩 있어서 결과적으로는 16개의 명령어가 동시에 처리될 수 있겠구나라고 이해하시다. 됩니다<br />
+</mark>  </p></li>
+<li><p>소프트웨어 스레드 :  <mark style="background: #FF5582A6;">소프트웨어적인 스레드는 무엇을 의미하냐면 하나의 프로그램에서 독립적으로 실행되는 단위를 의미한다라고 보시면 됩니다 예를 들어서 뭐 하나 있을 레드로 실행한다라고 한다면 한 프로그램이 하나의 실행 흐름만 가지고 순차적으로 실행되는 구조를 의미한다고 보면 되고요</mark></p></li>
+</ul>
+
+<p><img src="https://i.imgur.com/wGBXmfh.png" alt="" /></p>
+
+<p>멀티스트 레드로 실행된다라고 한다면 하나의 프로그램에서 동시에 두 개의 영역이 실행된다라고 보시면 됩니다 예를 들어서 이런 경우를 한번 생각해 볼까요 예를 들어서 여러분들이 워드프로세서 프로그램을 만들었다라고 한번 가정을 해봅시다 그리고 여러분들은이 1번 2번 3번 기능을 동시에 실행하도록 하고 싶어요 사용자한테 어떤 내용을 입력 받았을 때이 내용을 화면에 보여주는 기능</p>
+
+<p><img src="https://i.imgur.com/acXYwzx.png" alt="" /></p>
+
+<p>그리고 사용자가 입력한 내용이 맞춤법이 맞는지 자동으로 검사해주는 기능 그리고 사용자가 입력한 내용을 수시로 임시 저장해 주는 기능이 기능들을 이거하고 이거하고 이거 이거 실행하고 이거 실행하고 이거 실행하고 이렇게 순차적으로 하는게 아니라 그냥 동시에 실행을 하고 싶다라고 한번 가정을 해 볼게요 자 이럴 때 소프트웨어 스레드를 3개 만들어서 하나의 프로그램에서 독립적으로 실행되는 단위를 세게 만들어서 각각이 이렇게 실행되도록 하면은 워드프로세스 여러분들이 개발하는 워드프로세서라고 하는 프로그램에서 3개의 실행 흐름이 만들어지겠죠 그리고 세 개가 동시에 실행이 되겠죠 그렇죠 자 이러한 양상으로 사용되는 것이 바로 소프트웨어 스레드다 소프트웨어적인 스레드다라고 보시면 됩니다 참고로 말씀드리자면 하나의 프로그램을 동시에 실행하는 방법으로써 운영체제 파트에서 멀티 프로세스와 멀티스레드에서 배울 거예요 그리고 각각의 차이점에 대해서도 학습을 해 볼 거고 그거를 소스코드로도 한번 작성을 해 볼 겁니다 아시겠죠 지금으로서는</p>
+
+<p><img src="https://i.imgur.com/t8PRFv3.png" alt="" /></p>
+
+<p><mark style="background: #FF5582A6;">소프트웨어 스레드를 여러 개 만들면</p>
+
+<p>하나의 프로그램에서</p>
+
+<p>독립적으로 시행되는 단위가 여러 개</p>
+
+<p>만들어져서 하나의 프로그램을 동시에</p>
+
+<p>여러분들을 실행할 수 있다</mark></p>
+
+<p>정도로 이해하시면 되겠습니다</p>
+
+<p>아시겠죠</p>
+
+<p>근데 여기서 중요한 맹점은 뭐냐면</p>
+
+<p>아까 전에 하드웨어적인 스레드가</p>
+
+<p>있다고 그랬죠 그리고 소프트웨어적인</p>
+
+<p>스레드도 있다 그랬죠 근데</p>
+
+<p>하<mark style="background: #FF5582A6;">드웨어적인 스레드는 하나의 코어가</p>
+
+<p>동시에 처리하는 명령어에 단위를</p>
+
+<p>의미한다 그랬잖아요 그렇죠 이를테면</p>
+
+<p>이런게 이제 1코어 1스레드</p>
+
+<p>cpu라고 말씀드렸죠</p>
+
+<p>근데</p>
+
+<p>1코어 1스레드 cpu도</p>
+
+<p>여러 개의 소프트웨어적인 스레드를</p>
+
+<p>만들 수가 있어요 즉 하드웨어적인</p>
+
+<p>스레드가 하나여도 소프트웨어적인</p>
+
+<p>스레드를 이런 식으로 여러 개 만들</p>
+
+<p>수가 있습니다</mark> 이게 왜 그러냐면</p>
+
+<ul>
+<li><p>cpu는 내부적으로 여러 개 이제 프로그램이나 스레드를 실행할 때 엄청나게 빠르게 번갈아 가면서 실행되기 때문에 이게 마치 동시에 실행되는 것처럼 사용자 눈에는 보이게 실행을 해주기 때문이에요</p></li>
+<li><p>그렇기 때문에 하드웨어적인 스레드는 하나일지라도 소프트웨어적인 스레드를 여러 개 만들 수가 있습니다.</p></li>
+<li><p>스레드 그냥 정의만 외우면 안됨. 소프트웨어 하드웨어 관점에서 나눠섯 ㅐㅇ각하자</p></li>
+<li><p>하드웨어 스레드에 대해서 다시 한번 얘기를 드릴게요. 지금은 CPU관련이니까.하드웨어스 레드는 하나의 코어가 동시에 처리하는 명령어의 단위라고 말씀드렸죠 </p></li>
+<li><mark style="background: #FF5582A6;">근데 이제 하드웨어스 레드를 여러 개<br />
+갖고 있는 멀티스레드 프로세서를 설계한다고 한번 생각을 해봅시다 물론 멀티스라이드 프로세스를 실제로 설계하는 일은 정말 복잡한 일이지만이 멀티스트레드 프로세서의 가장 큰 핵심은 레지스터라고 보시면 됩</mark>니다 레지스터</li>
+</ul>
+
+<p><img src="https://i.imgur.com/ELQBm3d.png" alt="" /></p>
+
+<p>예를 들어서 레지스터 세트라고 표기를 했어요 하나의 명령어를 실행하기 위해서꼭 필요한 레지스터앞선 강의에서 말씀드렸던 프로그램카운터명령어 레지스터 이렇게 하나의명령어를 실행하기 위해서 꼭 필요한레지스터들을 그냥 편의상 레지스터세트라고만 표기를 했어요근데 이렇게 레지스터 세트가 하나의코어 내부에여러 개가 있으면코어가여러 명령어를동시에 처리할 수가 있습니다 
+<img src="https://i.imgur.com/NKxyO3q.png" alt="" /></p>
+
+<p>예를들어서 하나의 코어가프로그램 카운터를 두 개 갖고있다라고 한번 가정을 해 볼게요그럼 어떻게 되겠어요 프로그램카운터는 뭐 당기나 그랬죠메모리에서읽어드릴 주소 다음으로 인출할명령어의 주소를프로그램 카운터에다가 이제저장한다라고 말씀드렸죠 근데이프로그램 카운터가 두 개 있으면다음으로 실행할 명령어의 주소를 두개 지정할 수가 있겠죠그렇죠 아니면 스택 포인터가 두 개있다고 한번 가정을 해볼게요스택 포인터가 두 개 있으면 어떻게되겠어요 스텝 포인터는 뭘 가리킨다고그랬죠 저번 강의 시간에 말씀드렸는데스택에 꼭대기를 가리킨다고 그랬죠그렇기 때문에 스택 포인트가 두 개있으면 두 개의 스택에 꼭대기를가리킬 수가 있겠죠즉 스택을 두 개 관리할 수가 있겠죠</p>
+
+<p>그렇죠 자 이런 식으로 하나의</p>
+
+<p><mark style="background: #FF5582A6;">명령어를 실행하기 위해서 꼭 필요한</p>
+
+<p>레지스터들을</p>
+
+<p>여러 개 갖고 있다면 하나의 코어가</p>
+
+<p>여러 개 갖고 있다면</p>
+
+<p>멀티스 레드 프로세서를 설계할 수</p>
+
+<p>있다</p>
+
+<p>꼭 이것만 있으면 되는 건 절대</p>
+
+<p>아니지만 가장 큰 핵심은</p>
+
+<p>레지스터다라고 보</mark>시면 되겠습니다</p>
+
+<p><img src="https://i.imgur.com/6v1nRd7.png" alt="" /></p>
+
+<p>아시겠죠 짠데 이제 엔코 M3 cpu라고 했을 때이 CPU 내부에서 코어가 몇 개고 또 스레드가 몇 개인지는 cpu만 알고 있지이 메모리 내에 있는 프로그램이 몇 호 몇 세대인지 알 수는 없어요 그죠 그냥 아 명령어를 동시에 몇 개씩 갖고 가는구나 작업 흐름이 몇 개 있구나를 알뿐입니다 메모리 입장에서는요 그렇죠 메모리에 있는 프로그램 뭐 예를 들어서 게임이라든지 워드프로세서라든지 메모장이라든지 웹브라우저라든지 이런 모든 프로그램이 여러분들의 컴퓨터에 몇 코 몇 스레인지 다 알 필요는 없잖아요 그냥 아 내 프로그램을 내 명령어를 한 번에 4개씩 갖고 와서 한 번에 4개씩 실행해 주는구나를 느낄 뿐이겠죠이 메모리 안에 있는 프로그램은 그렇죠 자 그렇기 때문에 하드웨어스 레드는 논리적인 어떤 보이지 않는 논리적인 프로세서 논리적인 cpu의 개수라고 하는 의미에서 논리 됐어라고도 부릅니다 몇 가지 이해가셨죠</p>
+
+<p><mark style="background: #FF5582A6;">실제 프로세서의 개수는 아니지만</p>
+
+<p>메모리에 저장되어 있는 실행되고 있는</p>
+
+<p>프로그램이 느끼기에 몇 개 cpu가</p>
+
+<p>있느냐 하드웨어 스레드 개수만큼</p>
+
+<p>있다라는 점에서 논리 프로세서</mark>라고</p>
+
+<p>실제로도 이제<mark style="background: #FF5582A6;"> 윈도우에서 작업</p>
+
+<p>관리자를 들어가 보시면 이제 코어가</p>
+
+<p>4</p>
+
+<p>논리 프로세서의 개수 이렇게</p>
+
+<p>나옵니다이 8개라는</p>
+
+<p>뜻이에요</mark></p>
+
+<hr />
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=kFWP6sFKyp0&list=PLYH7OjNUOWLUz15j4Q9M6INxK5J3-59GC">책/유튜브 인강-혼자 공부하는 컴퓨터구조+운영체제, 강민철, 한빛미디어</a></li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>

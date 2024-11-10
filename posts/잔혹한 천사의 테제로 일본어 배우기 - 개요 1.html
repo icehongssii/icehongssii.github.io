@@ -77,11 +77,11 @@
     <div id="main" role="main" class="container">
       <!--본문article-->
       <article class="post-page">
-        <h1 class="title">Docker multistage build</h1>
+        <h1 class="title">잔혹한 천사의 테제로 일본어 배우기 - 개요</h1>
         <!--수정날짜-->
         <div class="date">
           <strong
-            >마지막수정 2024-03-19 00:16 - 최초작성2024-03-19 00:16
+            >마지막수정 2024-03-15 14:29 - 최초작성2024-03-15 14:11
           </strong>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
@@ -93,92 +93,92 @@
               <td><strong>태그</strong></td>
               <td>
                 
-                <a href="/tags#docker"><span>docker</span></a>
+                <a href="/tags#일본어"><span>일본어</span></a>
                 
-                <a href="/tags#ci/cd"><span>ci/cd</span></a>
+                <a href="/tags#에반게리온"><span>에반게리온</span></a>
                 
               </td>
             </tr>
             <tr>
               <td><strong>tl;dr</strong></td>
-              <td>docker image 사이즈와 빌드속도 최적화</td>
+              <td>일본어 배우기</td>
             </tr>
           </table>
         </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
 
         <!--마크다운변환된내용 본문-->
-        <div class="entry"><h2>👯‍♂️ Intro &amp; tl;dr</h2>
+        <div class="entry"><h2>👯‍♂️ 목표 : 갑자기 일본어를 노래로 배우자</h2>
 
-<p><mark style="background: #CACFD9A6;">도커이미지 사이즈 줄이는 방법중 하나 멀티스테이지.<br />
-멀티 스테이지는 하나의 도커파일에서 이미지를 빌드하는 단계를 여러개로 나누어 필요한 것만 마지막에 도커 이미지로 만들어 질 수록 함!</mark></p>
+<p>이유는 없고 노래를 자주 듣게 되었는데 입에 착 달라 붙어서 일본어 배우기에 너무 좋겠단 생각이 들어서 .. </p>
 
-<p>아래는 python3.9이미지를 베이스로 이미 주피터와 판다스 빌드시킨 builder 이미지를 사용한다</p>
+<h2>👯‍♂️ 검증 및 추천 대상 : 가사로 외국어 배우는게 도움될까?</h2>
 
-<pre><code class="dockerfile language-dockerfile"># temp stage
-FROM python:3.9 as builder
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels jupyter pandas
+<p>도움된다 .. 특히 초보자들한테 ..<br />
+뭐든 꾸준히가 중요한데 꾸준히 할려면 재밌어야하니까 .. 난 재밌었다..<br />
+그래서 나랑 비슷한 성향인 사람들에게도 잘 맞을 것 같다 .. </p>
 
-# final stage
-FROM python:3.9-slim
-WORKDIR /notebooks
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache /wheels/*
+<pre><code class="ad-important language-ad-important">title: 노래로 외국어 배우기 추천대상
+- 노래 좋아하고 호기심 많고 책으로 처음부터 외국어 배우는거 힘들어하는 사람들
+- 좋아하는 노래 가사 다 외우는 사람들
 </code></pre>
 
-<p>그럼 이렇게 사이즈가 가벼워집니다</p>
+<p><a href="https://www.youtube.com/watch?v=S-wSCKaHJ6Y">하이 스쿨 뮤지컬 What I've been looking for</a> 과 <a href="https://www.youtube.com/watch?v=zBG-sEGlULs">하이 스쿨 뮤지컬 Start of something new</a>  (~~레알 명곡들~~) 가사 외우면서 영어 공부를 의도치 않게 했다.. 그냥 노래가 좋아서 다 외우고 싶었음 </p>
 
-<hr />
+<p>그러다 가사 다 외우고 뜻 찾다가 이해안가서 문법이랑  영단어  사용법 배우기 시작했다. ..<br />
+포인트는 자기가 궁금해서 찾아야함 ..  억지로 문법 공부책 사면 필망이다 ..(반골기질 .. )</p>
 
-<h2>👯‍♂️ 멀티 스테이지 빌드 목적</h2>
+<p>노래로 배우니 흥얼거리기도 좋아서 더 쉽게 머리에 박혔다 ...<br />
+근데 ..처음 배울 때는... 영어로 말하거나 쓰고 싶어도  응용을 못하니까 일단  노래를 좀 흥얼거려야했다</p>
+
+<h2>👯‍♂️ 과정과 작은 목표들 : 어떻게 시작 할 것인가?</h2>
+
+<pre><code class="ad-important language-ad-important">title: 잔혹한 천사의 테제로 일본어 배우기
+</code></pre>
+
+<p>중딩 때 했던 것과 똑같은 방향으로 해볼려고한다 .. </p>
+
+<p>그래서 목표는 다음과 같다.. 약 .. 두 달 정도 생각하고 있다.. (4월 말까지 .. )<br />
+독음으로는 거의 다 외웠다 .. </p>
 
 <ul>
-<li>도커 이미지 크기를 줄이는게 주 목적</li>
-<li>여러 단계의 빌드 단계를 만들고, 다른 단계의 결과물에서 특정 폴더만 복사해올 수 있다.</li>
-<li>컴파일이나 패키지 설치 과정에서 부수적으로 발생하는 불필요한 파일들은 배제하고, 애플리케이션 구동에 필요한 것만 선택하여 가져오므로 이미지를 경량화시킬 수 있다.</li>
+<li>가사 독음으로 외울 수 있다 👉 다 외움 </li>
+<li>가사 히라가나로 쓸 수 있다</li>
+<li>가사를 이해 할 수 있다</li>
+<li>가사에 있는 단어들로 문장을 만들 수 있다 (응용)</li>
+<li>가사에 있는 간지를 쓸 수 있다</li>
+<li>가타카나를 쓸 수 있다 </li>
 </ul>
 
-<h2>👯‍♂️ 다른 베이스 이미지에서 필요 한 것만 가져 올 수 있다</h2>
+<h2>👯‍♂️ 걱정 되는 점..</h2>
 
-<pre><code class="dockerfile language-dockerfile">FROM golang:1.16 AS builder
-WORKDIR /go/src/github.com/alexellis/href-counter/
-RUN go get -d -v golang.org/x/net/html  
-COPY app.go ./
-RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o app .
+<p>가사가.. 심각하게 ..  난해하다  ..  나는 그저 <code>책을 보고 싶습니다</code> 정도 말하고 싶은데 실생활에 쓰일만한 단어가 많이 안보인다 ..<br />
+일상 생활에서 쓰이는지 궁금하긴 한데 안하는 것보단 나을 거라 ..<br />
+말투가 이상해지겠다만 외국어 배울 때 다른 자아가 생기는 장점이라고 생각할련다 ..</p>
 
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /go/src/github.com/alexellis/href-counter/app ./
-CMD ["./app"]
+<pre><code>ずっと眠ってる  
+즛토 네뭇테루  
+쭉 잠들어 있는  
+
+私の愛の揺りかご  
+와타시노 아이노 유리카고  
+내 사랑의 요람  
+
+あなただけが夢の使者に  
+아나타 다케가 유메노 시샤니  
+당신만이 꿈의 사자에게  
+
+呼ばれる朝がくる  
+요바레루 아사가 쿠루  
+불리는 아침이 와요
+
+- 잔혹한 천사의 테제 2절 가사 -
 </code></pre>
-
-<p>두 번째 <code>FROM</code> 이 새 빌드 스테이지 시작 <code>alpine:latest</code> 를 베이스로 <code>COPY --from=0</code> 이 그전 스테이지에 있는 artifact를 가져와서 사용함. </p>
-
-<p>Go SDK랑 중간에 사용하지 않는 것들은 파이널 이미지로 사용하지 않음 . </p>
-
-<p>예제에서는 <code>--from=builder</code> 스테이지 이름 사용</p>
-
-<pre><code>docker build -t alexellis2/href-counter:latest .
-</code></pre>
-
-<h2>👯‍♂️ 특정 스테이지에서 멈출 수 있다!</h2>
-
-<p>위의 예제에서 <code>builder</code>를 대상으로 한 이미지를 빌드하는 거 가능</p>
-
-<pre><code>docker build --target builder -t alexellis2/href-counter:latest .
-</code></pre>
-
-<ul>
-<li>--target builder : 이 옵션은 Dockerfile내에서 여러 빌드 스테이지 있을 때 특정 스테이지까지만 빌드하라는 의미임!<br />
-builder 스테이지까지만 빌드 수행하고 생성된 이미지를 href-counter에 저장하라는 의미이다</li>
-</ul>
 
 <h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
 
 <ul>
-<li><p><a href="https://testdriven.io/blog/docker-best-practices/">https://testdriven.io/blog/docker-best-practices/</a></p></li>
-<li><p><a href="https://docs.docker.com/build/building/multi-stage/">https://docs.docker.com/build/building/multi-stage/</a></p></li>
+<li><a href="/posts/잔혹한 천사의 테제 가사 및 독음">잔혹한 천사의 테제 가사 및 독음</a></li>
 </ul>
 </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
