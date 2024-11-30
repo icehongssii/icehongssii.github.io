@@ -1,0 +1,224 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">값이 없는 것과 None, null</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-11-29 09:57:03 - 최초작성2024-11-29 09:57
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#CS"><span>CS</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><pre><code class="ad-question language-ad-question">title: 값이 없는 상태, None, null이 뭘까?
+- 아래 코드에서 보면  `good_typ`은 integer일 수 있고 None 일 수도 있다. 하지만 값이 없는 상태라면 기본 값을 1로 설정한다
+
+</code></pre>
+
+<pre><code class="python language-python">from pydantic import BaseModel
+class ScopeRoom(BaseModel):
+    good_type: int | None = 1
+
+# 허용 가능 값 
+# s1 = ScopeRoom(good_type=3)
+# s2 = ScopeRoom(good_type=None)
+# s3 = ScopeRoom()
+</code></pre>
+
+<ul>
+<li>==그런데 값이 없는 상태와 None은 같으니까 이렇게 쓰면 안되나?== </li>
+</ul>
+
+<pre><code class="python language-python">from pydantic import BaseModel
+class ScopeRoom(BaseModel):
+    good_type: int= 1
+</code></pre>
+
+<ul>
+<li>하지만 ==값이 없는 것과 None은 다르게 처리 된다!== </li>
+</ul>
+
+<pre><code class="python language-python"># 허용 가능 값 
+s1 = ScopeRoom(good_type=3) 
+print(s1.good_type)
+s2 = ScopeRoom(good_type=None) # 에러 발생!
+s3 = ScopeRoom()
+print(s3.good_type) # 1출력
+</code></pre>
+
+<h2>👯‍♂️ 값이 없는 상태 (Missing Value)</h2>
+
+<ul>
+<li>python에서는 데이터에서 특정 필드(키)가 아예 존재하지 않는 상태를 의미</li>
+<li><strong>JSON</strong>: JSON 객체에서 키가 누락된 경우를 말함 <code>{}</code></li>
+</ul>
+
+<pre><code class="python language-python">data = {}  # 'key' 자체가 없음
+print('key' in data)  # False
+print(data.get('key'))  # None (키가 없으므로 None 반환)
+</code></pre>
+
+<ul>
+<li>아래 pydantic 모델에서 기본 값을 정해주지 않았음에도 불구하고 에러가 나지 않는 이유는 기본값이 1로 지정돼서 그렇다 </li>
+<li>pydantic에서는 필드가 기본값을 가지면 기본값을 사용하고 기본값이 없다면 오류 발생한다</li>
+</ul>
+
+<pre><code class="python language-python">from pydantic import BaseModel
+class ScopeRoom(BaseModel):
+    good_type: int= 1
+s1 = ScopeRoom()
+s1.good_type
+</code></pre>
+
+<h2>👯‍♂️ None</h2>
+
+<ul>
+<li>python에서는 필드가 존재하지만, 해당 필드의 값이 없음을 의미</li>
+<li><code>None</code>은 Python에서 데이터가 "없다"고 명시적으로 나타내는 값이다! 값이 없는 상태를 나타내는 값..</li>
+<li>JSON에서 <code>null</code>로 표현 <code>{"key":null}</code></li>
+</ul>
+
+<pre><code class="python language-python">data = {"key": None}  # 'key'는 존재하지만 값이 None
+print('key' in data)  # True
+print(data['key'])  # None
+
+</code></pre>
+
+<ul>
+<li>python에서 None은 False</li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
