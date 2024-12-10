@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">Using docker container as Database(inititalizing)</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-11-14 18:39:39 - 최초작성2024-11-14 18:36
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>👯‍♂️ 개요  및 결론</h2>
+
+<p>테스트용 데이터베이스를 호스트머신에 있는 걸 사용하지 않고 컨테이너로 사용하면 너무 편한다. 근데 유닛 테스트를 실행 할 때마다 매번 데이터를 넣어줄 수도 없고 이럴 때는 어떡하나? </p>
+
+<pre><code class="ad-important language-ad-important">title: docker-entrypoint-initdb.d/ 에다가 스크립트를 사용한다!
+- . In this directory, `.sh`, `.sql`, and `.sql.gz` scripts are executed when the container is started for the first time.
+</code></pre>
+
+<pre><code class="dockerfile language-dockerfile">FROM mysql:latest
+
+# mydb를 선언하고 
+ENV MYSQL_DATABASE mydb 
+
+copy ./scripts ./docker-entrypoint-initdb.d/
+</code></pre>
+
+<p>아래는 scripts/create.sql</p>
+
+<pre><code class="sql language-sql"># mydb 안에서 테이블을 생성한다
+CREATE TABLE IF NOT EXISTS mydb.myothertable (
+  column_name VARCHAR(255)
+);
+
+INSERT INTO mydb.myothertable (column_name) VALUES ('other_value');
+
+</code></pre>
+
+<pre><code>- scripts/create.sql
+- Dockerfile 
+</code></pre>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="https://docs.docker.com/guides/databases/">docker-official-doc-Use-containserized-doc</a></li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>

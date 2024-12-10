@@ -1,0 +1,177 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">docker에서  build context</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-11-14 18:26:42 - 최초작성2024-11-14 18:26
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#docker"><span>docker</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>👯‍♂️ 개요  및 결론</h2>
+
+<p>==빌드 컨텍스트란, 빌드에 필요한 파일들이 저장된 곳을 말한다==. 도커는 이미지를 빌드할 때, 빌드 컨텍스트의 위치를 확인한다. 따라서 빌드 명령어에 빌드 컨텍스트 경로를 입력해야 한다.</p>
+
+<pre><code>docker build .
+</code></pre>
+
+<p>.을 입력할 경우, 현재 위치를 뜻하며 빌드 컨텍스트의 경로로 이동한 상태에서 빌드 명령어를 수행할 때는 .만 입력하면 된다.</p>
+
+<p>빌드 컨텍스트에서의 파일들을 잘 관리하는 것이 중요한데, 그 이유는 이미지의 용량을 최소한으로 해야 네트워크 용량을 줄일 수 있기 때문이다. 빌드를 하는 이유는 기본적으로 컨테이너를 실행하고, 목적에 맞는 애플리케이션을 구동하기 위함일 것이다. 그런데 이와 무관한 파일들이 빌드 컨텍스트에 섞이게 되면, 불필요한 리소스까지 이미지에 포함되는 것이다. 이는 이미지의 용량을 증가시키고, 리소스 낭비로 이어진다. 따라서 <strong>dockerignore</strong> 파일을 통해 빌드에 포함시키지 않을 파일들을 지정할 수 있다. (마치 .gitignore를 통해 커밋에서 제외시킬 파일을 지정하는 것과 비슷하다)</p>
+
+<pre><code>├── .gitignore
+├── docker-compose.yml
+└── project
+    ├── .dockerignore
+    ├── Dockerfile
+    ├── app
+    │   ├── __init__.py
+    │   ├── config.py
+    │   └── main.py
+    └── requirements.txt
+</code></pre>
+
+<p>여기에서 build context는 project 전체 디렉토리</p>
+
+<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
+
+<ul>
+<li><a href="https://whxogus215.tistory.com/106">몰입하는 개발자로 성장하기:티스토리</a>)</li>
+</ul>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>

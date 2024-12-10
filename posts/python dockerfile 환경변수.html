@@ -1,0 +1,185 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">python dockerfile 환경변수</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-11-14 18:00:32 - 최초작성2024-11-14 18:00
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#python"><span>python</span></a>
+                
+                <a href="/tags#docker"><span>docker</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>👯‍♂️ python dockerfile에서 가장 많이 쓰이는 두가지 변수 의미</h2>
+
+<pre><code class="dockerfile language-dockerfile">FROM python:3.12.1-slim-bookworm
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /usr/src/app
+COPY ./requirements.txt .
+RUN pip install --upgrade pip &amp; pip install -r requirements.txt
+
+COPY . .
+</code></pre>
+
+<h2>👯‍♂️ PYTHONDONTWRITEBYTECODE=1</h2>
+
+<p>파이썬은 인터프리터 언어. 실행하기전에 바이트코들 컴파일되는데 이렇게 바이트코드로 변환된걸 .pyc에 저장함. 그리고 파이썬 파일 실행 할 때 마다 계속해서 .pyc를 생성하는게 아니라 저장된 pyc를 재사용해 다시 컴파일 하지 않아 실행 속도가 향상된다.</p>
+
+<p>근데 이렇게 되면 <code>__pycache__</code> 디렉토리안에 컴파일된 파이썬 코드들이 생기게 됨. 따라서 개발 환경에서는 이러한 디렉토리 생성을 피하고자 바이트 코드를 적지 않게한다.</p>
+
+<h3>요약</h3>
+
+<p><code>.pyc</code> 파일은 프로그램을 더 효율적으로 실행하기 위해 생성됩니다. 하지만, 개발 중에 굳이 필요하지 않을 경우 <code>PYTHONDONTWRITEBYTECODE</code> 환경 변수를 설정해 <code>.pyc</code> 파일 생성을 막을 수 있습니다.</p>
+
+<h2>👯‍♂️ UNBUFFERED=1</h2>
+
+<p>버퍼링이 되면 <code>stdout</code>(표준 출력)이나 <code>stderr</code>(표준 에러)가 바로 출력되지 않고, 특정 크기만큼 데이터가 쌓일 때까지 기다렸다가 한꺼번에 출력됩니다. 예를 들어, 파일로 로그를 남기거나 네트워크를 통해 데이터를 전송할 때, 버퍼링된 출력은 실시간으로 보이지 않을 수 있어 디버깅에 불편할 수 있습니다.</p>
+
+<p><strong>예시 상황</strong>:</p>
+
+<ul>
+<li><strong>버퍼링됨</strong>: 프로그램이 중간중간 상태를 출력하는데, 실행 중에는 아무것도 보이지 않다가 프로그램이 끝나야 출력이 보일 수 있습니다.</li>
+<li><strong>버퍼링되지 않음</strong>: 프로그램이 진행될 때마다 출력이 즉시 보이기 때문에, 실시간으로 상태를 확인할 수 있습니다.</li>
+</ul>
+
+<p>그래서 <code>PYTHONUNBUFFERED=1</code> 설정을 하면, 출력이 바로바로 터미널에 표시되도록 해주어 디버깅하거나 로그를 실시간으로 모니터링할 때 유용합니다.</p>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
