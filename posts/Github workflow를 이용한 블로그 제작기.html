@@ -160,7 +160,7 @@
 
 <h2>👯‍♂️  그럼 이제 내 github workflow를 보자!</h2>
 
-<p>내 github action내의 worfklow는 과정은 크게 세가지로 이루어져있다. 
+<p>내 github action내의 worfklow는 과정은 크게 두개의 스텝으로 이루어져있다.
 1. 옵시디언이 저장된 리포지토리에서 블로그에 올릴 게시글만 html로 변환해주기
 2. github page 리포지토리에 해당 파일들 push</p>
 
@@ -177,32 +177,39 @@ jobs:
   test:
     runs-on: macos-14
     steps:
-      - name: Convert md to html # html로 변환 이때 저장경로는 인스턴스 내 경로임
-        run: python ${{ github.workspace }}/scripts/blog-maker/md_to_html.py
-      - name: Upload generated template # 인스턴스 내 경로들 중 아티팩트로 업로드
-        uses: actions/upload-artifact@v4
-        id: upload-generated-template
+      - name: Checkout code # 현재 repo로 체크하웃
+        uses: actions/checkout@v4
+      - name: Set Up Python # 파이썬 세팅
+        uses: actions/setup-python@v5
         with:
-          name: posts-output
-          path: ${{ github.workspace }}/export/html/**
+          python-version: 3.11.3
+      - name: Install dependencies &amp; Export requirements
+        run: |
+          python -m pip install --upgrade pip # pip업그레이드
+          pip install -r ./scripts/blog-maker/requirements.txt # md-&gt;html 변환위해 pip install
+      - name: permission # 내가 html로 만든것들에대해 전체 권한 줌
+        run: echo ${{ github.workspace }} &amp;&amp; mkdir -p ${{github.workspace}}/export/excalidraw &amp;&amp; mkdir -p ${{ github.workspace }}/export/html &amp;&amp; mkdir -p ${{ github.workspace }}/export/tags &amp;&amp; chmod -R 777 ${{ github.workspace }}/export/html &amp;&amp; chmod -R 777 ${{ github.workspace }}/export/tags &amp;&amp; chmod -R 777 ${{github.workspace}}/export/excalidraw
+      - name: Convert md to html # html로 변환 이때 저장경로는 인스턴스 내 경로임
+        run: |
+          python ${{ github.workspace }}/scripts/blog-maker/md_to_html.py
       - uses: actions/checkout@v4 # 블로그 깃허브로 checkout
         with:
           repository: "icehongssii/icehongssii.github.io"
           ref: "main"
-          token: "깃허브토큰"
-      - name: posts-Download generated template # artifact 다운로드 받고
-        uses: actions/download-artifact@v4
-        with:
-          name: posts-output
-          path: ${{ github.workspace }}/posts
+          token:  # 개인 액세스 토큰그냥 하드코딩해서 넣었다 ..
+          path: icehongssii-page
+      - name: posts-Download generated template 
+        run: |
+          rm ${{ github.workspace }}/icehongssii-page/posts/*.html
+          cp -R ${{ github.workspace }}/export/html/* ${{ github.workspace }}/icehongssii-page/posts
+          cp -R ${{ github.workspace }}/export/tags/* ${{ github.workspace }}/icehongssii-page
+          cp -R ${{github.workspace  }}/export/excalidraw/* ${{ github.workspace }}/icehongssii-page/excalidraw
       - name: Setup git config
         run: |
+          cd icehongssii-page
           git config user.name "icehongssii"
           git config user.email "douner@adoc.co.kr"
-      - name: Commit and push generated template # commit 하기
-        run: |
-          git status
-          git add ${{ github.workspace }}/posts ./posts
+          git add .
           git commit -m "자동 생성된 템플릿 업데이트" || echo "No changes to commit"
           git push origin main
 
@@ -252,47 +259,25 @@ blog 디렉토리에는 블로그에 올리고 싶은 마크다운 파일이 저
             f.write(post_detail_template.render({"meta": html.metadata, "html": html, "static_dir":STATIC_PATH}))
 </code></pre>
 
-<h3>2. github action artifact 에 인스톨하고 다운로드</h3>
+<h3>2. 변환된 html 파일들을 스테이징하고 내 깃페이지에 올리기</h3>
 
-<ul>
-<li><ol start="3">
-<li>github page 리포지토리에 해당 파일들 push</li>
-</ol></li>
-</ul>
+<pre><code class="yml language-yml">        run: |
+          rm ${{ github.workspace }}/icehongssii-page/posts/*.html
+          cp -R ${{ github.workspace }}/export/html/* ${{ github.workspace }}/icehongssii-page/posts
+          cp -R ${{ github.workspace }}/export/tags/* ${{ github.workspace }}/icehongssii-page
+          cp -R ${{github.workspace  }}/export/excalidraw/* ${{ github.workspace }}/icehongssii-page/excalidraw
+      - name: Setup git config
+        run: |
+          cd icehongssii-page
+          git config user.name "icehongssii"
+          git config user.email "douner@adoc.co.kr"
+          git add .
+          git commit -m "자동 생성된 템플릿 업데이트" || echo "No changes to commit"
+          git push origin main
 
-<p>fastapi는 웹 어플리케이션 만드는걸 도와주는 웹 프레임워크인데.. 얘는 asgi 위에서 동작한다.
-무슨말이냐면 애초에 파이썬은 웹서버로부터 받은 요청을 곧바로 처리할 수 없기 때문에 중간에 cgi라는 놈을 두는데..이 cgi는 모든 요청에 따라 매번 프로세스를 만들기에 과부하 오기 딱 좋은 놈이다. (이놈의 연장선이 was임)
-여튼 이 에바스러운 상황에서 대안으로 나온게 wsgi이다. 
-cgi와 다른 방식으로 요청을 받아서 웹 어플리케이션을 실행한다</p>
+</code></pre>
 
-<p>FastAPI is built on top of Starlette, which is an ASGI (Asynchronous Server Gateway Interface) framewor</p>
-
-<p>웹서버에서 받은 요청 wsgi가 파이썬 어플리케이션에서 처리해줌 
-왜냐면 </p>
-
-<h2>👯‍♂️ 메인포인트1</h2>
-
-<h2>👯‍♂️ Ref &amp; LINKS TO THIS PAGE</h2>
-
-<ul>
-<li><p><a href="https://www.youtube.com/watch?v=kFWP6sFKyp0&list=PLYH7OjNUOWLUz15j4Q9M6INxK5J3-59GC">책/유튜브 인강-혼자 공부하는 컴퓨터구조+운영체제, 강민철, 한빛미디어</a></p></li>
-
-<li><p>https://aliencoder.tistory.com/109</p></li>
-<li>https://devocean.sk.com/blog/techBoardDetail.do?ID=165282 selector에 관한 설명도나옴</li>
-</ul>
-
-<p>프레임워크 없이 웹 애플리케이션을 만든다는 것은 건물을 지을 때 기본적인 철골구조나 규격 없이 처음부터 모든 것을 직접 설계하고 건축하는 것과 비슷합니다.</p>
-
-<h3>비유를 조금 더 확장해보자면:</h3>
-
-<ul>
-<li><p><strong>프레임워크가 있는 경우:</strong> 건물을 지을 때, 이미 만들어진 철골구조와 규격에 따라 작업합니다. 예를 들어, 벽을 세우거나 창문을 설치할 때 표준화된 치수와 재료를 사용할 수 있습니다. 이렇게 하면 건축 과정이 훨씬 더 빠르고 효율적이며, 결과물의 품질도 일정하게 유지됩니다. 이처럼, 웹 프레임워크는 개발자가 복잡한 작업을 쉽게 할 수 있도록 기본 구조와 규칙을 제공하여, 더 빠르고 안정적으로 웹 애플리케이션을 만들 수 있게 도와줍니다.</p></li>
-<li><p><strong>프레임워크가 없는 경우:</strong> 반면, 프레임워크 없이 건물을 짓는다면, 철골부터 전기 배선까지 모든 것을 직접 설계하고 만들어야 합니다. 이 과정에서 발생할 수 있는 오류도 많고, 시간이 많이 소요될 뿐만 아니라 결과물의 품질도 보장하기 어렵습니다. 마찬가지로, 웹 프레임워크 없이 애플리케이션을 만든다면, HTTP 요청을 처리하거나 데이터베이스와 상호작용하는 등의 기본적인 기능을 모두 처음부터 직접 구현해야 합니다. 이는 많은 시간과 노력이 필요하며, 코드의 복잡성도 증가하게 됩니다.</p></li>
-</ul>
-
-<h3>결론:</h3>
-
-<p>프레임워크는 건축에서의 철골구조처럼, 웹 애플리케이션 개발에서의 기본 구조와 규격을 제공합니다. 이를 통해 개발자는 반복적인 작업을 줄이고, 더 빠르고 안정적으로 애플리케이션을 개발할 수 있습니다. 만약 이러한 프레임워크가 없다면, 개발자는 모든 것을 처음부터 구현해야 하므로, 개발 속도가 느려지고 오류 가능성이 높아지며 유지보수가 어려워질 수 있습니다.</p>
+<p>이렇게만 올리면 끝난다</p>
 </div>
         <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
 

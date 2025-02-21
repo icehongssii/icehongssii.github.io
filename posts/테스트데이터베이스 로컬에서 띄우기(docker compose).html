@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <!-- 사이트 제목 -->
+    <title>icehongssii</title>
+    <!-- 사이트 favicon -->
+    <link
+      rel="icon"
+      href="/static/assets/icepersimmon.png"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <!-- 코드하이라이터 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <!-- 사이트 메타데이터-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="MOM, I am gonna rock" />
+    <meta property="og:description" content="MOM, I am gonna rock" />
+    <meta name="author" content="" />
+    <!-- css파일-->
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <!-- RSS피드-->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="icehongssii"
+      href="/feed.xml"
+    />
+  </head>
+
+  <body>
+    <div id="MathJax_Message" style="display: none"></div>
+    <header>
+      <!--사이트 메타데이터-->
+      <div class="container">
+        <div class="site-info">
+          <a href="/" class="site-title">icehongssii</a>
+          <p class="site-description">MOM, I am gonna rock</p>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---사이트메타-->
+
+        <!--헤더-->
+        <div class="grower"></div>
+        <!--네이게이션바 3개-->
+        <nav class="site-nav">
+          <a href="/career"><img src="/static/assets/sun.svg" /></a>
+          <p>ABOUT</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/posts"><img src="/static/assets/monster.svg" /></a>
+          <p>POSTS</p>
+        </nav>
+        <nav class="site-nav">
+          <a href="/tags"><img src="/static/assets/cloud.svg" /></a>
+          <p>TAGS</p>
+        </nav>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---네이게이션바3개-->
+      </div>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---헤더-->
+    </header>
+
+    <!--최상단 container-->
+    <div id="main" role="main" class="container">
+      <!--본문article-->
+      <article class="post-page">
+        <h1 class="title">테스트데이터베이스 로컬에서 띄우기(docker compose)</h1>
+        <!--수정날짜-->
+        <div class="date">
+          <strong
+            >마지막수정 2024-11-24 20:53:10 - 최초작성2024-11-24 20:53
+          </strong>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--수정날짜-->
+
+        <!--메타데이터-->
+        <div class="meta-information">
+          <table>
+            <tr>
+              <td><strong>태그</strong></td>
+              <td>
+                
+                <a href="/tags#&#34;#vivainno&#34;"><span>&#34;#vivainno&#34;</span></a>
+                
+                <a href="/tags#docker"><span>docker</span></a>
+                
+              </td>
+            </tr>
+            <tr>
+              <td><strong>tl;dr</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---메타데이터-->
+
+        <!--마크다운변환된내용 본문-->
+        <div class="entry"><h2>사용목적</h2>
+
+<ul>
+<li>호스트 머신에 직접 인스톨하기 싫어서
+<ul>
+<li>그리고 인스톨하는 과정 매번 반복하기 싫어서 docker-compose 파일로 만들었다</li>
+</ul></li>
+</ul>
+
+<h2>사용방법</h2>
+
+<ul>
+<li>test 폴더 생성하고 docker-compose, init.sql(mysql 루트계정 사용안하고 새계정생성하고 권한 주는용), mongo-init.js(마찬가지), .env(테스트용 환경변수 설정파일) 담고</li>
+<li>docker-compose up 실행</li>
+</ul>
+
+<h3>환경변수 env</h3>
+
+<ul>
+<li>플젝환경변수 test 에서 사용 중 (test_env.sh)</li>
+</ul>
+
+<pre><code class="sh language-sh">#! /bin/bash
+
+export API_ENV='test'
+export DB_URL='mysql://viva:viva@localhost/test?charset=utf8mb4'
+export TEST_DB_URL='mysql://viva:viva@localhost/test?charset=utf8mb4'
+export DYNAMO_DB_URL='http://localhost:4306'
+export MONGO_DB_URL='mongodb://root:root@localhost:27017/test_adoc?authSource=admin'
+</code></pre>
+
+<h3>docker compose</h3>
+
+<pre><code class="yml language-yml">
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: test_adoc
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_DB: test_adoc
+    ports:
+      - 27017:27017
+
+  redis:
+      image: redis/redis-stack:latest
+      container_name: redis
+      ports:
+        - 6379:6379
+        - 16379:8001
+
+</code></pre>
+
+<h3>init 파일</h3>
+
+<ul>
+<li>mysql 테스트베이스에 대한 권한 주기  (사실 root계정으로 생성하면 상관없긴함)</li>
+</ul>
+
+<pre><code class="sh language-sh"># init.sql
+-- Create the user
+
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+
+CREATE USER 'test'@'%' IDENTIFIED BY 'test';
+
+
+
+-- Grant privileges
+
+GRANT ALL PRIVILEGES ON test_adoc.* TO 'test'@'%';
+
+GRANT ALL PRIVILEGES ON test_adoc.* TO 'test'@'localhost';
+
+
+
+-- Apply the changes
+
+FLUSH PRIVILEGES
+</code></pre>
+
+<ul>
+<li>https://stackoverflow.com/a/15707789/9928766</li>
+<li><p>localhost에 대한 권한을 주는 이유는 <code>%</code> seems to not cover socket communications, that the <code>localhost</code> is for. <code>WITH GRANT OPTION</code> is only good for the super user, otherwise it is usually a security risk.</p></li>
+<li><p>mongodb에서 유저 생성하고 해당 유저에 특정 데이터베이스 권한 주기 </p></li>
+</ul>
+
+<pre><code class="js language-js"># init.js
+const adminDb = db.getSiblingDB('admin');
+
+adminDb.createUser({
+  user: process.env.MONGO_USER,
+  pwd: process.env.MONGO_PASSWORD,
+  roles: [
+    { role: 'dbOwner', db: process.env.MONGO_DB }
+  ]
+});
+
+const userDb = db.getSiblingDB(process.env.MONGO_DB);
+
+print('MongoDB initialized');
+</code></pre>
+
+<ul>
+<li>dbOwner 롤은 admin 권한을 특정 db에서만 사용할 수 있도록하는 권한임(readwrite + dbAmdin+userAdmin을 합친 권한이라고 보면된다 ) https://www.mongodb.com/docs/manual/reference/built-in-roles/</li>
+</ul>
+
+<h2>파이썬 가상환경</h2>
+
+<pre><code class="sh language-sh">source test_env.sh
+docker compose up 
+pipenv --python 3.11
+pipenv shell
+pipenv install --dev
+</code></pre>
+
+<h2>pytest 실행하기</h2>
+
+<pre><code>pytest 
+pytest -v -s tests/order/test_order_cancel.py  --log-cli-level=CRITICAL 
+</code></pre>
+</div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!--마크다운변환된내용 본문-->
+
+        <!--댓글-->
+        <hr />
+        <div>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="icehongssii/icehongssii.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async
+          ></script>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--댓글-->
+
+        <!--홍씨바닥-->
+        <div>
+          <center>
+            <img src="/static/assets/icepersimmon.png" class="my-icon" />
+          </center>
+        </div>
+        <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---홍씨바닥-->
+      </article>
+      <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---본문article-->
+    </div>
+    <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!--최상단 container-->
+
+    <footer>
+      <div class="container">
+        <p><a href="mailto:icehongssii@gmail.com">icehongssii@gmail.com</a></p>
+        <p><a href="https://github.com/icehongssii">GitHub @icehongssii</a></p>
+      </div>
+    </footer>
+    <!-- Google Analytics -->
+    <!-- End Google Analytics -->
+  </body>
+</html>
